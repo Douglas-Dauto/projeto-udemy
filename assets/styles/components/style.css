@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 0.9em;
+}
+header ul {
+  list-style: none;
+  gap: 10px;
+}
+header ul li {
+  cursor: pointer;
+}
+header .container-header {
+  padding: 0 24px;
+  width: 100%;
+  border-bottom: 1px solid #c9c9c9;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 10px;
+  height: 72px;
+}
+header .container-header img[alt="Logo udemy"] {
+  width: 91px;
+  height: 34px;
+  align-self: center;
+  cursor: pointer;
+}
+header .container-header .container-header, header .container-header .container-header__sec-one, header .container-header .container-header__sec-two, header .container-header .container-header__sec-one-ul {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 10px;
+}
+header .container-header .container-header__sec-one-ul li {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+header .container-header .container-header__sec-one-ul li:hover {
+  color: #5624D0;
+}
+header .container-header .container-header__sec-one-ul .container-header__container-input {
+  border: 1px solid black;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f7f9fa;
+}
+header .container-header .container-header__sec-one-ul .container-header__container-input img {
+  padding-left: 15px;
+}
+header .container-header .container-header__sec-one-ul .container-header__container-input .container-header__input-search {
+  width: calc(100vw - 920px);
+  border: none;
+  border-radius: 30px;
+  padding: 15px 15px 15px 5px;
+  background-color: transparent;
+}
+header .container-header .container-header__sec-two {
+  display: flex;
+  align-items: center;
+}
+header .container-header .container-header__sec-two img {
+  padding: 10px;
+  cursor: pointer;
+}
+header .container-header .container-header__sec-two .container-header__user {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: url(../../img/eu_2626_2.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+header .container-header-two {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .container-header-two ul {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+header .container-header-two ul li:hover {
+  color: #371783;
+}/*# sourceMappingURL=style.css.map */

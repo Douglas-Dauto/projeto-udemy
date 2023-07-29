@@ -1,0 +1,115 @@
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: .9em;
+
+    ul {
+        list-style: none;
+        gap: 10px;
+
+        li {
+            cursor: pointer;
+        }
+    }
+
+    .container-header {
+        padding: 0 24px;
+        width: 100%;
+        border-bottom: 1px solid $colorGrayTwo;
+        display: inline-flex;
+        flex-direction: row;
+        gap: 10px;
+        height: 72px;
+
+
+        img[alt="Logo udemy"] {
+            width: 91px;
+            height: 34px;
+            align-self: center;
+            cursor: pointer;
+        }
+        
+        .container-header, .container-header__sec-one, .container-header__sec-two, .container-header__sec-one-ul {
+            display: inline-flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .container-header__sec-one-ul {
+    
+            li {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px;
+                cursor: pointer;
+            }
+
+            li:hover {
+                color: $colorPurple;
+            }
+    
+            .container-header__container-input {
+                border: 1px solid black;
+                border-radius: 30px;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background-color: $colorGray;
+    
+                img {
+                    padding-left: 15px;
+                }
+    
+                .container-header__input-search {
+                    width: calc(100vw - 920px);
+                    border: none;
+                    border-radius: 30px;
+                    padding: 15px 15px 15px 5px;
+                    background-color: transparent;
+                }
+            }
+        }
+    
+        .container-header__sec-two {
+            display: flex;
+            align-items: center;
+    
+            img {
+                padding: 10px;
+                cursor: pointer;
+            }
+    
+            .container-header__user {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: url(../../img/eu_2626_2.jpg);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .container-header-two {
+        height: 48px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            gap: 25px;
+
+            li:hover {
+                color: $colorPurbleTwo;
+            }
+        }
+    }
+}
