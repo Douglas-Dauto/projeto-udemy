@@ -26,7 +26,10 @@ for(let i = 2; i < elements.length; i++) {
             }, 100);
 
             function containerHiddenMoveOut() {
-                containerHidden.addEventListener('mouseout', () => {
+                containerHidden.removeEventListener('mouseout', containerHiddenCallbackOne);
+                containerHidden.addEventListener('mouseout', containerHiddenCallbackOne);
+
+                function containerHiddenCallbackOne() {
                     containerHidden.addEventListener('mouseout', containerHiddenCallback);
 
                     function containerHiddenCallback() {
@@ -39,7 +42,7 @@ for(let i = 2; i < elements.length; i++) {
                         containerHidden.removeEventListener('mouseout', containerHiddenCallback);
                         mouseOut = false;
                     }, 1000)
-                });
+                }
             }
         }
 

@@ -23,7 +23,7 @@ header {
         flex-direction: row;
         gap: 10px;
         height: 72px;
-
+        z-index: 1;
 
         img[alt="Logo udemy"] {
             width: 91px;
@@ -91,7 +91,7 @@ header {
                 font-weight: bold;
                 text-align: center;
                 box-shadow: 0 0 0 1px #d1d7dc, 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
-
+                
                 a {
                     text-decoration: none;
                     color: $colorWhite;
@@ -130,14 +130,59 @@ header {
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        box-shadow: 0 0 0 1px #d1d7dc, 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
 
         ul {
             display: flex;
             flex-direction: row;
             gap: 25px;
 
+            li {
+                position: relative;
+            }
+
             li:hover {
                 color: $colorPurbleTwo;
+            }
+
+            li:hover::after {
+                content: '';
+                width: 20px;
+                height: 20px;
+                display: block;
+                color: $colorBlack;
+                background-color: $colorBlack;
+                transform: rotate(45deg) translateX(-50%);
+                left: 50%;
+                bottom: -35px;
+                position: absolute;
+            }
+        }
+
+        .container-header-two__container-selection {
+            position: absolute;
+            display: flex;
+            width: 100vw;
+            height: 48px;
+            background-color: $colorBlack;
+            color: $colorWhite;
+            bottom: -48px;
+            left: 0;
+
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+
+                li {
+                    cursor: pointer;
+                }
+
+                li:hover {
+                    color: $colorPurbleThree;
+                }
             }
         }
     }
