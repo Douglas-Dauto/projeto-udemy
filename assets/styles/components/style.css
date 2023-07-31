@@ -10,7 +10,6 @@
 body {
   font-family: "Roboto", sans-serif;
   font-size: 1em;
-  min-height: 100vh;
 }
 
 header {
@@ -19,7 +18,7 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 header ul {
   list-style: none;
@@ -170,7 +169,7 @@ header .container-header-two .container-header-two__container-selection ul li {
   cursor: pointer;
 }
 header .container-header-two .container-header-two__container-selection ul li:hover {
-  color: #e5c9f8;
+  color: #e3c0fa;
 }
 
 @media (max-width: 1300px) {
@@ -218,4 +217,88 @@ header .container-header-two .container-header-two__container-selection ul li:ho
   .container-header-two ul li:nth-child(6) {
     display: none;
   }
+}
+main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+footer {
+  background-color: #1C1D1F;
+  color: #FFFFFF;
+  width: 100%;
+}
+footer .container-sec-one-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 48px;
+}
+footer .container-sec-one-footer p {
+  padding-top: 8px;
+}
+footer .container-sec-two-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 48px;
+  gap: 15px;
+  border-top: 1px solid #3e4143;
+}
+footer .container-sec-two-footer span {
+  color: #e3c0fa;
+}
+footer .container-sec-two-footer p {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+footer .container-sec-three-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #3e4143;
+  padding: 24px 48px 0;
+  align-items: flex-start;
+}
+footer .container-sec-three-footer .container-sec-three-footer__list {
+  display: flex;
+  flex-direction: row;
+  gap: 110px;
+}
+footer .container-sec-three-footer .container-sec-three-footer__list ul {
+  list-style: none;
+  line-height: 20px;
+  font-size: 0.9em;
+}
+footer .container-sec-three-footer .container-sec-three-footer__list ul li {
+  padding: 4px 0;
+}
+footer .container-sec-three-footer .container-sec-three-footer__list ul li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+footer .container-sec-four-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 64px 48px 32px;
+}
+footer .container-sec-four-footer img {
+  width: 80px;
+}
+footer .container-sec-four-footer span {
+  font-size: 0.8em;
+}
+footer .button-footer {
+  background-color: #1C1D1F;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  font-weight: bold;
+  font-size: 0.9em;
+  padding: 10px;
+  cursor: pointer;
+}
+footer .button-footer:hover {
+  background-color: #424447;
 }/*# sourceMappingURL=style.css.map */

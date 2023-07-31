@@ -1,0 +1,94 @@
+footer {
+    background-color: $colorBlack;
+    color: $colorWhite;
+    width: 100%;
+
+    .container-sec-one-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 16px 48px;
+
+        p {
+            padding-top: 8px;
+        }
+    }
+
+    .container-sec-two-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px 48px;
+        gap: 15px;
+        border-top: 1px solid #3e4143;
+
+        span {
+            color: $colorPurbleThree;
+        }
+
+        p {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+
+    .container-sec-three-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-top: 1px solid #3e4143;
+        padding: 24px 48px 0;
+        align-items: flex-start;
+
+        .container-sec-three-footer__list {
+            display: flex;
+            flex-direction: row;
+            gap: 110px;
+
+            ul {
+                list-style: none;
+                line-height: 20px;
+                font-size: .9em;
+
+                li {
+                    padding: 4px 0;
+                }
+
+                li:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .container-sec-four-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 64px 48px 32px;
+
+        img {
+            width: 80px;
+        }
+
+        span {
+            font-size: .8em;
+        }
+    }
+
+    .button-footer {
+        background-color: $colorBlack;
+        color: $colorWhite;
+        border: 1px solid $colorWhite;
+        font-weight: bold;
+        font-size: .9em;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .button-footer:hover {
+        background-color: #424447;
+    }
+}
