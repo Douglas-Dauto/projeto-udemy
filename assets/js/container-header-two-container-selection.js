@@ -1,6 +1,7 @@
 (function() {
 const elements = window.document.querySelectorAll('.container-header-two > ul li');
 const containerSelection = window.document.createElement('div');
+const containerTriangle = window.document.createElement('div');
 const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
 const containerHeader = window.document.getElementsByClassName('container-header')[0];
 
@@ -8,12 +9,12 @@ for(let i = 0; i < elements.length; i++) {
     elements[i].addEventListener('mouseenter', () => {
         containerSelection.setAttribute('class', 'container-header-two__container-selection');
         containerSelection.innerHTML = `<ul>
-        ${i === 0?`<li>Desenvolvimento Web</li>
-        <li>Desenvolvimento móvel</li>
-        <li>Linguagens de programação</li>
-        <li>Desenvolvimento de games</li>
-        <li>Design e desenvolvimento de banco de dados</li>
-        <li>Teste de software</li>`:i === 1?`
+        ${i === 0?`<li class="li-developer">Desenvolvimento Web</li>
+        <li class="li-developer">Desenvolvimento móvel</li>
+        <li class="li-developer">Linguagens de programação</li>
+        <li class="li-developer">Desenvolvimento de games</li>
+        <li class="li-developer">Design e desenvolvimento de banco de dados</li>
+        <li class="li-developer">Teste de software</li>`:i === 1?`
         <li>Empreendedorismo</li>
         <li>Comunicação</li>
         <li>Administração</li>
@@ -66,14 +67,16 @@ for(let i = 0; i < elements.length; i++) {
         <li>Software de música</li>`}
     </ul>`;
         containerHeaderTwo.appendChild(containerSelection);
+        containerTriangle.setAttribute('class', 'triangle');
+        elements[i].appendChild(containerTriangle);
     });
 
-    containerHeader.addEventListener('mouseenter', () => {
-        containerHeaderTwo.removeChild(containerSelection);
-    });
+    containerHeader.addEventListener('mouseenter', containerSelectionMouseOff);
+    containerSelection.addEventListener('mouseout', containerSelectionMouseOff);
 
-    containerSelection.addEventListener('mouseout', () => {
+    function containerSelectionMouseOff() {
         containerHeaderTwo.removeChild(containerSelection);
-    });
+        containerTriangle.removeAttribute('class', 'triangle');
+    }
 }
 })();

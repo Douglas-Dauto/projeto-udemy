@@ -139,8 +139,7 @@ header .container-header-two ul li {
 header .container-header-two ul li:hover {
   color: #371783;
 }
-header .container-header-two ul li:hover::after {
-  content: "";
+header .container-header-two ul .triangle {
   width: 20px;
   height: 20px;
   display: block;
@@ -190,6 +189,15 @@ header .container-header-two .container-header-two__container-selection ul li:ho
   }
   .container-header__input-search {
     width: calc(100vw - 773.66px) !important;
+  }
+  .container-header-two .container-header-two__container-selection ul .li-developer:first-child {
+    display: none;
+  }
+  .container-header-two .container-header-two__container-selection ul .li-developer:nth-child(2) {
+    display: none;
+  }
+  .container-header-two .container-header-two__container-selection ul .li-developer:last-child {
+    display: none;
   }
   .container-header-two ul li:nth-child(8) {
     display: none;

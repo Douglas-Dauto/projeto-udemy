@@ -146,8 +146,7 @@ header {
                 color: $colorPurbleTwo;
             }
 
-            li:hover::after {
-                content: '';
+            .triangle {
                 width: 20px;
                 height: 20px;
                 display: block;
@@ -225,6 +224,23 @@ header {
     }
 
     .container-header-two {
+
+        .container-header-two__container-selection {
+            ul {
+
+                .li-developer:first-child {
+                    display: none;
+                }
+
+                .li-developer:nth-child(2) {
+                    display: none;
+                }
+
+                .li-developer:last-child {
+                    display: none;
+                }
+            }
+        }
 
         ul {
 
