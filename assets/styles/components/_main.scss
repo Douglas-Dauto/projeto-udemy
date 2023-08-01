@@ -18,6 +18,7 @@ main {
             background-color: $colorBlack !important;
             border-radius: 50%;
             position: absolute;
+            z-index: 3;
             top: 50%;
             transform: translateY(-50%);
             box-shadow: 0 0 0 1px #3e4143, 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
@@ -49,13 +50,36 @@ main {
             height: 100%;
             display: flex;
             flex-direction: row;
-            gap: 5px;
+            gap: .5px;
             overflow: hidden;
 
             img {
                 object-fit: cover;
                 width: 100vw;
                 height: 100%;
+            }
+
+            .carousel-content {
+                padding: 24px 24px 30px;
+                position: absolute;
+                left: 80px;
+                top: 70px;
+                width: 440px;
+                line-height: 1.50em;
+                background-color: $colorWhite;
+
+                h1 {
+                    font-size: 2.0em;
+                    font-family: Georgia, Times, 'Times New Roman', serif;
+                    margin-bottom: 8px;
+                    line-height: 1.25em;
+                }
+            }
+
+            .carousel-content-all {
+                display: flex;
+                width: 100%;
+                position: relative;
             }
         }
     }
