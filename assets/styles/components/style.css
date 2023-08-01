@@ -10,6 +10,7 @@
 body {
   font-family: "Roboto", sans-serif;
   font-size: 1em;
+  overflow-x: hidden;
 }
 
 header {
@@ -19,6 +20,7 @@ header {
   justify-content: center;
   width: 100%;
   font-size: 0.85em;
+  z-index: 2;
 }
 header ul {
   list-style: none;
@@ -35,7 +37,7 @@ header .container-header {
   flex-direction: row;
   gap: 10px;
   height: 72px;
-  z-index: 1;
+  z-index: 2;
 }
 header .container-header img[alt="Logo udemy"] {
   width: 91px;
@@ -158,6 +160,7 @@ header .container-header-two .container-header-two__container-selection {
   color: #FFFFFF;
   bottom: -48px;
   left: 0;
+  z-index: 2;
 }
 header .container-header-two .container-header-two__container-selection ul {
   display: flex;
@@ -221,6 +224,57 @@ header .container-header-two .container-header-two__container-selection ul li:ho
 main {
   width: 100%;
   min-height: 100vh;
+  z-index: 1;
+  display: flex;
+}
+main .main-sec-one-carousel {
+  background-color: #f7f9fa;
+  width: 100%;
+  height: 400px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+main .main-sec-one-carousel .main-sec-one-next, main .main-sec-one-carousel .main-sec-one-previous {
+  width: 40px;
+  height: 40px;
+  background-color: #1C1D1F !important;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 1px #3e4143, 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+main .main-sec-one-carousel .main-sec-one-next:hover, main .main-sec-one-carousel .main-sec-one-previous:hover {
+  background-color: #3e4143 !important;
+}
+main .main-sec-one-carousel .main-sec-one-next {
+  right: 15px;
+  background: url(../../img/icon/caret-right-fill.svg);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+main .main-sec-one-carousel .main-sec-one-previous {
+  left: 15px;
+  background: url(../../img/icon/caret-left-fill.svg);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+main .main-sec-one-carousel .main-sec-one-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  overflow: hidden;
+}
+main .main-sec-one-carousel .main-sec-one-content img {
+  object-fit: cover;
+  width: 100vw;
+  height: 100%;
 }
 
 footer {
