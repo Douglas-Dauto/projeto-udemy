@@ -160,7 +160,7 @@ header .container-header-two .container-header-two__container-selection {
   color: #FFFFFF;
   bottom: -48px;
   left: 0;
-  z-index: 2;
+  z-index: 1;
 }
 header .container-header-two .container-header-two__container-selection ul {
   display: flex;
@@ -294,8 +294,30 @@ main .main-sec-one-carousel .main-sec-one-content .carousel-content h1 {
 }
 main .main-sec-one-carousel .main-sec-one-content .carousel-content-all {
   display: flex;
+  width: 0px;
+  position: relative;
+  transition: all 800ms ease-in-out;
+}
+main .main-sec-one-carousel .main-sec-one-content .carousel-content-all:nth-child(2) {
+  display: flex;
   width: 100%;
   position: relative;
+}
+main .main-sec-one-carousel .main-sec-one-content .carousel-content-going-next {
+  animation: slide-next 1s both ease-in-out;
+}
+@keyframes slide-next {
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+main .main-sec-one-carousel .main-sec-one-content .carousel-content-going-previous {
+  animation: slide-previous 1s both ease-in-out;
+}
+@keyframes slide-previous {
+  100% {
+    transform: translateX(100vw);
+  }
 }
 
 footer {

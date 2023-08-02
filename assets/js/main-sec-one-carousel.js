@@ -4,6 +4,14 @@ const carouselPrevious = window.document.getElementsByClassName('main-sec-one-pr
 const carouselNext = window.document.getElementsByClassName('main-sec-one-next')[0];
 const elementsCarousel = [
 `<div class="carousel-content-all">
+    <img class="carousel-img" src="assets/img/carrosselThree.png" alt="Pessoa sorrindo">
+
+    <div class="carousel-content">
+        <h1>O aprendizado vem até você</h1>
+        <p>A promoção termina hoje. Alcance um mundo de conhecimento — em casa ou na rua. Cursos a partir de R$22,90 cada.</p>
+    </div>
+</div>`,
+`<div class="carousel-content-all">
     <img class="carousel-img" src="assets/img/carrosselOne.jpg" alt="Certificado">
 
     <div class="carousel-content">
@@ -17,14 +25,6 @@ const elementsCarousel = [
     <div class="carousel-content">
         <h1>Devagar e sempre</h1>
         <p>Tente estudar por 5 a 10 minutos por dia. Continue seu curso e alcance todo o seu potencial.</p>
-    </div>
-</div>`, 
-`<div class="carousel-content-all">
-    <img class="carousel-img" src="assets/img/carrosselThree.png" alt="Pessoa sorrindo">
-
-    <div class="carousel-content">
-        <h1>O aprendizado vem até você</h1>
-        <p>A promoção termina hoje. Alcance um mundo de conhecimento — em casa ou na rua. Cursos a partir de R$22,90 cada.</p>
     </div>
 </div>`];
 let intervalNextImageData;

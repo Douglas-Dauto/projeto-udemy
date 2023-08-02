@@ -78,8 +78,35 @@ main {
 
             .carousel-content-all {
                 display: flex;
+                width: 0px;
+                position: relative;
+                transition: all 800ms ease-in-out;
+            }
+
+            .carousel-content-all:nth-child(2) {
+                display: flex;
                 width: 100%;
                 position: relative;
+            }
+
+            .carousel-content-going-next {
+                animation: slide-next 1s both ease-in-out;
+            }
+
+            @keyframes slide-next {
+                100% {
+                    transform: translateX(-100vw);
+                }
+            }
+
+            .carousel-content-going-previous {
+                animation: slide-previous 1s both ease-in-out;
+            }
+
+            @keyframes slide-previous {
+                100% {
+                    transform: translateX(100vw);
+                }
             }
         }
     }
