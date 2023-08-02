@@ -3,6 +3,7 @@ main {
     min-height: 100vh;
     z-index: 1;
     display: flex;
+    flex-direction: column;
 
     .main-sec-one-carousel {
         background-color: $colorGray;
@@ -106,6 +107,69 @@ main {
             @keyframes slide-previous {
                 100% {
                     transform: translateX(100vw);
+                }
+            }
+        }
+    }
+
+    .main-sec-two-courses {
+
+        .section-main-courses {
+            display: flex;
+            flex-direction: column;
+            padding: 65px 30px 50px;
+            gap: 20px;
+            
+            .container-courses {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .container-course {
+                display: flex;
+                flex-direction: column;
+                width: 240px;
+                gap: 5px;
+                cursor: pointer;
+
+                h3 {
+                    font-size: .97em;
+                    margin-top: 5px;
+                    padding-right: 5px;
+                    font-weight: bold;
+                }
+
+                p {
+                    font-size: .7em;
+                    color: $colorGrayThree;
+                }
+
+                p:nth-child(1), p:nth-child(2) {
+                    display: inline-flex;
+                    font-size: .8em;
+                }
+
+                p:nth-child(1) {
+                    color: $colorYellowThree;
+                    font-weight: bold;
+                    font-size: .9em;
+                }
+
+                p:nth-child(5) {
+                    color: $colorBlack;
+                    font-weight: bold;
+                    font-size: 1.1em;
+                }
+
+                .classification--best-sellers {
+                    color: $colorOrange;
+                    font-weight: bold;
+                    font-size: .75em;
+                    background-color: $colorYellowTwo;
+                    display: inline-flex;
+                    padding: 5px;
+                    width: max-content;
                 }
             }
         }
