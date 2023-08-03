@@ -117,18 +117,59 @@ main {
         .section-main-courses {
             display: flex;
             flex-direction: column;
-            padding: 65px 30px 50px;
+            padding: 65px 30px 10px;
             gap: 20px;
             
+            .container-courses-carousel {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+
+                .main-sec-two-next, .main-sec-two-previous {
+                    width: 40px;
+                    height: 40px;
+                    background-color: $colorBlack !important;
+                    border-radius: 50%;
+                    position: absolute;
+                    z-index: 3;
+                    top: 50%;
+                    transform: translateY(-100px);
+                    box-shadow: 0 0 0 1px #3e4143, 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
+                    cursor: pointer;
+        
+                    &:hover {
+                        background-color: #3e4143 !important;
+                    }
+                }
+
+                .main-sec-two-next {
+                    right: -15px;
+                    background: url(../../img/icon/caret-right-fill.svg);
+                    background-size: 50%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                .main-sec-two-previous {
+                    left: -15px;
+                    background: url(../../img/icon/caret-left-fill.svg);
+                    background-size: 50%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+
             .container-courses {
                 display: flex;
                 flex-direction: row;
                 gap: 20px;
+                overflow: hidden;
             }
 
             .container-course {
                 display: flex;
                 flex-direction: column;
+                transition: all 800ms ease-in-out;
                 width: 240px;
                 gap: 5px;
                 cursor: pointer;
@@ -172,6 +213,10 @@ main {
                     width: max-content;
                 }
             }
+        }
+
+        .section-main-courses:last-child {
+            padding: 65px 30px;
         }
     }
 }
