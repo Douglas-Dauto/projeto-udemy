@@ -39,7 +39,16 @@ courses.push(new Course('assets/img/courses/C-Sharp-COMPLETO-Programação-Orien
 courses.push(new Course('assets/img/courses/Java-COMPLETO-2023-Programação-Orientada-a-Objetos-Projetos.jpg', 'Java COMPLETO 2023 Programação Orientada a Objetos +Projetos', 'Nelio Alves', '4,8', '44.719', '169,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/O-curso-completo-de-Banco-de-Dados-e-SQL-sem mistérios.jpg', 'O curso completo de Banco de Dados e SQL, sem mistérios!', 'Felipe Mafra', '4,7', '37.665', '179,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Curso-Design-Gráfico-COMPLETO-10-Cursos-do-Zero-ao-Avançado.jpg', 'Curso Design Gráfico COMPLETO 10 Cursos do Zero ao Avançado', 'André Fontenelle', '4,6', '39.154', '169,90', 'Mais vendidos'));
-courses.push(new Course('assets/img/courses/Curso-Design-Gráfico-COMPLETO-10-Cursos-do-Zero-ao-Avançado.jpg', 'Curso Design Gráfico COMPLETO 10 Cursos do Zero ao Avançado', 'André Fontenelle', '4,6', '39.154', '169,90', 'Mais vendidos'));
+courses.push(new Course('assets/img/courses/Pixel-Art-do-zero-ao-avançado.jpg', 'Pixel Art do zero ao avançado', 'Jeferson Dias', '4,6', '589', '169,90', 'Mais vendidos'));
+courses.push(new Course('assets/img/courses/Modelagem-de-Dados-UML-(Análise&Projeto Orientado a Objetos).jpg', 'Modelagem de Dados UML (Análise&Projeto Orientado a Objetos)', 'Nelio Alves', '4,8', '2.845', '169,90', 'Classificação mais alta'));
+courses.push(new Course('assets/img/courses/Criação-de-Apps-Android-iOS-Web-com-Flutter.jpg', 'Criação de Apps Android/iOS/Web com Flutter', 'Daniel Ciolfi, Ewerton Dutra', '4,6', '15.808', '189,90'));
+courses.push(new Course('assets/img/courses/Power-BI-Completo-Do-Básico-ao-Avançado.jpg', 'Power BI Completo - Do Básico ao Avançado', 'João Paulo de Lira', '4,7', '64.650', '199,90', 'Mais vendidos'));
+courses.push(new Course('assets/img/courses/Curso-de-React.Js-e-Next.Js-Intermediário e Avançado.jpg', 'Curso de React.Js e Next.Js (Intermediário e Avançado)', 'Luiz Otávio Miranda', '4,7', '3.627', '169,90'));
+courses.push(new Course('assets/img/courses/Angular-The-Complete-Guide-2023 Edition.jpg', 'Angular - The Complete Guide (2023 Edition)', 'Maximilian Schwarzmuller', '4,6', '188.665', '169,90', 'Mais vendidos'));
+courses.push(new Course('assets/img/courses/Bootstrap-5-Curso-Completo-e-Direto-ao-Ponto.jpg', 'Bootstrap 5: Curso Completo e Direto ao Ponto', 'Diego Mariano', '4,0', '1.179', '179,90'));
+courses.push(new Course('assets/img/courses/Understanding-TypeScript.jpg', 'Understanding TypeScript', 'Maximilian Schwarzmuller', '4,6', '44.269', '199,90', 'Mais vendidos'));
+courses.push(new Course('assets/img/courses/Learn-to-Code-with-Ruby.jpg', 'Learn to Code with Ruby', 'Boris Paskhaver', '4,7', '5.568', '179,90', 'Mais vendidos'));
+courses.push(new Course('assets/img/courses/Git-Completo-Do-Básico-ao-Avançado.jpg', 'Git Completo: Do Básico ao Avançado', 'Gabriel Ferrari', '4,8', '4.173', '199,90', 'Classificação mais alta'));
 
 class Section {
     constructor(id, name) {
@@ -80,36 +89,67 @@ for(let i in sections) {
 
 const coursesCarouselNext = window.document.getElementsByClassName('main-sec-two-next');
 const coursesCarouselPrevious = window.document.getElementsByClassName('main-sec-two-previous');
-let valueCarouselElement = [], containerCourseCarousel;
+let valueCarouselElement = [], containerCourseCarousel, amountContainerCourse = 15;
 
 for(let i = 0; i < sections.length; i++) {
+    // if(window.document.getElementsByClassName('container-course')[i].getBoundingClientRect().left > window.screenLeft) {
+    //     coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
+    // } else {
+    //     coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
+    // }
+
+    // if(window.document.getElementsByClassName('container-course')[i * amountContainerCourse -1].getBoundingClientRect().left < window.innerWidth) {
+    //     coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
+    // } else {
+    //     coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
+    // }
+
+    updateNavigation(i);
+    function updateNavigation(i) {
+        if(i === 0?window.document.getElementsByClassName('container-course')[i].getBoundingClientRect().left > window.screenLeft:window.document.getElementsByClassName('container-course')[i * amountContainerCourse].getBoundingClientRect().left > window.screenLeft) {
+            coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
+        } else {
+            coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
+        }
+
+        if(i === 0?window.document.getElementsByClassName('container-course')[amountContainerCourse -1].getBoundingClientRect().right < window.innerWidth:window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -1].getBoundingClientRect().right < window.innerWidth) {
+            coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
+        } else {
+            coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
+        }
+    }
+
     valueCarouselElement.push(0);
 
     coursesCarouselNext[i].addEventListener('click', () => {
-        if(i === 0) {
-            containerCourseCarousel = window.document.getElementsByClassName('container-course')[0];
-        } else if(i === 1) {
-            containerCourseCarousel = window.document.getElementsByClassName('container-course')[6];
-        }
+        selectContainerCourseCarousel();
 
-        valueCarouselElement[i] += 95;
-        containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}vw`;
+        valueCarouselElement[i] += 260;
+        containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
+
+        setTimeout(() => {
+            updateNavigation(i);
+        }, 800)
     });
     
     coursesCarouselPrevious[i].addEventListener('click', () => {
-        if(i === 0) {
-            containerCourseCarousel = window.document.getElementsByClassName('container-course')[0];
-        } else if(i === 1) {
-            containerCourseCarousel = window.document.getElementsByClassName('container-course')[6];
-        }
+        selectContainerCourseCarousel();
 
-        valueCarouselElement[i] -= 95;
+        valueCarouselElement[i] -= 260;
     
         if(valueCarouselElement[i] < 0) {
             valueCarouselElement[i] = 0;
         }
     
-        containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}vw`;
+        containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
+
+        setTimeout(() => {
+            updateNavigation(i);
+        }, 800)
     });
+
+    function selectContainerCourseCarousel() {
+        i === 0?containerCourseCarousel = window.document.getElementsByClassName('container-course')[i]:containerCourseCarousel = window.document.getElementsByClassName('container-course')[i * amountContainerCourse];
+    }
 }
 })();

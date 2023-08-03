@@ -4,6 +4,7 @@ main {
     z-index: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     .main-sec-one-carousel {
         background-color: $colorGray;
@@ -113,6 +114,7 @@ main {
     }
 
     .main-sec-two-courses {
+        max-width: 1360px;
 
         .section-main-courses {
             display: flex;
@@ -143,7 +145,7 @@ main {
                 }
 
                 .main-sec-two-next {
-                    right: -15px;
+                    right: 0px;
                     background: url(../../img/icon/caret-right-fill.svg);
                     background-size: 50%;
                     background-repeat: no-repeat;
@@ -156,6 +158,14 @@ main {
                     background-size: 50%;
                     background-repeat: no-repeat;
                     background-position: center;
+                }
+
+                .main-sec-two-next--hidden {
+                    display: none;
+                }
+
+                .main-sec-two-previous--hidden {
+                    display: none;
                 }
             }
 

@@ -227,6 +227,7 @@ main {
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 main .main-sec-one-carousel {
   background-color: #f7f9fa;
@@ -320,6 +321,9 @@ main .main-sec-one-carousel .main-sec-one-content .carousel-content-going-previo
     transform: translateX(100vw);
   }
 }
+main .main-sec-two-courses {
+  max-width: 1360px;
+}
 main .main-sec-two-courses .section-main-courses {
   display: flex;
   flex-direction: column;
@@ -347,7 +351,7 @@ main .main-sec-two-courses .section-main-courses .container-courses-carousel .ma
   background-color: #3e4143 !important;
 }
 main .main-sec-two-courses .section-main-courses .container-courses-carousel .main-sec-two-next {
-  right: -15px;
+  right: 0px;
   background: url(../../img/icon/caret-right-fill.svg);
   background-size: 50%;
   background-repeat: no-repeat;
@@ -359,6 +363,12 @@ main .main-sec-two-courses .section-main-courses .container-courses-carousel .ma
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
+}
+main .main-sec-two-courses .section-main-courses .container-courses-carousel .main-sec-two-next--hidden {
+  display: none;
+}
+main .main-sec-two-courses .section-main-courses .container-courses-carousel .main-sec-two-previous--hidden {
+  display: none;
 }
 main .main-sec-two-courses .section-main-courses .container-courses {
   display: flex;
