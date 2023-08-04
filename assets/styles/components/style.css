@@ -322,6 +322,7 @@ main .main-sec-one-carousel .main-sec-one-content .carousel-content-going-previo
   }
 }
 main .main-sec-two-courses {
+  width: 100%;
   max-width: 1360px;
 }
 main .main-sec-two-courses .section-main-courses {
@@ -351,7 +352,7 @@ main .main-sec-two-courses .section-main-courses .container-courses-carousel .ma
   background-color: #3e4143 !important;
 }
 main .main-sec-two-courses .section-main-courses .container-courses-carousel .main-sec-two-next {
-  right: 0px;
+  right: -15px;
   background: url(../../img/icon/caret-right-fill.svg);
   background-size: 50%;
   background-repeat: no-repeat;
@@ -419,6 +420,30 @@ main .main-sec-two-courses .section-main-courses .container-course .classificati
 }
 main .main-sec-two-courses .section-main-courses:last-child {
   padding: 65px 30px;
+}
+@media (max-width: 1359px) {
+  main .main-sec-two-courses {
+    max-width: 1080px;
+  }
+}
+@media (max-width: 1101px) {
+  main .main-sec-two-courses {
+    max-width: 820px;
+  }
+}
+@media (max-width: 838px) {
+  main .main-sec-two-courses {
+    max-width: 560px;
+  }
+}
+@media (max-width: 578px) {
+  main .main-sec-two-courses {
+    max-width: 480px;
+  }
+  main .main-sec-two-courses .container-course {
+    width: 200px !important;
+    gap: 5px;
+  }
 }
 
 footer {

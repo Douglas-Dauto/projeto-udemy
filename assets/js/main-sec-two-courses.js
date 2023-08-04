@@ -92,18 +92,6 @@ const coursesCarouselPrevious = window.document.getElementsByClassName('main-sec
 let valueCarouselElement = [], containerCourseCarousel, amountContainerCourse = 15;
 
 for(let i = 0; i < sections.length; i++) {
-    // if(window.document.getElementsByClassName('container-course')[i].getBoundingClientRect().left > window.screenLeft) {
-    //     coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
-    // } else {
-    //     coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
-    // }
-
-    // if(window.document.getElementsByClassName('container-course')[i * amountContainerCourse -1].getBoundingClientRect().left < window.innerWidth) {
-    //     coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
-    // } else {
-    //     coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
-    // }
-
     updateNavigation(i);
     function updateNavigation(i) {
         if(i === 0?window.document.getElementsByClassName('container-course')[i].getBoundingClientRect().left > window.screenLeft:window.document.getElementsByClassName('container-course')[i * amountContainerCourse].getBoundingClientRect().left > window.screenLeft) {
@@ -124,7 +112,20 @@ for(let i = 0; i < sections.length; i++) {
     coursesCarouselNext[i].addEventListener('click', () => {
         selectContainerCourseCarousel();
 
-        valueCarouselElement[i] += 260;
+        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 1020) {
+            if(window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -4].getBoundingClientRect().right < window.innerWidth) {
+                valueCarouselElement[i] += 780;
+            } else {
+                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17.2;
+            }
+        } else {
+            if(window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -2].getBoundingClientRect().right < window.innerWidth) {
+                valueCarouselElement[i] += 275;
+            } else {
+                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17.2;
+            }
+        }
+
         containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
 
         setTimeout(() => {
@@ -134,14 +135,14 @@ for(let i = 0; i < sections.length; i++) {
     
     coursesCarouselPrevious[i].addEventListener('click', () => {
         selectContainerCourseCarousel();
+        
+        valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17.2;
 
-        valueCarouselElement[i] -= 260;
-    
         if(valueCarouselElement[i] < 0) {
             valueCarouselElement[i] = 0;
         }
-    
-        containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
+
+        containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`
 
         setTimeout(() => {
             updateNavigation(i);
