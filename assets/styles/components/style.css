@@ -380,7 +380,7 @@ main .main-sec-two-courses .section-main-courses .container-courses {
 main .main-sec-two-courses .section-main-courses .container-course {
   display: flex;
   flex-direction: column;
-  transition: all 800ms ease-in-out;
+  transition: margin 800ms ease-in-out;
   width: 240px;
   gap: 5px;
   cursor: pointer;

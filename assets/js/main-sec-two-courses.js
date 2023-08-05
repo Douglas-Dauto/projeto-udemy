@@ -109,20 +109,24 @@ for(let i = 0; i < sections.length; i++) {
 
     valueCarouselElement.push(0);
 
-    coursesCarouselNext[i].addEventListener('click', () => {
+    coursesCarouselNext[i].addEventListener('click', executeCoursesCarouselNext);
+
+    function executeCoursesCarouselNext() {
         selectContainerCourseCarousel();
 
-        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 1020) {
-            if(window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -4].getBoundingClientRect().right < window.innerWidth) {
-                valueCarouselElement[i] += 780;
+        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 1020 && window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -4].getBoundingClientRect().right < window.innerWidth) {
+            valueCarouselElement[i] += 780;
+        } else if(window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -2].getBoundingClientRect().right < window.innerWidth) {
+            if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
+                valueCarouselElement[i] += 237;
             } else {
-                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17.2;
+                valueCarouselElement[i] += 275;
             }
         } else {
-            if(window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -2].getBoundingClientRect().right < window.innerWidth) {
-                valueCarouselElement[i] += 275;
+            if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 500 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
+                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17;
             } else {
-                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17.2;
+                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.8;
             }
         }
 
@@ -130,13 +134,27 @@ for(let i = 0; i < sections.length; i++) {
 
         setTimeout(() => {
             updateNavigation(i);
-        }, 800)
-    });
+        }, 800);
+
+        coursesCarouselNext[i].removeEventListener('click', executeCoursesCarouselNext);
+        
+        setTimeout(() => {
+            coursesCarouselNext[i].addEventListener('click', executeCoursesCarouselNext);
+        }, 1000);
+    }
     
-    coursesCarouselPrevious[i].addEventListener('click', () => {
+    coursesCarouselPrevious[i].addEventListener('click', executeCoursesCarouselPrevious);
+
+    function executeCoursesCarouselPrevious() {
         selectContainerCourseCarousel();
         
-        valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17.2;
+        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 500) {
+            valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20;
+        } else if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
+            valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 21.4;
+        } else {
+            valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.8;
+        }
 
         if(valueCarouselElement[i] < 0) {
             valueCarouselElement[i] = 0;
@@ -146,8 +164,14 @@ for(let i = 0; i < sections.length; i++) {
 
         setTimeout(() => {
             updateNavigation(i);
-        }, 800)
-    });
+        }, 800);
+
+        coursesCarouselPrevious[i].removeEventListener('click', executeCoursesCarouselPrevious);
+        
+        setTimeout(() => {
+            coursesCarouselPrevious[i].addEventListener('click', executeCoursesCarouselPrevious);
+        }, 1000);
+    }
 
     function selectContainerCourseCarousel() {
         i === 0?containerCourseCarousel = window.document.getElementsByClassName('container-course')[i]:containerCourseCarousel = window.document.getElementsByClassName('container-course')[i * amountContainerCourse];
