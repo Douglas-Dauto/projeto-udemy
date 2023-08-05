@@ -214,7 +214,7 @@ main {
                     font-size: 1.1em;
                 }
 
-                .classification--best-sellers {
+                .classification--highest-rating {
                     color: $colorOrange;
                     font-weight: bold;
                     font-size: .75em;
@@ -222,6 +222,20 @@ main {
                     display: inline-flex;
                     padding: 5px;
                     width: max-content;
+                }
+
+                .classification--best-sellers {
+                    color: $colorOrange;
+                    font-weight: bold;
+                    font-size: .75em;
+                    background-color: $colorYellowFour;
+                    display: inline-flex;
+                    padding: 5px;
+                    width: max-content;
+                }
+
+                .classification--none {
+                    display: none;
                 }
             }
         }

@@ -409,7 +409,7 @@ main .main-sec-two-courses .section-main-courses .container-course p:nth-child(5
   font-weight: bold;
   font-size: 1.1em;
 }
-main .main-sec-two-courses .section-main-courses .container-course .classification--best-sellers {
+main .main-sec-two-courses .section-main-courses .container-course .classification--highest-rating {
   color: #4d3105;
   font-weight: bold;
   font-size: 0.75em;
@@ -417,6 +417,18 @@ main .main-sec-two-courses .section-main-courses .container-course .classificati
   display: inline-flex;
   padding: 5px;
   width: max-content;
+}
+main .main-sec-two-courses .section-main-courses .container-course .classification--best-sellers {
+  color: #4d3105;
+  font-weight: bold;
+  font-size: 0.75em;
+  background-color: #eceb98;
+  display: inline-flex;
+  padding: 5px;
+  width: max-content;
+}
+main .main-sec-two-courses .section-main-courses .container-course .classification--none {
+  display: none;
 }
 main .main-sec-two-courses .section-main-courses:last-child {
   padding: 65px 30px;

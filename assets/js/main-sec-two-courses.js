@@ -26,8 +26,15 @@ class Course {
                 <p>(${this.popularity})</p>
             </div>
 
-            <p>R$ ${this.valueMoney}</p>
-            <p class="classification--best-sellers">${this.classification}</p>`;
+            <p>R$ ${this.valueMoney}</p>`;
+
+            if(this.classification === 'Classificação mais alta') {
+                containerCourse.innerHTML += `<p class="classification--highest-rating">${this.classification}</p>`;
+            } else if(this.classification === 'Mais vendidos') {
+                containerCourse.innerHTML += `<p class="classification--best-sellers">${this.classification}</p>`;
+            } else {
+                containerCourse.innerHTML += `<p class="classification--none"></p>`;
+            }
 
             return containerCourse;
         }
