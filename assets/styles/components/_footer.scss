@@ -26,6 +26,12 @@ footer {
             color: $colorPurbleThree;
         }
 
+        div {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
         p {
             font-weight: bold;
             font-size: 1.2em;
@@ -90,5 +96,41 @@ footer {
 
     .button-footer:hover {
         background-color: #424447;
+    }
+
+    @media (max-width: 1030px) {
+        .container-sec-two-footer {
+            flex-direction: column;
+
+            div {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+
+                img {
+                    max-width: 300px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 850px) {
+        .container-sec-one-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .container-sec-three-footer {
+            flex-direction: column-reverse;
+            gap: 10px;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .container-sec-three-footer__list {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
     }
 }

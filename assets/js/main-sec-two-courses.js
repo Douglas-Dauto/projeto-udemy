@@ -125,13 +125,13 @@ for(let i = 0; i < sections.length; i++) {
             valueCarouselElement[i] += 780;
         } else if(window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -2].getBoundingClientRect().right < window.innerWidth) {
             if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
-                valueCarouselElement[i] += 237;
+                valueCarouselElement[i] += 220;
             } else {
-                valueCarouselElement[i] += 275;
+                valueCarouselElement[i] += 260;
             }
         } else {
             if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 500 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
-                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 17;
+                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20;
             } else {
                 valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.8;
             }
@@ -158,7 +158,7 @@ for(let i = 0; i < sections.length; i++) {
         if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 500) {
             valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20;
         } else if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
-            valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 21.4;
+            valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20;
         } else {
             valueCarouselElement[i] -= window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.8;
         }

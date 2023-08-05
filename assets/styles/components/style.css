@@ -232,7 +232,8 @@ main {
 main .main-sec-one-carousel {
   background-color: #f7f9fa;
   width: 100%;
-  height: 400px;
+  min-height: 300px;
+  max-height: 400px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -278,6 +279,8 @@ main .main-sec-one-carousel .main-sec-one-content img {
   object-fit: cover;
   width: 100vw;
   height: 100%;
+  min-height: 300px;
+  max-height: 400px;
 }
 main .main-sec-one-carousel .main-sec-one-content .carousel-content {
   padding: 24px 24px 30px;
@@ -438,6 +441,13 @@ main .main-sec-two-courses .section-main-courses:last-child {
     max-width: 1080px;
   }
 }
+@media (max-width: 1125px) {
+  main .carousel-content {
+    transform: scale(0.8);
+    left: 20px !important;
+    top: 20px !important;
+  }
+}
 @media (max-width: 1101px) {
   main .main-sec-two-courses {
     max-width: 820px;
@@ -446,6 +456,18 @@ main .main-sec-two-courses .section-main-courses:last-child {
 @media (max-width: 838px) {
   main .main-sec-two-courses {
     max-width: 560px;
+  }
+}
+@media (max-width: 700px) {
+  main .carousel-content {
+    left: 0px !important;
+    width: 123vw !important;
+    padding: 40px !important;
+    height: 200px !important;
+  }
+  main .carousel-content:nth-child(2) {
+    top: 140px !important;
+    transform: scale(0.8) translateX(-110px) !important;
   }
 }
 @media (max-width: 578px) {
@@ -482,6 +504,11 @@ footer .container-sec-two-footer {
 }
 footer .container-sec-two-footer span {
   color: #e3c0fa;
+}
+footer .container-sec-two-footer div {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }
 footer .container-sec-two-footer p {
   font-weight: bold;
@@ -536,4 +563,34 @@ footer .button-footer {
 }
 footer .button-footer:hover {
   background-color: #424447;
+}
+@media (max-width: 1030px) {
+  footer .container-sec-two-footer {
+    flex-direction: column;
+  }
+  footer .container-sec-two-footer div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  footer .container-sec-two-footer div img {
+    max-width: 300px;
+  }
+}
+@media (max-width: 850px) {
+  footer .container-sec-one-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  footer .container-sec-three-footer {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+}
+@media (max-width: 700px) {
+  footer .container-sec-three-footer__list {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
 }/*# sourceMappingURL=style.css.map */

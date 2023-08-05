@@ -50,10 +50,10 @@ function nextElement() {
     intervalNextImage();
 }
 
-intervalNextImage();
-function intervalNextImage() {
-    intervalNextImageData = setInterval(() => {
-        nextElement();
-    }, 15000);
-}
+// intervalNextImage();
+// function intervalNextImage() {
+//     intervalNextImageData = setInterval(() => {
+//         nextElement();
+//     }, 15000);
+// }
 })();
