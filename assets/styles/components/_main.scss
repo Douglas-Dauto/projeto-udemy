@@ -83,7 +83,7 @@ main {
 
             .carousel-content-all {
                 display: flex;
-                width: 0px;
+                width: 0;
                 position: relative;
                 transition: all 800ms ease-in-out;
             }
@@ -91,7 +91,6 @@ main {
             .carousel-content-all:nth-child(2) {
                 display: flex;
                 width: 100%;
-                position: relative;
             }
 
             .carousel-content-going-next {
@@ -255,10 +254,15 @@ main {
     }
 
     @media (max-width: 1125px) {
-        .carousel-content {
-            transform: scale(.8);
-            left: 20px !important;
-            top: 20px !important;
+        .main-sec-one-carousel {
+
+            .main-sec-one-content {
+
+                .carousel-content {
+                    left: 20px;
+                    top: 20px;
+                }
+            }
         }
     }
 
@@ -275,16 +279,32 @@ main {
     }
 
     @media (max-width: 700px) {
-        .carousel-content {
-            left: 0px !important;
-            width: 123vw !important;
-            padding: 40px !important;
-            height: 200px !important;
+        .main-sec-one-carousel {
+
+            .main-sec-one-content {
+                .carousel-content-all:nth-child(2) {
+                    display: flex;
+                    width: 100%;
+                }
+
+                .carousel-content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    font-size: .8em;
+                    left: 0 !important;
+                    height: min-content !important;
+                    top: auto !important;
+                    bottom: 0 !important;
+                    width: 100vw !important;
+                    padding: 20px 60px !important;
+                }
+            }
         }
 
         .carousel-content:nth-child(2) {
-            top: 140px !important;
-            transform: scale(.8) translateX(-110px) !important;
+            // top: 140px !important;
+            // transform: scale(.8) translateX(-110px) !important;
         }
     }
 

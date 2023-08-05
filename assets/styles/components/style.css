@@ -299,14 +299,13 @@ main .main-sec-one-carousel .main-sec-one-content .carousel-content h1 {
 }
 main .main-sec-one-carousel .main-sec-one-content .carousel-content-all {
   display: flex;
-  width: 0px;
+  width: 0;
   position: relative;
   transition: all 800ms ease-in-out;
 }
 main .main-sec-one-carousel .main-sec-one-content .carousel-content-all:nth-child(2) {
   display: flex;
   width: 100%;
-  position: relative;
 }
 main .main-sec-one-carousel .main-sec-one-content .carousel-content-going-next {
   animation: slide-next 1s both ease-in-out;
@@ -442,10 +441,9 @@ main .main-sec-two-courses .section-main-courses:last-child {
   }
 }
 @media (max-width: 1125px) {
-  main .carousel-content {
-    transform: scale(0.8);
-    left: 20px !important;
-    top: 20px !important;
+  main .main-sec-one-carousel .main-sec-one-content .carousel-content {
+    left: 20px;
+    top: 20px;
   }
 }
 @media (max-width: 1101px) {
@@ -459,15 +457,21 @@ main .main-sec-two-courses .section-main-courses:last-child {
   }
 }
 @media (max-width: 700px) {
-  main .carousel-content {
-    left: 0px !important;
-    width: 123vw !important;
-    padding: 40px !important;
-    height: 200px !important;
+  main .main-sec-one-carousel .main-sec-one-content .carousel-content-all:nth-child(2) {
+    display: flex;
+    width: 100%;
   }
-  main .carousel-content:nth-child(2) {
-    top: 140px !important;
-    transform: scale(0.8) translateX(-110px) !important;
+  main .main-sec-one-carousel .main-sec-one-content .carousel-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 0.8em;
+    left: 0 !important;
+    height: min-content !important;
+    top: auto !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    padding: 20px 60px !important;
   }
 }
 @media (max-width: 578px) {
