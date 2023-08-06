@@ -259,6 +259,7 @@ main {
             .main-sec-one-content {
 
                 .carousel-content {
+                    transform: scale(.8);
                     left: 20px;
                     top: 20px;
                 }
@@ -288,6 +289,7 @@ main {
                 }
 
                 .carousel-content {
+                    transform: scale(1);
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
@@ -300,11 +302,6 @@ main {
                     padding: 20px 60px !important;
                 }
             }
-        }
-
-        .carousel-content:nth-child(2) {
-            // top: 140px !important;
-            // transform: scale(.8) translateX(-110px) !important;
         }
     }
 

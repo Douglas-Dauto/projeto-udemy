@@ -442,6 +442,7 @@ main .main-sec-two-courses .section-main-courses:last-child {
 }
 @media (max-width: 1125px) {
   main .main-sec-one-carousel .main-sec-one-content .carousel-content {
+    transform: scale(0.8);
     left: 20px;
     top: 20px;
   }
@@ -462,6 +463,7 @@ main .main-sec-two-courses .section-main-courses:last-child {
     width: 100%;
   }
   main .main-sec-one-carousel .main-sec-one-content .carousel-content {
+    transform: scale(1);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

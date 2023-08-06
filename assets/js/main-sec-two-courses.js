@@ -4,9 +4,9 @@ const courses = [];
 const sections = [];
 
 class Course {
-    constructor(image, name, createdBy, starNote, popularity, valueMoney, classification) {
+    constructor(image, title, createdBy, starNote, popularity, valueMoney, classification) {
         this.image = image;
-        this.name = name;
+        this.title = title;
         this.createdBy = createdBy;
         this.starNote = starNote;
         this.popularity = popularity;
@@ -18,7 +18,7 @@ class Course {
             containerCourse.setAttribute('class', 'container-course');
             containerCourse.innerHTML = `
             <img src="${this.image}" alt="">
-            <h3>${this.name}</h3>
+            <h3>${this.title}</h3>
             <p>${this.createdBy}</p>
 
             <div>
@@ -56,17 +56,17 @@ courses.push(new Course('assets/img/courses/Bootstrap-5-Curso-Completo-e-Direto-
 courses.push(new Course('assets/img/courses/Understanding-TypeScript.jpg', 'Understanding TypeScript', 'Maximilian Schwarzmuller', '4,6', '44.269', '199,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Learn-to-Code-with-Ruby.jpg', 'Learn to Code with Ruby', 'Boris Paskhaver', '4,7', '5.568', '179,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Git-Completo-Do-Básico-ao-Avançado.jpg', 'Git Completo: Do Básico ao Avançado', 'Gabriel Ferrari', '4,8', '4.173', '199,90', 'Classificação mais alta'));
-
 class Section {
-    constructor(id, name) {
+    constructor(id, title, key) {
         this.id = id;
-        this.name = name;
+        this.title = title;
+        this.key = key;
 
         this.addSection = function() {
             const section = window.document.createElement('section');
             section.setAttribute('class', `section-main-courses`);
             section.innerHTML += `
-            <h2>${this.name}</h2>
+            <h2>${this.title}</h2>
 
             <div class="container-courses-carousel">
                 <div class="main-sec-two-next"></div>
@@ -79,15 +79,32 @@ class Section {
         this.addCourses = function() {
             const containerCourses = window.document.getElementsByClassName('container-courses');
 
-            for(let i in courses) {
-                containerCourses[id].appendChild(courses[i].createCourse());
+            if(this.key === undefined) {
+                const coursesIndex = [];
+                let courseIndex = Math.floor((Math.random() * (courses.length)));
+
+                for(let i in courses) {
+                    while(coursesIndex.indexOf(courseIndex) >= 0) {
+                        courseIndex = Math.floor((Math.random() * (courses.length)));
+                    }
+
+                    containerCourses[id].appendChild(courses[courseIndex].createCourse());
+                    coursesIndex[i] = courseIndex;
+                }
+            } else {
+                for(let i in courses) {
+                    if(courses[i].title.toLowerCase().includes(this.key.toLowerCase())) {
+                        containerCourses[id].appendChild(courses[i].createCourse());
+                    }
+                }
             }
         }
     }
 }
 
 sections.push(new Section(0, 'Recomendados para você'));
-sections.push(new Section(1, 'Principais cursos em português'));
+sections.push(new Section(1, 'Principais cursos em destaque'));
+sections.push(new Section(2, 'Principais cursos de java', 'java '));
 
 for(let i in sections) {
     sections[i].addSection();
