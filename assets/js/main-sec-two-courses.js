@@ -194,16 +194,15 @@ for(let i in sections) {
 
 const coursesCarouselNext = window.document.getElementsByClassName('main-sec-two-next');
 const coursesCarouselPrevious = window.document.getElementsByClassName('main-sec-two-previous');
-let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 1, widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString(), numberWidthContainerCourse = widthContainerCourse, numberInnerWidth = window.innerWidth;
+let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 1, widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString(), numberInnerWidth = window.innerWidth;
 
 setInterval(() => {
-    if(window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString() !== widthContainerCourse) {
-        widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString();
-        numberWidthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString();
+    for(let i = 0; i < sections.length; i++) {
+        if(window.innerWidth !== numberInnerWidth) {
+            widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString();
+        }
     }
-}, 100);
 
-setInterval(() => {
     if(window.innerWidth !== numberInnerWidth) {
         for(let i = 0; i < sections.length; i++) {
             valueCarouselElement[i] = 0;
@@ -229,7 +228,7 @@ for(let i = 0; i < sections.length; i++) {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
         }
         
-        if(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount <= 5 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(numberWidthContainerCourse)) {
+        if(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount <= 5 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
         } else {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
@@ -241,8 +240,8 @@ for(let i = 0; i < sections.length; i++) {
     coursesCarouselNext[i].addEventListener('click', executeCoursesCarouselNext);
 
     setInterval(() => {
-        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(numberWidthContainerCourse)) {
-            valueCarouselElement[i] -= Number(numberWidthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width;
+        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
+            valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width;
         
             containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
         }
