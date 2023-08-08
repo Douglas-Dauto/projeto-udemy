@@ -1,8 +1,7 @@
 (function() {
 const mainCourses = window.document.getElementsByClassName('main-sec-two-courses')[0];
-const courses = [];
-const sections = [];
-
+const courses = [], sections = [];
+let amountMaxContainerCourse = 15;
 class Course {
     constructor(image, title, createdBy, starNote, popularity, valueMoney, classification) {
         this.image = image;
@@ -56,6 +55,7 @@ courses.push(new Course('assets/img/courses/Bootstrap-5-Curso-Completo-e-Direto-
 courses.push(new Course('assets/img/courses/Understanding-TypeScript.jpg', 'Understanding TypeScript', 'Maximilian Schwarzmuller', '4,6', '44.269', '199,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Learn-to-Code-with-Ruby.jpg', 'Learn to Code with Ruby', 'Boris Paskhaver', '4,7', '5.568', '179,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Git-Completo-Do-Básico-ao-Avançado.jpg', 'Git Completo: Do Básico ao Avançado', 'Gabriel Ferrari', '4,8', '4.173', '199,90', 'Classificação mais alta'));
+
 class Section {
     constructor(id, title, key) {
         this.id = id;
@@ -78,23 +78,28 @@ class Section {
 
         this.addCourses = function() {
             const containerCourses = window.document.getElementsByClassName('container-courses');
+            const coursesIndex = [];
 
             if(this.key === undefined) {
-                const coursesIndex = [];
                 let courseIndex = Math.floor((Math.random() * (courses.length)));
 
-                for(let i in courses) {
+                for(let i = 0; i < courses.length; i++) {
                     while(coursesIndex.indexOf(courseIndex) >= 0) {
                         courseIndex = Math.floor((Math.random() * (courses.length)));
                     }
 
-                    containerCourses[id].appendChild(courses[courseIndex].createCourse());
-                    coursesIndex[i] = courseIndex;
+                    if(i < amountMaxContainerCourse) {
+                        containerCourses[id].appendChild(courses[courseIndex].createCourse());
+                        coursesIndex[i] = courseIndex;
+                    }
                 }
             } else {
-                for(let i in courses) {
-                    if(courses[i].title.toLowerCase().includes(this.key.toLowerCase())) {
+                let count = 0;
+
+                for(let i = 0; i < courses.length; i++) {
+                    if(courses[i].title.toLowerCase().includes(this.key.toLowerCase()) && count < amountMaxContainerCourse) {
                         containerCourses[id].appendChild(courses[i].createCourse());
+                        count++;
                     }
                 }
             }
@@ -105,6 +110,7 @@ class Section {
 sections.push(new Section(0, 'Recomendados para você'));
 sections.push(new Section(1, 'Principais cursos em destaque'));
 sections.push(new Section(2, 'Principais cursos de java', 'java '));
+sections.push(new Section(3, 'Principais cursos de javascript', 'javascript'));
 
 for(let i in sections) {
     sections[i].addSection();
@@ -113,18 +119,42 @@ for(let i in sections) {
 
 const coursesCarouselNext = window.document.getElementsByClassName('main-sec-two-next');
 const coursesCarouselPrevious = window.document.getElementsByClassName('main-sec-two-previous');
-let valueCarouselElement = [], containerCourseCarousel, amountContainerCourse = 15;
+let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 1, widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString(), numberWidthContainerCourse = widthContainerCourse, numberInnerWidth = window.innerWidth;
+
+setInterval(() => {
+    if(window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString() !== widthContainerCourse) {
+        widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString();
+        numberWidthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString();
+    }
+}, 100);
+
+setInterval(() => {
+    if(window.innerWidth !== numberInnerWidth) {
+        for(let i = 0; i < sections.length; i++) {
+            valueCarouselElement[i] = 0;
+            window.document.getElementsByClassName('container-course--primary')[i].style.marginLeft = `-${valueCarouselElement[i]}px`;
+
+            setTimeout(() => {
+                updateNavigation(i);
+            }, 900);
+        }
+
+        numberInnerWidth = window.innerWidth;
+    }
+}, 100);
 
 for(let i = 0; i < sections.length; i++) {
+    window.document.getElementsByClassName('container-course')[numberPrimaryElements -1].setAttribute('class', 'container-course container-course--primary');
+    
     updateNavigation(i);
     function updateNavigation(i) {
-        if(i === 0?window.document.getElementsByClassName('container-course')[i].getBoundingClientRect().left > window.screenLeft:window.document.getElementsByClassName('container-course')[i * amountContainerCourse].getBoundingClientRect().left > window.screenLeft) {
+        if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().left > window.screenLeft) {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
         } else {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
         }
-
-        if(i === 0?window.document.getElementsByClassName('container-course')[amountContainerCourse -1].getBoundingClientRect().right < window.innerWidth:window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -1].getBoundingClientRect().right < window.innerWidth) {
+        
+        if(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount <= 5 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(numberWidthContainerCourse)) {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
         } else {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
@@ -135,25 +165,23 @@ for(let i = 0; i < sections.length; i++) {
 
     coursesCarouselNext[i].addEventListener('click', executeCoursesCarouselNext);
 
+    setInterval(() => {
+        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(numberWidthContainerCourse)) {
+            valueCarouselElement[i] -= Number(numberWidthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width;
+        
+            containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
+        }
+    }, 800);
+
     function executeCoursesCarouselNext() {
         selectContainerCourseCarousel();
 
-        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 1020 && window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -4].getBoundingClientRect().right < window.innerWidth) {
-            valueCarouselElement[i] += 780;
-        } else if(window.document.getElementsByClassName('container-course')[(i + 1) * amountContainerCourse -2].getBoundingClientRect().right < window.innerWidth) {
-            if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
-                valueCarouselElement[i] += 220;
-            } else {
-                valueCarouselElement[i] += 260;
-            }
+        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 500 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
+            valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20;
         } else {
-            if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 500 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
-                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20;
-            } else {
-                valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.8;
-            }
+            valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.8;
         }
-
+        
         containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
 
         setTimeout(() => {
@@ -196,9 +224,11 @@ for(let i = 0; i < sections.length; i++) {
             coursesCarouselPrevious[i].addEventListener('click', executeCoursesCarouselPrevious);
         }, 1000);
     }
-
+    
     function selectContainerCourseCarousel() {
-        i === 0?containerCourseCarousel = window.document.getElementsByClassName('container-course')[i]:containerCourseCarousel = window.document.getElementsByClassName('container-course')[i * amountContainerCourse];
+        containerCourseCarousel = window.document.getElementsByClassName('container-course--primary')[i];
     }
+
+    numberPrimaryElements += window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount;
 }
 })();

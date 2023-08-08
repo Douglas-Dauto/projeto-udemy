@@ -237,7 +237,9 @@ main {
                 }
 
                 .classification--none {
-                    display: none;
+                    display: flex;
+                    height: 24px;
+                    width: 0px;
                 }
             }
         }

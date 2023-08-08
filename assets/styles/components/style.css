@@ -430,7 +430,9 @@ main .main-sec-two-courses .section-main-courses .container-course .classificati
   width: max-content;
 }
 main .main-sec-two-courses .section-main-courses .container-course .classification--none {
-  display: none;
+  display: flex;
+  height: 24px;
+  width: 0px;
 }
 main .main-sec-two-courses .section-main-courses:last-child {
   padding: 65px 30px;
