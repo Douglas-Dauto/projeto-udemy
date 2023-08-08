@@ -4,39 +4,87 @@ const courses = [], sections = [];
 let amountMaxContainerCourse = 15;
 class Course {
     constructor(image, title, createdBy, starNote, popularity, valueMoney, classification) {
-        this.image = image;
-        this.title = title;
-        this.createdBy = createdBy;
-        this.starNote = starNote;
-        this.popularity = popularity;
-        this.valueMoney = valueMoney;
-        this.classification = classification;
+        Object.defineProperties(this, {
+            image: {
+                enumerable: true,
+                value: image,
+                writable: false,
+                configurable: false
+            },
 
-        this.createCourse = function() {
-            const containerCourse = window.document.createElement('div');
-            containerCourse.setAttribute('class', 'container-course');
-            containerCourse.innerHTML = `
-            <img src="${this.image}" alt="">
-            <h3>${this.title}</h3>
-            <p>${this.createdBy}</p>
+            title: {
+                enumerable: true,
+                value: title,
+                writable: false,
+                configurable: false
+            },
 
-            <div>
-                <p>${this.starNote}</p>
-                <p>(${this.popularity})</p>
-            </div>
+            createdBy: {
+                enumerable: true,
+                value: createdBy,
+                writable: false,
+                configurable: false
+            },
 
-            <p>R$ ${this.valueMoney}</p>`;
+            starNote: {
+                enumerable: true,
+                value: starNote,
+                writable: false,
+                configurable: false
+            },
 
-            if(this.classification === 'Classificação mais alta') {
-                containerCourse.innerHTML += `<p class="classification--highest-rating">${this.classification}</p>`;
-            } else if(this.classification === 'Mais vendidos') {
-                containerCourse.innerHTML += `<p class="classification--best-sellers">${this.classification}</p>`;
-            } else {
-                containerCourse.innerHTML += `<p class="classification--none"></p>`;
+            popularity: {
+                enumerable: true,
+                value: popularity,
+                writable: false,
+                configurable: false
+            },
+
+            valueMoney: {
+                enumerable: true,
+                value: valueMoney,
+                writable: false,
+                configurable: false
+            },
+
+            classification: {
+                enumerable: true,
+                value: classification,
+                writable: false,
+                configurable: false
+            },
+
+            createCourse: {
+                enumerable: true,
+                value: function() {
+                    const containerCourse = window.document.createElement('div');
+                    containerCourse.setAttribute('class', 'container-course');
+                    containerCourse.innerHTML = `
+                    <img src="${this.image}" alt="">
+                    <h3>${this.title}</h3>
+                    <p>${this.createdBy}</p>
+        
+                    <div>
+                        <p>${this.starNote}</p>
+                        <p>(${this.popularity})</p>
+                    </div>
+        
+                    <p>R$ ${this.valueMoney}</p>`;
+        
+                    if(this.classification === 'Classificação mais alta') {
+                        containerCourse.innerHTML += `<p class="classification--highest-rating">${this.classification}</p>`;
+                    } else if(this.classification === 'Mais vendidos') {
+                        containerCourse.innerHTML += `<p class="classification--best-sellers">${this.classification}</p>`;
+                    } else {
+                        containerCourse.innerHTML += `<p class="classification--none"></p>`;
+                    }
+        
+                    return containerCourse;
+                },
+                writable: false,
+                configurable: false
             }
-
-            return containerCourse;
-        }
+        });
     }
 }
 
@@ -58,52 +106,79 @@ courses.push(new Course('assets/img/courses/Git-Completo-Do-Básico-ao-Avançado
 
 class Section {
     constructor(id, title, key) {
-        this.id = id;
-        this.title = title;
-        this.key = key;
+        Object.defineProperty(this, 'id', {
+            enumerable: true,
+            value: id,
+            writable: false,
+            configurable: false
+        });
 
-        this.addSection = function() {
-            const section = window.document.createElement('section');
-            section.setAttribute('class', `section-main-courses`);
-            section.innerHTML += `
-            <h2>${this.title}</h2>
+        Object.defineProperty(this, 'title', {
+            enumerable: true,
+            value: title,
+            writable: false,
+            configurable: false
+        });
 
-            <div class="container-courses-carousel">
-                <div class="main-sec-two-next"></div>
-                <div class="container-courses"></div>
-                <div class="main-sec-two-previous"></div>
-            </div>`;
-            mainCourses.appendChild(section);
-        }
+        Object.defineProperty(this, 'key', {
+            enumerable: true,
+            value: key,
+            writable: false,
+            configurable: false
+        });
 
-        this.addCourses = function() {
-            const containerCourses = window.document.getElementsByClassName('container-courses');
-            const coursesIndex = [];
+        Object.defineProperty(this, 'addSection', {
+            enumerable: true,
+            value: function() {
+                const section = window.document.createElement('section');
+                section.setAttribute('class', `section-main-courses`);
+                section.innerHTML += `
+                <h2>${this.title}</h2>
+    
+                <div class="container-courses-carousel">
+                    <div class="main-sec-two-next"></div>
+                    <div class="container-courses"></div>
+                    <div class="main-sec-two-previous"></div>
+                </div>`;
+                mainCourses.appendChild(section);
+            },
+            writable: false,
+            configurable: false
+        });
 
-            if(this.key === undefined) {
-                let courseIndex = Math.floor((Math.random() * (courses.length)));
-
-                for(let i = 0; i < courses.length; i++) {
-                    while(coursesIndex.indexOf(courseIndex) >= 0) {
-                        courseIndex = Math.floor((Math.random() * (courses.length)));
+        Object.defineProperty(this, 'addCourses', {
+            enumerable: true,
+            value: function() {
+                const containerCourses = window.document.getElementsByClassName('container-courses');
+                const coursesIndex = [];
+    
+                if(this.key === undefined) {
+                    let courseIndex = Math.floor((Math.random() * (courses.length)));
+    
+                    for(let i = 0; i < courses.length; i++) {
+                        while(coursesIndex.indexOf(courseIndex) >= 0) {
+                            courseIndex = Math.floor((Math.random() * (courses.length)));
+                        }
+    
+                        if(i < amountMaxContainerCourse) {
+                            containerCourses[id].appendChild(courses[courseIndex].createCourse());
+                            coursesIndex[i] = courseIndex;
+                        }
                     }
-
-                    if(i < amountMaxContainerCourse) {
-                        containerCourses[id].appendChild(courses[courseIndex].createCourse());
-                        coursesIndex[i] = courseIndex;
+                } else {
+                    let count = 0;
+    
+                    for(let i = 0; i < courses.length; i++) {
+                        if(courses[i].title.toLowerCase().includes(this.key.toLowerCase()) && count < amountMaxContainerCourse) {
+                            containerCourses[id].appendChild(courses[i].createCourse());
+                            count++;
+                        }
                     }
                 }
-            } else {
-                let count = 0;
-
-                for(let i = 0; i < courses.length; i++) {
-                    if(courses[i].title.toLowerCase().includes(this.key.toLowerCase()) && count < amountMaxContainerCourse) {
-                        containerCourses[id].appendChild(courses[i].createCourse());
-                        count++;
-                    }
-                }
-            }
-        }
+            },
+            writable: false,
+            configurable: false
+        });
     }
 }
 
