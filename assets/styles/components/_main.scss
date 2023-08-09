@@ -182,7 +182,6 @@ main {
             .container-course {
                 display: flex;
                 flex-direction: column;
-                transition: margin 800ms ease-in-out;
                 width: 240px;
                 gap: 5px;
                 cursor: pointer;
@@ -242,6 +241,14 @@ main {
                     width: 0px;
                 }
             }
+        }
+
+        .container-course--primary {
+            transition: margin 800ms ease-in-out;
+        }
+
+        .container-course-primary--transition-none {
+            transition: none;
         }
 
         .section-main-courses:last-child {

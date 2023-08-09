@@ -239,14 +239,6 @@ for(let i = 0; i < sections.length; i++) {
 
     coursesCarouselNext[i].addEventListener('click', executeCoursesCarouselNext);
 
-    setInterval(() => {
-        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
-            valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width;
-        
-            containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
-        }
-    }, 800);
-
     function executeCoursesCarouselNext() {
         selectContainerCourseCarousel();
 
@@ -305,4 +297,22 @@ for(let i = 0; i < sections.length; i++) {
 
     numberPrimaryElements += window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount;
 }
+
+setInterval(() => {
+    const containerCourses = window.document.getElementsByClassName('container-courses');
+    const containerCourseCarousel = window.document.getElementsByClassName('container-course--primary');
+    
+    for(let i = 0; i < containerCourses.length; i++) {
+        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
+            containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary container-course-primary--transition-none');
+        
+            valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width -.1;
+            containerCourseCarousel[i].style.marginLeft = `-${valueCarouselElement[i]}px`;
+
+            setTimeout(() => {
+                containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary');
+            }, 1000);
+        }
+    }
+}, 5);
 })();

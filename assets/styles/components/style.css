@@ -382,7 +382,6 @@ main .main-sec-two-courses .section-main-courses .container-courses {
 main .main-sec-two-courses .section-main-courses .container-course {
   display: flex;
   flex-direction: column;
-  transition: margin 800ms ease-in-out;
   width: 240px;
   gap: 5px;
   cursor: pointer;
@@ -433,6 +432,12 @@ main .main-sec-two-courses .section-main-courses .container-course .classificati
   display: flex;
   height: 24px;
   width: 0px;
+}
+main .main-sec-two-courses .container-course--primary {
+  transition: margin 800ms ease-in-out;
+}
+main .main-sec-two-courses .container-course-primary--transition-none {
+  transition: none;
 }
 main .main-sec-two-courses .section-main-courses:last-child {
   padding: 65px 30px;
