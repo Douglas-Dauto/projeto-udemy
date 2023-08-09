@@ -103,7 +103,6 @@ courses.push(new Course('assets/img/courses/Bootstrap-5-Curso-Completo-e-Direto-
 courses.push(new Course('assets/img/courses/Understanding-TypeScript.jpg', 'Understanding TypeScript', 'Maximilian Schwarzmuller', '4,6', '44.269', '199,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Learn-to-Code-with-Ruby.jpg', 'Learn to Code with Ruby', 'Boris Paskhaver', '4,7', '5.568', '179,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Git-Completo-Do-Básico-ao-Avançado.jpg', 'Git Completo: Do Básico ao Avançado', 'Gabriel Ferrari', '4,8', '4.173', '199,90', 'Classificação mais alta'));
-
 class Section {
     constructor(id, title, key) {
         Object.defineProperty(this, 'id', {
@@ -194,12 +193,12 @@ for(let i in sections) {
 
 const coursesCarouselNext = window.document.getElementsByClassName('main-sec-two-next');
 const coursesCarouselPrevious = window.document.getElementsByClassName('main-sec-two-previous');
-let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 1, widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString(), numberInnerWidth = window.innerWidth;
+let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 1, widthContainerCourse = Number(window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString()), numberInnerWidth = window.innerWidth;
 
 setInterval(() => {
     for(let i = 0; i < sections.length; i++) {
         if(window.innerWidth !== numberInnerWidth) {
-            widthContainerCourse = window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString();
+            widthContainerCourse = Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString());
         }
     }
 
@@ -220,18 +219,34 @@ setInterval(() => {
 for(let i = 0; i < sections.length; i++) {
     window.document.getElementsByClassName('container-course')[numberPrimaryElements -1].setAttribute('class', 'container-course container-course--primary');
     
-    updateNavigation(i);
-    function updateNavigation(i) {
+    updateNavigation();
+    function updateNavigation() {
         if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().left > window.screenLeft) {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
         } else {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
         }
-        
+
         if(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount <= 5 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
         } else {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
+        }
+
+        let valueContentCourse;
+
+        switch(i) {
+            case 0:
+                valueContentCourse = (Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1);
+                break;
+            default:
+                valueContentCourse = (i +1) * (Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1);
+                break;
+        }
+
+        if(Number(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount.toString()) > 6 && window.document.getElementsByClassName('container-course')[valueContentCourse].getBoundingClientRect().left < Number(widthContainerCourse)) {
+            coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
+            console.log(window.document.getElementsByClassName('container-course')[Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1].getBoundingClientRect().left)
         }
     }
 
@@ -251,8 +266,8 @@ for(let i = 0; i < sections.length; i++) {
         containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
 
         setTimeout(() => {
-            updateNavigation(i);
-        }, 800);
+            updateNavigation();
+        }, 900);
 
         coursesCarouselNext[i].removeEventListener('click', executeCoursesCarouselNext);
         
@@ -281,8 +296,8 @@ for(let i = 0; i < sections.length; i++) {
         containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`
 
         setTimeout(() => {
-            updateNavigation(i);
-        }, 800);
+            updateNavigation();
+        }, 900);
 
         coursesCarouselPrevious[i].removeEventListener('click', executeCoursesCarouselPrevious);
         
@@ -301,17 +316,19 @@ for(let i = 0; i < sections.length; i++) {
 setInterval(() => {
     const containerCourses = window.document.getElementsByClassName('container-courses');
     const containerCourseCarousel = window.document.getElementsByClassName('container-course--primary');
-    
+
     for(let i = 0; i < containerCourses.length; i++) {
-        if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
+        if(Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString()) < Number(widthContainerCourse) && window.document.getElementsByClassName('container-courses')[i].childElementCount > 5) {
             containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary container-course-primary--transition-none');
-        
+    
             valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width -.1;
             containerCourseCarousel[i].style.marginLeft = `-${valueCarouselElement[i]}px`;
 
+            containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary');
+            
             setTimeout(() => {
-                containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary');
-            }, 1000);
+                valueCarouselElement[i] -= .1;
+            }, 500);
         }
     }
 }, 5);
