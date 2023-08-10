@@ -260,7 +260,7 @@ let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 
 
 setInterval(() => {
     for(let i = 0; i < sections.length; i++) {
-        if(window.innerWidth !== numberInnerWidth) {
+        if(window.innerWidth !== numberInnerWidth && window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount >= 5) {
             widthContainerCourse = Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString());
         }
     }
@@ -272,7 +272,7 @@ setInterval(() => {
 
             setTimeout(() => {
                 updateNavigation(i);
-            }, 900);
+            }, 1000);
         }
 
         numberInnerWidth = window.innerWidth;
@@ -282,9 +282,9 @@ setInterval(() => {
 for(let i = 0; i < sections.length; i++) {
     window.document.getElementsByClassName('container-course')[numberPrimaryElements -1].setAttribute('class', 'container-course container-course--primary');
     
-    updateNavigation();
-    function updateNavigation() {
-        if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().left > window.screenLeft) {
+    updateNavigation(i);
+    function updateNavigation(i) {
+        if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().right > window.screenLeft) {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
         } else {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
@@ -329,7 +329,7 @@ for(let i = 0; i < sections.length; i++) {
         containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
 
         setTimeout(() => {
-            updateNavigation();
+            updateNavigation(i);
         }, 900);
 
         coursesCarouselNext[i].removeEventListener('click', executeCoursesCarouselNext);
@@ -359,7 +359,7 @@ for(let i = 0; i < sections.length; i++) {
         containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`
 
         setTimeout(() => {
-            updateNavigation();
+            updateNavigation(i);
         }, 900);
 
         coursesCarouselPrevious[i].removeEventListener('click', executeCoursesCarouselPrevious);
