@@ -7,51 +7,100 @@ class Course {
         Object.defineProperties(this, {
             image: {
                 enumerable: true,
-                value: image,
-                writable: false,
-                configurable: false
+                configurable: false,
+
+                get: function() {
+                    return image;
+                },
+
+                set: function(value) {
+                    if(typeof value !== 'string') return;
+                    image = value;
+                }
             },
 
             title: {
                 enumerable: true,
-                value: title,
-                writable: false,
-                configurable: false
+                configurable: false,
+
+                get: function() {
+                    return title;
+                },
+
+                set: function(value) {
+                    if(typeof value !== 'string') return;
+                    title = value;
+                }
             },
 
             createdBy: {
                 enumerable: true,
-                value: createdBy,
-                writable: false,
-                configurable: false
+                configurable: false,
+
+                get: function() {
+                    return createdBy;
+                },
+
+                set: function(value) {
+                    if(typeof value !== 'string') return;
+                    createdBy = value;
+                }
             },
 
             starNote: {
                 enumerable: true,
-                value: starNote,
-                writable: false,
-                configurable: false
+                configurable: false,
+
+                get: function() {
+                    return starNote;
+                },
+
+                set: function(value) {
+                    if(typeof value !== 'string') return;
+                    starNote = value;
+                }
             },
 
             popularity: {
                 enumerable: true,
-                value: popularity,
-                writable: false,
-                configurable: false
+                configurable: false,
+
+                get: function() {
+                    return popularity;
+                },
+
+                set: function(value) {
+                    if(typeof value !== 'string') return;
+                    popularity = value;
+                }
             },
 
             valueMoney: {
                 enumerable: true,
-                value: valueMoney,
-                writable: false,
-                configurable: false
+                configurable: false,
+
+                get: function() {
+                    return valueMoney;
+                },
+
+                set: function(value) {
+                    if(typeof value !== 'string') return;
+                    valueMoney = value;
+                }
             },
 
             classification: {
                 enumerable: true,
-                value: classification,
-                writable: false,
-                configurable: false
+                configurable: false,
+
+                get: function() {
+                    return classification;
+                },
+
+                set: function(value) {
+                    if(typeof value !== 'string') return;
+                    classification = value;
+                }
             },
 
             createCourse: {
@@ -109,21 +158,35 @@ class Section {
             enumerable: true,
             value: id,
             writable: false,
-            configurable: false
+            configurable: false,
         });
 
         Object.defineProperty(this, 'title', {
             enumerable: true,
-            value: title,
-            writable: false,
-            configurable: false
+            configurable: false,
+
+            get: function() {
+                return title;
+            },
+
+            set: function(value) {
+                if(typeof value !== 'string') return;
+                title = value;
+            }
         });
 
         Object.defineProperty(this, 'key', {
             enumerable: true,
-            value: key,
-            writable: false,
-            configurable: false
+            configurable: false,
+
+            get: function() {
+                return key;
+            },
+
+            set: function(value) {
+                if(typeof value !== 'string') return;
+                key = value;
+            }
         });
 
         Object.defineProperty(this, 'addSection', {
