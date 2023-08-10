@@ -284,7 +284,11 @@ for(let i = 0; i < sections.length; i++) {
     
     updateNavigation(i);
     function updateNavigation(i) {
+<<<<<<< HEAD
         if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().right > window.screenLeft) {
+=======
+        if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().left > window.screenLeft) {
+>>>>>>> 8c1100746975ed4bb605b81400eecfa42bb52631
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
         } else {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
