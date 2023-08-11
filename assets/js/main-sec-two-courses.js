@@ -1,10 +1,16 @@
 (function() {
 const mainCourses = window.document.getElementsByClassName('main-sec-two-courses')[0];
 const courses = [], sections = [];
-let amountMaxContainerCourse = 15;
+let amountMaxContainerCourse = 15, idCourse = 1;
 class Course {
     constructor(image, title, createdBy, starNote, popularity, valueMoney, classification) {
         Object.defineProperties(this, {
+            id: {
+                enumerable: true,
+                configurable: false,
+                value: idCourse++ * 1000,
+            },
+            
             image: {
                 enumerable: true,
                 configurable: false,

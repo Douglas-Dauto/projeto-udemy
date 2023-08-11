@@ -13,4 +13,10 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
     overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: 'header'
+                        'main'
+                        'footer';
+    flex-direction: column;
 }
