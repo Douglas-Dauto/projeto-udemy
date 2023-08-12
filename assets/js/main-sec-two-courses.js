@@ -387,13 +387,23 @@ setInterval(() => {
     const containerCourseCarousel = window.document.getElementsByClassName('container-course--primary');
 
     for(let i = 0; i < containerCourses.length; i++) {
-        if(Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString()) < Number(widthContainerCourse) && window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount > 5) {
-            control = true;
-            containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary container-course-primary--transition-none');
-            valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width;
-            containerCourseCarousel[i].style.marginLeft = `-${valueCarouselElement[i]}px`;
-            containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary');
+        if(window.innerWidth >= 1200) {
+            if(Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString()) < Number(widthContainerCourse) && window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount > 5) {
+                configContainerCarousel(i);
+            }
+        } else {
+            if(Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString()) < Number(widthContainerCourse)) {
+                configContainerCarousel(i);
+            }
         }
+    }
+
+    function configContainerCarousel(i) {
+        control = true;
+        containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary container-course-primary--transition-none');
+        valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width;
+        containerCourseCarousel[i].style.marginLeft = `-${valueCarouselElement[i]}px`;
+        containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary');
     }
 }, 5);
 })();
