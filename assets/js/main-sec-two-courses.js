@@ -108,38 +108,33 @@ class Course {
                     classification = value;
                 }
             },
-
-            createCourse: {
-                enumerable: true,
-                value: function() {
-                    const containerCourse = window.document.createElement('div');
-                    containerCourse.setAttribute('class', 'container-course');
-                    containerCourse.innerHTML = `
-                    <img src="${this.image}" alt="">
-                    <h3>${this.title}</h3>
-                    <p>${this.createdBy}</p>
-        
-                    <div>
-                        <p>${this.starNote}</p>
-                        <p>(${this.popularity})</p>
-                    </div>
-        
-                    <p>R$ ${this.valueMoney}</p>`;
-        
-                    if(this.classification === 'Classificação mais alta') {
-                        containerCourse.innerHTML += `<p class="classification--highest-rating">${this.classification}</p>`;
-                    } else if(this.classification === 'Mais vendidos') {
-                        containerCourse.innerHTML += `<p class="classification--best-sellers">${this.classification}</p>`;
-                    } else {
-                        containerCourse.innerHTML += `<p class="classification--none"></p>`;
-                    }
-        
-                    return containerCourse;
-                },
-                writable: false,
-                configurable: false
-            }
         });
+
+        Course.prototype.createCourse = function() {
+            const containerCourse = window.document.createElement('div');
+            containerCourse.setAttribute('class', 'container-course');
+            containerCourse.innerHTML = `
+            <img src="${this.image}" alt="">
+            <h3>${this.title}</h3>
+            <p>${this.createdBy}</p>
+        
+            <div>
+                <p>${this.starNote}</p>
+                <p>(${this.popularity})</p>
+            </div>
+        
+            <p>R$ ${this.valueMoney}</p>`;
+        
+            if(this.classification === 'Classificação mais alta') {
+                containerCourse.innerHTML += `<p class="classification--highest-rating">${this.classification}</p>`;
+            } else if(this.classification === 'Mais vendidos') {
+                containerCourse.innerHTML += `<p class="classification--best-sellers">${this.classification}</p>`;
+            } else {
+                containerCourse.innerHTML += `<p class="classification--none"></p>`;
+            }
+        
+            return containerCourse;
+        }
     }
 }
 
@@ -158,6 +153,19 @@ courses.push(new Course('assets/img/courses/Bootstrap-5-Curso-Completo-e-Direto-
 courses.push(new Course('assets/img/courses/Understanding-TypeScript.jpg', 'Understanding TypeScript', 'Maximilian Schwarzmuller', '4,6', '44.269', '199,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Learn-to-Code-with-Ruby.jpg', 'Learn to Code with Ruby', 'Boris Paskhaver', '4,7', '5.568', '179,90', 'Mais vendidos'));
 courses.push(new Course('assets/img/courses/Git-Completo-Do-Básico-ao-Avançado.jpg', 'Git Completo: Do Básico ao Avançado', 'Gabriel Ferrari', '4,8', '4.173', '199,90', 'Classificação mais alta'));
+courses.push(new Course('assets/img/courses/JavaScript-do-básico-ao-avançado-c-Node.js e projetos.jpg', 'JavaScript do básico ao avançado (c/ Node.js e projetos)', 'Matheus Battisti', '4,7', '3.639', '189,90', 'Classificação mais alta'));
+courses.push(new Course('assets/img/courses/Aprenda-JAVASCRIPT-em-7-dias+Projetos-Reais-2023.jpg', 'Aprenda JAVASCRIPT em 7 dias + Projetos Reais (2023)', 'Andre Lacono', '4,8', '1.308', '179,90'));
+courses.push(new Course('assets/img/courses/Curso-Web-Moderno-Completo-com-JavaScript-2022+Projetos.jpg', 'Curso Web Moderno Completo com JavaScript 2022 + Projetos', 'Leonardo Moura', '4,7', '49.385', '239,90'));
+courses.push(new Course('assets/img/courses/Curso-de-Javascript+Typescript+NodeJs-Programador-JS.jpg', 'Curso de Javascript + Typescript + NodeJs - Programador JS', 'Dener Troquatte', '4,9', '88', '79,90', 'Classificação mais alta'));
+courses.push(new Course('assets/img/courses/JavaScript-Curso-COMPLETO-com-6-Projetos-REAIS.jpg', 'JavaScript - Curso COMPLETO com 6 Projetos REAIS', 'Hcode Treinamentos', '4,6', '10.289', '179,90'));
+courses.push(new Course('assets/img/courses/Java-2022-COMPLETO-Do-Zero-ao-Profissional+Projetos.jpg', 'Java 2022 COMPLETO: Do Zero ao Profissional + Projetos!', 'Leonardo Moura', '4,7', '20.107', '209,90'));
+courses.push(new Course('assets/img/courses/Aprenda-JAVA-em-7-dias+Projetos-Reais-2023.jpg', 'Aprenda JAVA em 7 dias + Projetos Reais (2023)', 'Andre Lacono', '4,8', '338', '124,90'));
+courses.push(new Course('assets/img/courses/Programação-em-Java-do- básico-ao-avançado.jpg', 'Programação em Java do básico ao avançado', 'Geek University', '4,5', '2.700', '179,90'));
+courses.push(new Course('assets/img/courses/Git-e-Github-Essencial-para-o-Desenvolvedor.jpg', 'Git e Github Essencial para o Desenvolvedor', 'Geek University', '4,8', '1.985', '179,90'));
+courses.push(new Course('assets/img/courses/Dominando-Git-e-GitHub-Do-iniciante-ao-expert.jpg', 'Dominando Git e GitHub - Do iniciante ao expert', 'João Rubens Marchete Filho', '4,6', '1.523', '134,90'));
+courses.push(new Course('assets/img/courses/Curso-React+Redux-Fundamentos-e-2-Apps-do-Absoluto-ZERO.jpg', 'Curso React + Redux: Fundamentos e 2 Apps do Absoluto ZERO!', 'Leonardo Moura', '4,8', '11.786', '179,90', 'Classificação mais alta'));
+courses.push(new Course('assets/img/courses/Next.js-e-React-Curso-Completo-Aprenda-com-Projetos.jpg', 'Next.js e React - Curso Completo - Aprenda com Projetos', 'Leonardo Moura', '4,7', '1.885', '179,90'));
+
 class Section {
     constructor(id, title, key) {
         Object.defineProperty(this, 'id', {
@@ -195,25 +203,6 @@ class Section {
             }
         });
 
-        Object.defineProperty(this, 'addSection', {
-            enumerable: true,
-            value: function() {
-                const section = window.document.createElement('section');
-                section.setAttribute('class', `section-main-courses`);
-                section.innerHTML += `
-                <h2>${this.title}</h2>
-    
-                <div class="container-courses-carousel">
-                    <div class="main-sec-two-next"></div>
-                    <div class="container-courses"></div>
-                    <div class="main-sec-two-previous"></div>
-                </div>`;
-                mainCourses.appendChild(section);
-            },
-            writable: false,
-            configurable: false
-        });
-
         Object.defineProperty(this, 'addCourses', {
             enumerable: true,
             value: function() {
@@ -247,6 +236,20 @@ class Section {
             writable: false,
             configurable: false
         });
+
+        Section.prototype.addSection = function() {
+            const section = window.document.createElement('section');
+            section.setAttribute('class', `section-main-courses`);
+            section.innerHTML += `
+            <h2>${this.title}</h2>
+
+            <div class="container-courses-carousel">
+                <div class="main-sec-two-next"></div>
+                <div class="container-courses"></div>
+                <div class="main-sec-two-previous"></div>
+            </div>`;
+            mainCourses.appendChild(section);
+        }
     }
 }
 
@@ -263,6 +266,7 @@ for(let i in sections) {
 const coursesCarouselNext = window.document.getElementsByClassName('main-sec-two-next');
 const coursesCarouselPrevious = window.document.getElementsByClassName('main-sec-two-previous');
 let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 1, widthContainerCourse = Number(window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString()), numberInnerWidth = window.innerWidth;
+let valueContentCourse = 14;
 
 setInterval(() => {
     for(let i = 0; i < sections.length; i++) {
@@ -287,14 +291,18 @@ setInterval(() => {
 
 for(let i = 0; i < sections.length; i++) {
     window.document.getElementsByClassName('container-course')[numberPrimaryElements -1].setAttribute('class', 'container-course container-course--primary');
-    
+
     updateNavigation(i);
     function updateNavigation(i) {
-        if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().right > window.screenLeft) {
+        if(window.document.getElementsByClassName('container-course container-course--primary')[i].getBoundingClientRect().right -20 > window.screenLeft) {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous main-sec-two-previous--hidden');
         } else {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
         }
+
+        // Terminar
+        // valueContentCourse = 0;
+        // valueContentCourse += Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1;
 
         if(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount <= 5 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
@@ -302,20 +310,8 @@ for(let i = 0; i < sections.length; i++) {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
         }
 
-        let valueContentCourse;
-
-        switch(i) {
-            case 0:
-                valueContentCourse = (Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1);
-                break;
-            default:
-                valueContentCourse = (i +1) * (Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1);
-                break;
-        }
-
         if(Number(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount.toString()) > 6 && window.document.getElementsByClassName('container-course')[valueContentCourse].getBoundingClientRect().left < Number(widthContainerCourse)) {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
-            console.log(window.document.getElementsByClassName('container-course')[Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1].getBoundingClientRect().left)
         }
     }
 
