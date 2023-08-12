@@ -165,7 +165,6 @@ courses.push(new Course('assets/img/courses/Git-e-Github-Essencial-para-o-Desenv
 courses.push(new Course('assets/img/courses/Dominando-Git-e-GitHub-Do-iniciante-ao-expert.jpg', 'Dominando Git e GitHub - Do iniciante ao expert', 'João Rubens Marchete Filho', '4,6', '1.523', '134,90'));
 courses.push(new Course('assets/img/courses/Curso-React+Redux-Fundamentos-e-2-Apps-do-Absoluto-ZERO.jpg', 'Curso React + Redux: Fundamentos e 2 Apps do Absoluto ZERO!', 'Leonardo Moura', '4,8', '11.786', '179,90', 'Classificação mais alta'));
 courses.push(new Course('assets/img/courses/Next.js-e-React-Curso-Completo-Aprenda-com-Projetos.jpg', 'Next.js e React - Curso Completo - Aprenda com Projetos', 'Leonardo Moura', '4,7', '1.885', '179,90'));
-
 class Section {
     constructor(id, title, key) {
         Object.defineProperty(this, 'id', {
@@ -266,7 +265,7 @@ for(let i in sections) {
 const coursesCarouselNext = window.document.getElementsByClassName('main-sec-two-next');
 const coursesCarouselPrevious = window.document.getElementsByClassName('main-sec-two-previous');
 let valueCarouselElement = [], containerCourseCarousel, numberPrimaryElements = 1, widthContainerCourse = Number(window.document.getElementsByClassName('container-courses')[0].getBoundingClientRect().width.toString()), numberInnerWidth = window.innerWidth;
-let valueContentCourse = 14;
+let valueContentCourse = 0, control = false;
 
 setInterval(() => {
     for(let i = 0; i < sections.length; i++) {
@@ -299,19 +298,28 @@ for(let i = 0; i < sections.length; i++) {
         } else {
             coursesCarouselPrevious[i].setAttribute('class', 'main-sec-two-previous');
         }
+        
+        valueContentCourse = 0;
 
-        // Terminar
-        // valueContentCourse = 0;
-        // valueContentCourse += Number(window.document.getElementsByClassName('container-courses')[i].childElementCount.toString()) -1;
+        for(let j = 0; j <= i; j++) {
+            valueContentCourse += Number(window.document.getElementsByClassName('container-courses')[j].childElementCount.toString());
 
-        if(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount <= 5 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width < Number(widthContainerCourse)) {
-            coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
-        } else {
-            coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
+            if(j === i) {
+                valueContentCourse -= 1;
+            }
         }
 
-        if(Number(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount.toString()) > 6 && window.document.getElementsByClassName('container-course')[valueContentCourse].getBoundingClientRect().left < Number(widthContainerCourse)) {
+        if(Number(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount.toString()) > 5 && Number(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount.toString()) < 7) {
+            valueContentCourse += 0;
+        }
+
+        window.document.getElementsByClassName('container-course')[valueContentCourse].setAttribute('class', 'container-course container-course--end');
+
+        if(window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount <= 5 && window.innerWidth >= 1360 || control === true) {
             coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next main-sec-two-next--hidden');
+            control = false;
+        } else {
+            coursesCarouselNext[i].setAttribute('class', 'main-sec-two-next');
         }
     }
 
@@ -323,9 +331,9 @@ for(let i = 0; i < sections.length; i++) {
         selectContainerCourseCarousel();
 
         if(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 500 || window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width === 420) {
-            valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20;
+            valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 20.1;
         } else {
-            valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.8;
+            valueCarouselElement[i] += window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width + 15.9;
         }
         
         containerCourseCarousel.style.marginLeft = `-${valueCarouselElement[i]}px`;
@@ -383,17 +391,12 @@ setInterval(() => {
     const containerCourseCarousel = window.document.getElementsByClassName('container-course--primary');
 
     for(let i = 0; i < containerCourses.length; i++) {
-        if(Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString()) < Number(widthContainerCourse) && window.document.getElementsByClassName('container-courses')[i].childElementCount > 5) {
+        if(Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString()) < Number(widthContainerCourse)) {
+            control = true;
             containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary container-course-primary--transition-none');
-    
-            valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width -.1;
+            valueCarouselElement[i] -= Number(widthContainerCourse) - window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width;
             containerCourseCarousel[i].style.marginLeft = `-${valueCarouselElement[i]}px`;
-
             containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary');
-            
-            setTimeout(() => {
-                valueCarouselElement[i] -= .1;
-            }, 500);
         }
     }
 }, 5);
