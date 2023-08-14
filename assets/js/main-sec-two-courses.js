@@ -165,6 +165,9 @@ courses.push(new Course('assets/img/courses/Git-e-Github-Essencial-para-o-Desenv
 courses.push(new Course('assets/img/courses/Dominando-Git-e-GitHub-Do-iniciante-ao-expert.jpg', 'Dominando Git e GitHub - Do iniciante ao expert', 'João Rubens Marchete Filho', '4,6', '1.523', '134,90'));
 courses.push(new Course('assets/img/courses/Curso-React+Redux-Fundamentos-e-2-Apps-do-Absoluto-ZERO.jpg', 'Curso React + Redux: Fundamentos e 2 Apps do Absoluto ZERO!', 'Leonardo Moura', '4,8', '11.786', '179,90', 'Classificação mais alta'));
 courses.push(new Course('assets/img/courses/Next.js-e-React-Curso-Completo-Aprenda-com-Projetos.jpg', 'Next.js e React - Curso Completo - Aprenda com Projetos', 'Leonardo Moura', '4,7', '1.885', '179,90'));
+courses.push(new Course('assets/img/courses/Bancos-de-Dados-SQL-e-NoSQL-do-básico-ao-avançado.jpg', 'Bancos de Dados SQL e NoSQL do básico ao avançado', 'Geek University', '4,7', '2.811', '179,90', 'Classificação mais alta'));
+courses.push(new Course('assets/img/courses/Bancos-de-dados-relacionais-SQL-do zero ao avançado.jpg', 'Bancos de dados relacionais - SQL (do zero ao avançado)', 'Cezar Augusto Crummenauer', '4,8', '52', '159,90'));
+courses.push(new Course('assets/img/courses/Banco-de-Dados-Da-modelagem-à-SQL-com-PostgreSQL.jpg', 'Banco de Dados: Da modelagem à SQL com PostgreSQL', 'Tadeu Pereira', '4,9', '118', '94,90', 'Classificação mais alta'));
 class Section {
     constructor(id, title, key) {
         Object.defineProperty(this, 'id', {
@@ -387,7 +390,7 @@ setInterval(() => {
     const containerCourseCarousel = window.document.getElementsByClassName('container-course--primary');
 
     for(let i = 0; i < containerCourses.length; i++) {
-        if(window.innerWidth >= 1200) {
+        if(window.innerWidth >= 1359) {
             if(Number(window.document.getElementsByClassName('container-courses')[i].getBoundingClientRect().width.toString()) < Number(widthContainerCourse) && window.document.querySelectorAll('.section-main-courses .container-courses')[i].childElementCount > 5) {
                 configContainerCarousel(i);
             }
