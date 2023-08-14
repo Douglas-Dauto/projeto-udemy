@@ -58,4 +58,31 @@ for(let i = 2; i < elements.length; i++) {
         }, 1000);
     });
 }
+
+const containerHeader = window.document.getElementsByClassName('container-header')[0];
+const elementList = window.document.createElement('div');
+const elementSearch = window.document.createElement('img');
+const imgLogo = window.document.querySelectorAll('.container-header > img')[0];
+const containerIcons = window.document.querySelector('.container-header__sec-two > div');
+const imgCart = window.document.querySelector('.container-header__sec-two > div img:nth-child(2)');
+let controlMenu = true;
+
+setInterval(() => {
+    if(window.innerWidth <= 840 && controlMenu) {
+        elementList.innerHTML = `<img src="assets/img/icon/list.svg" alt="Menu">`;
+        containerHeader.appendChild(elementList);
+        containerHeader.insertBefore(elementList, imgLogo);
+        elementSearch.setAttribute('src', 'assets/img/icon/search.svg');
+        elementSearch.setAttribute('alt', 'Pesquisa');
+        containerIcons.appendChild(elementSearch);
+        containerIcons.insertBefore(elementSearch, imgCart);
+        controlMenu = !controlMenu;
+    }
+
+    if(window.innerWidth > 840 && !controlMenu) {
+        containerHeader.removeChild(elementList);
+        containerIcons.removeChild(elementSearch);
+        controlMenu = !controlMenu;
+    }
+}, 10);
 })();

@@ -42,12 +42,24 @@ function previousElement() {
     contentCarousel.insertBefore(carouselContentAll[carouselContentAll.length -1], carouselContentAll[0]);
     clearInterval(intervalNextImageData);
     intervalNextImage();
+
+    carouselPrevious.removeEventListener('click', previousElement);
+
+    setTimeout(() => {
+        carouselPrevious.addEventListener('click', previousElement);
+    }, 1000);
 }
 
 function nextElement() {
     contentCarousel.appendChild(carouselContentAll[0]);
     clearInterval(intervalNextImageData);
     intervalNextImage();
+
+    carouselNext.removeEventListener('click', nextElement);
+
+    setTimeout(() => {
+        carouselNext.addEventListener('click', nextElement);
+    }, 1000);
 }
 
 intervalNextImage();

@@ -27,6 +27,17 @@ header {
         height: 72px;
         z-index: 2;
 
+        div:nth-child(1) {
+            display: inline-flex;
+            align-self: center;
+        }
+
+        div:nth-child(1) img {
+            padding: 10px;
+            cursor: pointer;
+            width: 45px;
+        }
+
         img[alt="Logo udemy"] {
             width: 91px;
             height: 34px;
@@ -46,9 +57,11 @@ header {
                 li {
                     display: inline-flex;
                     align-items: center;
-                    padding: 10px;
+                    padding: 9px;
                     cursor: pointer;
                     position: relative;
+                    font-size: 1em;
+                    width: max-content;
                 }
     
                 li:hover {
@@ -286,5 +299,24 @@ header {
                 display: none;
             }
         }
+    }
+}
+
+@media (max-width: 840px) {
+    .container-header__sec-one-ul, .container-header-two, .container-header__sec-two > div:nth-child(2), .container-header__sec-two div img:nth-child(1), .container-header__sec-two div img:nth-child(4) {
+        display: none !important;
+    }
+
+    .container-header__sec-two div img {
+        width: 40px !important;
+    }
+
+    .container-header {
+        justify-content: space-between;
+        padding: 0 10px !important;
+    }
+
+    .container-header__sec-one {
+        display: none !important;
     }
 }
