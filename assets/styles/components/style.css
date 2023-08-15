@@ -304,8 +304,7 @@ main .main-sec-one-carousel .main-sec-one-content {
   height: 100%;
   display: flex;
   flex-direction: row;
-  gap: 0.5px;
-  overflow: hidden;
+  transition: all 800ms ease-in-out;
 }
 main .main-sec-one-carousel .main-sec-one-content img {
   object-fit: cover;
@@ -330,14 +329,10 @@ main .main-sec-one-carousel .main-sec-one-content .carousel-content h1 {
   line-height: 1.25em;
 }
 main .main-sec-one-carousel .main-sec-one-content .carousel-content-all {
-  display: flex;
-  width: 0;
-  position: relative;
-  transition: all 800ms ease-in-out;
-}
-main .main-sec-one-carousel .main-sec-one-content .carousel-content-all:nth-child(2) {
-  display: flex;
+  display: inline-flex;
   width: 100%;
+  flex: 0 0 100%;
+  position: relative;
 }
 main .main-sec-one-carousel .main-sec-one-content .carousel-content-going-next {
   animation: slide-next 1s both ease-in-out;
@@ -354,6 +349,9 @@ main .main-sec-one-carousel .main-sec-one-content .carousel-content-going-previo
   100% {
     transform: translateX(100vw);
   }
+}
+main .main-sec-one-carousel .main-sec-one-content-remove-transition {
+  transition: none !important;
 }
 main .main-sec-two-courses {
   width: 100%;

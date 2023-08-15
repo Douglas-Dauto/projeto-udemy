@@ -4,7 +4,6 @@ const containerHidden = document.createElement('div');
 const textContentOld = [], control = [];
 let mouseOut = true;
 
-
 for(let i = 2; i < elements.length; i++) {
     control.push(true);
 

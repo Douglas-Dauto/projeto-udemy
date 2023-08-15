@@ -4,14 +4,6 @@ const carouselPrevious = window.document.getElementsByClassName('main-sec-one-pr
 const carouselNext = window.document.getElementsByClassName('main-sec-one-next')[0];
 const elementsCarousel = [
 `<div class="carousel-content-all">
-    <img class="carousel-img" src="assets/img/carrosselThree.png" alt="Pessoa sorrindo">
-
-    <div class="carousel-content">
-        <h1>O aprendizado vem até você</h1>
-        <p>A promoção termina hoje. Alcance um mundo de conhecimento — em casa ou na rua. Cursos a partir de R$22,90 cada.</p>
-    </div>
-</div>`,
-`<div class="carousel-content-all">
     <img class="carousel-img" src="assets/img/carrosselOne.jpg" alt="Certificado">
 
     <div class="carousel-content">
@@ -26,6 +18,14 @@ const elementsCarousel = [
         <h1>Devagar e sempre</h1>
         <p>Tente estudar por 5 a 10 minutos por dia. Continue seu curso e alcance todo o seu potencial.</p>
     </div>
+</div>`,
+`<div class="carousel-content-all">
+    <img class="carousel-img" src="assets/img/carrosselThree.png" alt="Pessoa sorrindo">
+
+    <div class="carousel-content">
+        <h1>O aprendizado vem até você</h1>
+        <p>A promoção termina hoje. Alcance um mundo de conhecimento — em casa ou na rua. Cursos a partir de R$22,90 cada.</p>
+    </div>
 </div>`];
 let intervalNextImageData;
 
@@ -34,14 +34,30 @@ for(let i = 0; i < elementsCarousel.length; i++) {
 }
 
 const carouselContentAll = window.document.getElementsByClassName('carousel-content-all');
+let currentIndex = 0;
 
 carouselPrevious.addEventListener('click', previousElement);
 carouselNext.addEventListener('click', nextElement);
 
-function previousElement() {
-    contentCarousel.insertBefore(carouselContentAll[carouselContentAll.length -1], carouselContentAll[0]);
-    clearInterval(intervalNextImageData);
-    intervalNextImage();
+function previousElement(value) {
+    if(value !== -1) {
+        contentCarousel.setAttribute('class', 'main-sec-one-content main-sec-one-content-remove-transition');
+        contentCarousel.insertBefore(carouselContentAll[carouselContentAll.length -1], carouselContentAll[0]);
+        nextElement(-1);
+    }
+
+    setTimeout(() => {
+        if(value !== -1) {
+            contentCarousel.setAttribute('class', 'main-sec-one-content');
+        }
+
+        setTimeout(() => {
+            currentIndex = (currentIndex - 1 + carouselContentAll.length) % carouselContentAll.length;
+            showSlide(currentIndex);
+            clearInterval(intervalNextImageData);
+            intervalNextImage();
+        }, 10);
+    }, 10);
 
     carouselPrevious.removeEventListener('click', previousElement);
 
@@ -50,16 +66,32 @@ function previousElement() {
     }, 1000);
 }
 
-function nextElement() {
-    contentCarousel.appendChild(carouselContentAll[0]);
+function nextElement(value) {
+    currentIndex = (currentIndex + 1) % carouselContentAll.length;
+    showSlide(currentIndex);
     clearInterval(intervalNextImageData);
     intervalNextImage();
 
     carouselNext.removeEventListener('click', nextElement);
 
     setTimeout(() => {
+        if(value !== -1) {
+            contentCarousel.setAttribute('class', 'main-sec-one-content main-sec-one-content-remove-transition');
+            contentCarousel.appendChild(carouselContentAll[0]);
+            previousElement(-1);
+        }
+        
         carouselNext.addEventListener('click', nextElement);
+
+        setTimeout(() => {
+            contentCarousel.setAttribute('class', 'main-sec-one-content');
+        }, 100);
     }, 1000);
+}
+
+showSlide(currentIndex);
+function showSlide(index) {
+    contentCarousel.style.transform = `translateX(-${index * 100}%)`;
 }
 
 intervalNextImage();

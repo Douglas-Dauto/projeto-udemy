@@ -54,8 +54,7 @@ main {
             height: 100%;
             display: flex;
             flex-direction: row;
-            gap: .5px;
-            overflow: hidden;
+            transition: all 800ms ease-in-out;
 
             img {
                 object-fit: cover;
@@ -83,15 +82,10 @@ main {
             }
 
             .carousel-content-all {
-                display: flex;
-                width: 0;
-                position: relative;
-                transition: all 800ms ease-in-out;
-            }
-
-            .carousel-content-all:nth-child(2) {
-                display: flex;
+                display: inline-flex;
                 width: 100%;
+                flex: 0 0 100%;
+                position: relative;
             }
 
             .carousel-content-going-next {
@@ -113,6 +107,10 @@ main {
                     transform: translateX(100vw);
                 }
             }
+        }
+
+        .main-sec-one-content-remove-transition {
+           transition: none !important;
         }
     }
 
