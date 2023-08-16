@@ -93,11 +93,10 @@ function nextElement(value) {
 
         setTimeout(() => {
             contentCarousel.setAttribute('class', 'main-sec-one-content');
-        }, 100);
+        }, 5);
     }, 1000);
 }
 
-showSlide(currentIndex);
 function showSlide(index) {
     contentCarousel.style.transform = `translateX(-${index * 100}%)`;
 }

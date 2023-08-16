@@ -191,12 +191,9 @@ header {
                 justify-content: center;
                 width: 100%;
 
-                li {
-                    cursor: pointer;
-                }
-
                 li:hover {
                     color: $colorPurbleThree;
+                    cursor: pointer;
                 }
             }
         }

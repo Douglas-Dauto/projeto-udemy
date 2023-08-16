@@ -184,11 +184,9 @@ header .container-header-two .container-header-two__container-selection ul {
   justify-content: center;
   width: 100%;
 }
-header .container-header-two .container-header-two__container-selection ul li {
-  cursor: pointer;
-}
 header .container-header-two .container-header-two__container-selection ul li:hover {
   color: #e3c0fa;
+  cursor: pointer;
 }
 
 @media (max-width: 1300px) {

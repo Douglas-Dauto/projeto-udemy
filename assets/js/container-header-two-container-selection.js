@@ -72,7 +72,7 @@ for(let i = 0; i < elements.length; i++) {
     });
 
     containerHeader.addEventListener('mouseenter', containerSelectionMouseOff);
-    containerSelection.addEventListener('mouseout', containerSelectionMouseOff);
+    window.document.getElementsByClassName('main-sec-one-carousel')[0].addEventListener('mouseenter', containerSelectionMouseOff);
 
     function containerSelectionMouseOff() {
         containerHeaderTwo.removeChild(containerSelection);
