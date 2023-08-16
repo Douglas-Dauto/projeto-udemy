@@ -46,18 +46,26 @@ function previousElement(value) {
         nextElement(-1);
     }
 
-    setTimeout(() => {
-        if(value !== -1) {
-            contentCarousel.setAttribute('class', 'main-sec-one-content');
-        }
-
+    if(value !== -1) {
         setTimeout(() => {
-            currentIndex = (currentIndex - 1 + carouselContentAll.length) % carouselContentAll.length;
-            showSlide(currentIndex);
-            clearInterval(intervalNextImageData);
-            intervalNextImage();
+            contentCarousel.setAttribute('class', 'main-sec-one-content');
+
+            setTimeout(() => {
+                previous();
+            }, 10);
         }, 10);
-    }, 10);
+    }
+
+    if(value === -1) {
+        previous();
+    }
+
+    function previous() {
+        currentIndex = (currentIndex - 1 + carouselContentAll.length) % carouselContentAll.length;
+        showSlide(currentIndex);
+        clearInterval(intervalNextImageData);
+        intervalNextImage();
+    }
 
     carouselPrevious.removeEventListener('click', previousElement);
 
