@@ -120,10 +120,90 @@ header {
             display: flex;
             align-items: center;
     
-            img {
+            iframe {
                 padding: 10px;
                 cursor: pointer;
                 width: 40px;
+                height: 40px;
+                outline: 0;
+                border: 0;
+                margin: 0 2px;
+            }
+
+            .container-header-sec-two__content-one {
+                display: inline-flex;
+            }
+
+            .container-header-sec-two__content-one > div {
+                position: relative;
+            }
+
+            .container-content-icon {
+                width: 288px;
+                height: calc(100vh - 72px);
+                overflow-y: scroll;
+                background-color: $colorWhite;
+                z-index: 2000;
+                position: absolute;
+                right: 0;
+                top: 55px;
+                box-shadow: 0 0 0 1px #d1d7dc, 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
+
+                .container-content-icon__content {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px;
+                    gap: 8px;
+                    cursor: pointer;
+                    border-bottom: 1px solid $colorGrayTwo;
+                    
+                    img {
+                        width: 70px;
+                        height: 70px;
+                        object-fit: cover;
+                        padding: 0;
+                        margin-right: 10px;
+                    }
+
+                    div {
+                        width: 100%;
+                    }
+
+                    div > div {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2px;
+                    }
+
+                    h4 {
+                        font-size: 1em;
+                        color: $colorBlack;
+                    }
+
+                    p {
+                        font-size: .9em;
+                        color: $colorGrayThree;
+                    }
+
+                    .content__price {
+                        font-size: 1em;
+                        color: $colorBlack;
+                        font-weight: bold;
+                    }
+
+                    button {
+                        padding: 10px;
+                        border: 1px solid $colorBlack;
+                        outline: 0;
+                        background-color: $colorWhite;
+                        font-weight: bold;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: $colorGray;
+                        }
+                    }
+                }
             }
     
             .container-header__user {

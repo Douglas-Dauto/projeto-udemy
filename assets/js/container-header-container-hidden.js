@@ -1,3 +1,5 @@
+import {coursesArray} from './main-sec-two-courses.js';
+
 (function() {
 const elements = window.document.querySelectorAll('.container-header__sec-one-ul li');
 const containerHidden = document.createElement('div');
@@ -84,4 +86,93 @@ setInterval(() => {
         controlMenu = !controlMenu;
     }
 }, 10);
+
+const courses = coursesArray;
+const coursesIndex = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const svgHeader = window.document.getElementsByClassName('container-header-icon');
+    const containerHeader = window.document.querySelectorAll('.container-header__sec-two .container-header-sec-two__content-one div');
+    let contentIcon = window.document.createElement('div');
+
+    contentIcon.setAttribute('class', 'container-content-icon');
+
+    for(let i = 0; i < svgHeader.length; i++) {
+        const containerList = window.document.getElementsByClassName('container-header__sec-one-ul')[0];
+        const secOneCarousel = window.document.getElementsByClassName('main-sec-one-carousel')[0];
+        const sectionMain = window.document.getElementsByClassName('section-main-courses')[0];
+        const elementIcon = window.document.querySelectorAll('.container-header-sec-two__content-one div iframe');
+        const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
+        const containerHeaderUser = window.document.getElementsByClassName('container-header__user')[0];
+
+        containerList.addEventListener('mouseenter', removeElement);
+        secOneCarousel.addEventListener('mouseenter', removeElement);
+        sectionMain.addEventListener('mouseenter', removeElement);
+        containerHeaderTwo.addEventListener('mouseenter', removeElement);
+        containerHeaderUser.addEventListener('mouseenter', removeElement);
+
+        for(let i = 0; i < elementIcon.length; i++) {
+            elementIcon[i].addEventListener('mouseenter', removeElement);
+        }
+
+        function removeElement() {
+            const svgContent = svgHeader[i].contentDocument;
+            const element = svgContent.querySelector('.bi');
+            element.setAttribute('fill', 'black');
+            containerHeader[i].removeChild(contentIcon);
+        }
+
+        svgHeader[i].addEventListener('mouseenter', () => {
+            const svgContent = svgHeader[i].contentDocument;
+            const element = svgContent.querySelector('.bi');
+            element.setAttribute('fill', '#5624D0');
+            element.setAttribute('style', 'cursor: pointer;');
+
+            switch(i) {
+                case 0:
+                    contentIcon.innerHTML = '';
+
+                    let courseIndex = Math.floor((Math.random() * (courses.length)));
+
+                    for(let i = 0; i < courses.length -1; i++) {
+                        while(coursesIndex.indexOf(courseIndex) >= 0) {
+                            courseIndex = Math.floor((Math.random() * (courses.length)));
+                        }
+
+                        contentIcon.innerHTML += `<div class="container-content-icon__content">
+                                                    <div>
+                                                        <img src="${courses[courseIndex].image}" alt="">
+                                                        <div>
+                                                            <h4>${courses[courseIndex].title}</h4>
+                                                            <p>${courses[courseIndex].createdBy}</p>
+                                                            <p class="content__price">R$${courses[courseIndex].valueMoney}</p>
+                                                        </div>
+                                                    </div>
+                                                    <button>Adicionar ao carrinho</button>
+                                            </div>`;
+
+                        coursesIndex[i] = courseIndex;
+                    }
+                    break;
+                case 1:
+                    contentIcon.innerHTML = `<h3>Seu carrinho está vazio.</h3>
+                                            <button>Continuar comprando</button>`;
+                    break;
+                case 2:
+                    contentIcon.innerHTML = `<h3>Notificações</h3>
+                                            <button>Configurações</button>
+                                            <p>Sem notificações</p>`;
+                    break;
+            }
+
+            containerHeader[i].appendChild(contentIcon);
+        });
+
+        // svgHeader[i].addEventListener('mouseout', () => {
+        //     const svgContent = svgHeader[i].contentDocument;
+        //     const element = svgContent.querySelector('.bi');
+        //     element.setAttribute('fill', 'black');
+        // });
+    }
+});
 })();

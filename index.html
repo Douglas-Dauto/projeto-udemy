@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/img/icon/favicon-16x16.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/styles/components/style.css">
-    <script src="assets/js/container-header-container-hidden.js" defer></script>
+    <script src="assets/js/container-header-container-hidden.js" type="module" defer></script>
     <script src="assets/js/container-header-two-container-selection.js" defer></script>
     <script src="assets/js/main-sec-one-carousel.js" defer></script>
-    <script src="assets/js/main-sec-two-courses.js" defer></script>
+    <script src="assets/js/main-sec-two-courses.js" type="module" defer></script>
     <title>Udemy</title>
 </head>
 <body>
@@ -27,10 +27,18 @@
             </div>
 
             <div class="container-header__sec-two">
-                <div>
-                    <img src="assets/img/icon/heart.svg" alt="Coração">
-                    <img src="assets/img/icon/cart3.svg" alt="Carrinho de compras">
-                    <img src="assets/img/icon/bell.svg" alt="Sino de notificações">
+                <div class="container-header-sec-two__content-one">
+                    <div>
+                        <iframe src="assets/img/icon/heart.svg" class="container-header-icon"></iframe>
+                    </div>
+
+                    <div>
+                        <iframe src="assets/img/icon/cart3.svg" class="container-header-icon"></iframe>
+                    </div>
+                    
+                    <div>
+                        <iframe src="assets/img/icon/bell.svg" class="container-header-icon"></iframe>
+                    </div>
                 </div>
 
                 <div class="container-header__user"></div>

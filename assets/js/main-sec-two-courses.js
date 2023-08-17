@@ -1,6 +1,8 @@
+export let coursesArray;
+
 (function() {
 const mainCourses = window.document.getElementsByClassName('main-sec-two-courses')[0];
-const courses = [], sections = [];
+const sections = [], courses = [];
 let amountMaxContainerCourse = 15, idCourse = 1;
 class Course {
     constructor(image, title, createdBy, starNote, popularity, valueMoney, classification) {
@@ -409,4 +411,6 @@ setInterval(() => {
         containerCourseCarousel[i].setAttribute('class', 'container-course container-course--primary');
     }
 }, 5);
+
+coursesArray = courses;
 })();
