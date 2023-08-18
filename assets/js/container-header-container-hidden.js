@@ -89,6 +89,7 @@ setInterval(() => {
 
 const courses = coursesArray;
 const coursesIndex = [];
+let controlMenuCourse = true;
 
 document.addEventListener('DOMContentLoaded', () => {
     const svgHeader = window.document.getElementsByClassName('container-header-icon');
@@ -105,21 +106,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
         const containerHeaderUser = window.document.getElementsByClassName('container-header__user')[0];
 
-        containerList.addEventListener('mouseenter', removeElement);
-        secOneCarousel.addEventListener('mouseenter', removeElement);
-        sectionMain.addEventListener('mouseenter', removeElement);
-        containerHeaderTwo.addEventListener('mouseenter', removeElement);
-        containerHeaderUser.addEventListener('mouseenter', removeElement);
+        containerList.addEventListener('mouseenter', () => removeElement());
+        secOneCarousel.addEventListener('mouseenter', () => removeElement());
+        sectionMain.addEventListener('mouseenter', () => removeElement());
+        containerHeaderTwo.addEventListener('mouseenter', () => removeElement());
+        containerHeaderUser.addEventListener('mouseenter', () => removeElement());
 
         for(let i = 0; i < elementIcon.length; i++) {
-            elementIcon[i].addEventListener('mouseenter', removeElement);
+            switch(i) {
+                case 0:
+                    elementIcon[i].addEventListener('mouseenter', () => removeElement(false));
+                    break;
+                default:
+                    elementIcon[i].addEventListener('mouseenter', () => removeElement());
+            }
+            
         }
 
-        function removeElement() {
+        function removeElement(value = true) {
             const svgContent = svgHeader[i].contentDocument;
             const element = svgContent.querySelector('.bi');
             element.setAttribute('fill', 'black');
             containerHeader[i].removeChild(contentIcon);
+
+            if(value) {
+                controlMenuCourse = !controlMenuCourse;
+            }
         }
 
         svgHeader[i].addEventListener('mouseenter', () => {
@@ -130,28 +142,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
             switch(i) {
                 case 0:
-                    contentIcon.innerHTML = '';
+                    if(controlMenuCourse) {
+                    
+                        contentIcon.innerHTML = '';
 
-                    let courseIndex = Math.floor((Math.random() * (courses.length)));
+                        let courseIndex = Math.floor((Math.random() * (courses.length)));
 
-                    for(let i = 0; i < courses.length -1; i++) {
-                        while(coursesIndex.indexOf(courseIndex) >= 0) {
-                            courseIndex = Math.floor((Math.random() * (courses.length)));
+                        for(let i = 0; i < courses.length -1; i++) {
+                            while(coursesIndex.indexOf(courseIndex) >= 0) {
+                                courseIndex = Math.floor((Math.random() * (courses.length)));
+                            }
+
+                            contentIcon.innerHTML += `<div class="container-content-icon__content">
+                                                        <div>
+                                                            <img src="${courses[courseIndex].image}" alt="">
+                                                            <div>
+                                                                <h4>${courses[courseIndex].title}</h4>
+                                                                <p>${courses[courseIndex].createdBy}</p>
+                                                                <p class="content__price">R$${courses[courseIndex].valueMoney}</p>
+                                                            </div>
+                                                        </div>
+                                                        <button>Adicionar ao carrinho</button>
+                                                </div>`;
+
+                            coursesIndex[i] = courseIndex;
                         }
 
-                        contentIcon.innerHTML += `<div class="container-content-icon__content">
-                                                    <div>
-                                                        <img src="${courses[courseIndex].image}" alt="">
+                        controlMenuCourse = !controlMenuCourse;
+                    } else {
+                        contentIcon.innerHTML = '';
+                        
+                        for(let i = 0; i < courses.length -1; i++) {
+                            contentIcon.innerHTML += `<div class="container-content-icon__content">
                                                         <div>
-                                                            <h4>${courses[courseIndex].title}</h4>
-                                                            <p>${courses[courseIndex].createdBy}</p>
-                                                            <p class="content__price">R$${courses[courseIndex].valueMoney}</p>
+                                                            <img src="${courses[coursesIndex[i]].image}" alt="">
+                                                            <div>
+                                                                <h4>${courses[coursesIndex[i]].title}</h4>
+                                                                <p>${courses[coursesIndex[i]].createdBy}</p>
+                                                                <p class="content__price">R$${courses[coursesIndex[i]].valueMoney}</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <button>Adicionar ao carrinho</button>
-                                            </div>`;
-
-                        coursesIndex[i] = courseIndex;
+                                                        <button>Adicionar ao carrinho</button>
+                                                </div>`;
+                        }
                     }
                     break;
                 case 1:
