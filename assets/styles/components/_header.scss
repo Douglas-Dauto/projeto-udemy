@@ -143,7 +143,6 @@ header {
                 height: calc(100vh - 72px);
                 overflow-y: scroll;
                 background-color: $colorWhite;
-                z-index: 2000;
                 position: absolute;
                 right: 0;
                 top: 55px;
@@ -203,6 +202,35 @@ header {
                             background-color: $colorGray;
                         }
                     }
+                }
+            }
+
+            .container-content-icon-min {
+                height: max-content !important;
+            }
+
+            .container-content-icon__content-cart {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px 30px;
+
+                h3, button {
+                    text-align: center;
+                }
+
+                h3 {
+                    color: $colorGrayThree;
+                    font-weight: normal;
+                }
+
+                button {
+                    background-color: $colorWhite;
+                    outline: 0;
+                    border: 0;
+                    font-weight: bold;
+                    color: $colorPurple;
+                    cursor: pointer;
                 }
             }
     

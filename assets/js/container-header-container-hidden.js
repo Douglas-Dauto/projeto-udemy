@@ -88,8 +88,8 @@ setInterval(() => {
 }, 10);
 
 const courses = coursesArray;
-const coursesIndex = [];
-let controlMenuCourse = true;
+const coursesIndex = [], addCourseCart = [], addCourseIdCart = [];
+let indexCart = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     const svgHeader = window.document.getElementsByClassName('container-header-icon');
@@ -113,25 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
         containerHeaderUser.addEventListener('mouseenter', () => removeElement());
 
         for(let i = 0; i < elementIcon.length; i++) {
-            switch(i) {
-                case 0:
-                    elementIcon[i].addEventListener('mouseenter', () => removeElement(false));
-                    break;
-                default:
-                    elementIcon[i].addEventListener('mouseenter', () => removeElement());
-            }
-            
+            elementIcon[i].addEventListener('mouseenter', () => removeElement());
         }
 
-        function removeElement(value = true) {
+        function removeElement() {
             const svgContent = svgHeader[i].contentDocument;
             const element = svgContent.querySelector('.bi');
             element.setAttribute('fill', 'black');
             containerHeader[i].removeChild(contentIcon);
-
-            if(value) {
-                controlMenuCourse = !controlMenuCourse;
-            }
         }
 
         svgHeader[i].addEventListener('mouseenter', () => {
@@ -142,56 +131,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
             switch(i) {
                 case 0:
-                    if(controlMenuCourse) {
-                    
-                        contentIcon.innerHTML = '';
+                    contentIcon.setAttribute('class', 'container-content-icon');
+                    contentIcon.innerHTML = '';
 
-                        let courseIndex = Math.floor((Math.random() * (courses.length)));
+                    let courseIndex = Math.floor((Math.random() * (courses.length)));
+                    const textButton = [];
 
-                        for(let i = 0; i < courses.length -1; i++) {
-                            while(coursesIndex.indexOf(courseIndex) >= 0) {
-                                courseIndex = Math.floor((Math.random() * (courses.length)));
-                            }
-
-                            contentIcon.innerHTML += `<div class="container-content-icon__content">
-                                                        <div>
-                                                            <img src="${courses[courseIndex].image}" alt="">
-                                                            <div>
-                                                                <h4>${courses[courseIndex].title}</h4>
-                                                                <p>${courses[courseIndex].createdBy}</p>
-                                                                <p class="content__price">R$${courses[courseIndex].valueMoney}</p>
-                                                            </div>
-                                                        </div>
-                                                        <button>Adicionar ao carrinho</button>
-                                                </div>`;
-
-                            coursesIndex[i] = courseIndex;
+                    for(let i = 0; i < courses.length -1; i++) {
+                        while(coursesIndex.indexOf(courseIndex) >= 0) {
+                            courseIndex = Math.floor((Math.random() * (courses.length)));
                         }
 
-                        controlMenuCourse = !controlMenuCourse;
-                    } else {
-                        contentIcon.innerHTML = '';
-                        
-                        for(let i = 0; i < courses.length -1; i++) {
-                            contentIcon.innerHTML += `<div class="container-content-icon__content">
-                                                        <div>
-                                                            <img src="${courses[coursesIndex[i]].image}" alt="">
-                                                            <div>
-                                                                <h4>${courses[coursesIndex[i]].title}</h4>
-                                                                <p>${courses[coursesIndex[i]].createdBy}</p>
-                                                                <p class="content__price">R$${courses[coursesIndex[i]].valueMoney}</p>
-                                                            </div>
-                                                        </div>
-                                                        <button>Adicionar ao carrinho</button>
-                                                </div>`;
+                        if(addCourseIdCart.indexOf(courses[courseIndex].id) >= 0) {
+                            textButton[i] = 'Adicionado!';
+                        } else {
+                            textButton[i] = 'Adicionar ao carrinho';
                         }
+
+                        contentIcon.innerHTML += `<div class="container-content-icon__content">
+                                                    <div>
+                                                        <img src="${courses[courseIndex].image}" alt="">
+                                                        <div>
+                                                            <h4>${courses[courseIndex].title}</h4>
+                                                            <p>${courses[courseIndex].createdBy}</p>
+                                                            <p class="content__price">R$${courses[courseIndex].valueMoney}</p>
+                                                        </div>
+                                                    </div>
+                                                    <button class="container-content-icon__button">${textButton[i]}</button>
+                                            </div>`;
+
+                        coursesIndex[i] = courseIndex;
                     }
+
+                    setTimeout(() => {
+                        for(let j = 0; j < window.document.getElementsByClassName('container-content-icon__button').length; j++) {
+                            window.document.getElementsByClassName('container-content-icon__button')[j].addEventListener('click', () => {
+                                if(textButton[j] === 'Adicionar ao carrinho') {
+                                    textButton[j] = 'Adicionado!';
+                                    window.document.getElementsByClassName('container-content-icon__button')[j].innerText = textButton[j];
+                                    addCourseCart[indexCart] = coursesIndex[j];
+                                    addCourseIdCart[indexCart] = courses[coursesIndex[j]].id;
+                                    indexCart++;
+                                }
+                            });
+                        }
+                    }, 100);
                     break;
                 case 1:
-                    contentIcon.innerHTML = `<h3>Seu carrinho está vazio.</h3>
-                                            <button>Continuar comprando</button>`;
+                    contentIcon.setAttribute('class', 'container-content-icon container-content-icon-min');
+
+                    if(addCourseCart.length > 0) {
+                        contentIcon.innerHTML = '';
+                        
+                        setTimeout(() => {
+                            for(let i = 0; i < addCourseCart.length; i++) {
+                                contentIcon.innerHTML += `<div class="container-content-icon__content">
+                                                            <div>
+                                                                <img src="${courses[addCourseCart[i]].image}" alt="">
+                                                                <div>
+                                                                    <h4>${courses[addCourseCart[i]].title}</h4>
+                                                                    <p>${courses[addCourseCart[i]].createdBy}</p>
+                                                                    <p class="content__price">R$${courses[addCourseCart[i]].valueMoney}</p>
+                                                                </div>
+                                                            </div>
+                                                            <button class="container-content-icon__button-cart">Remover do carrinho</button>
+                                                        </div>`;
+                            }
+
+                            for(let j = 0; j < window.document.getElementsByClassName('container-content-icon__button-cart').length; j++) {
+                                window.document.getElementsByClassName('container-content-icon__button-cart')[j].addEventListener('click', () => {
+                                    window.document.getElementsByClassName('container-content-icon__button-cart')[j].innerText = 'Removido!';
+                                    indexCart--;
+                                    addCourseCart.splice(j, 1);
+                                    addCourseIdCart.splice(j, 1);
+                                });
+                            }
+                        }, 200);
+                    } else {
+                        contentIcon.innerHTML = `<div class="container-content-icon__content-cart">
+                                                    <h3>Seu carrinho está vazio.</h3>
+                                                    <button>Continuar comprando</button>
+                                                </div>`;
+                    }
                     break;
                 case 2:
+                    contentIcon.setAttribute('class', 'container-content-icon container-content-icon-min');
                     contentIcon.innerHTML = `<h3>Notificações</h3>
                                             <button>Configurações</button>
                                             <p>Sem notificações</p>`;
@@ -200,12 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             containerHeader[i].appendChild(contentIcon);
         });
-
-        // svgHeader[i].addEventListener('mouseout', () => {
-        //     const svgContent = svgHeader[i].contentDocument;
-        //     const element = svgContent.querySelector('.bi');
-        //     element.setAttribute('fill', 'black');
-        // });
     }
 });
 })();

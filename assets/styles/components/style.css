@@ -141,7 +141,6 @@ header .container-header .container-header__sec-two .container-content-icon {
   height: calc(100vh - 72px);
   overflow-y: scroll;
   background-color: #FFFFFF;
-  z-index: 2000;
   position: absolute;
   right: 0;
   top: 55px;
@@ -193,6 +192,30 @@ header .container-header .container-header__sec-two .container-content-icon .con
 }
 header .container-header .container-header__sec-two .container-content-icon .container-content-icon__content button:hover {
   background-color: #f7f9fa;
+}
+header .container-header .container-header__sec-two .container-content-icon-min {
+  height: max-content !important;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-cart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 30px;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-cart h3, header .container-header .container-header__sec-two .container-content-icon__content-cart button {
+  text-align: center;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-cart h3 {
+  color: #7c7c7c;
+  font-weight: normal;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-cart button {
+  background-color: #FFFFFF;
+  outline: 0;
+  border: 0;
+  font-weight: bold;
+  color: #5624D0;
+  cursor: pointer;
 }
 header .container-header .container-header__sec-two .container-header__user {
   width: 32px;
