@@ -3,61 +3,36 @@ import {coursesArray} from './main-sec-two-courses.js';
 (function() {
 const elements = window.document.querySelectorAll('.container-header__sec-one-ul li');
 const containerHidden = document.createElement('div');
-const textContentOld = [], control = [];
-let mouseOut = true;
+const textContentOld = [];
+const containerList = window.document.getElementsByClassName('container-header__sec-one-ul')[0];
+const secOneCarousel = window.document.getElementsByClassName('main-sec-one-carousel')[0];
+const sectionMain = window.document.getElementsByClassName('section-main-courses')[0];
+const elementIcon = window.document.querySelectorAll('.container-header-sec-two__content-one div iframe');
+const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
+const containerHeaderUser = window.document.getElementsByClassName('container-header__user')[0];
+const containerHeaderSecTwo = window.document.getElementsByClassName('container-header__sec-two')[0];
 
 for(let i = 2; i < elements.length; i++) {
-    control.push(true);
-
     elements[i].addEventListener('mouseenter', () => {
-        if(control[i - 2]) {
-            textContentOld[i] = elements[i].textContent;
-            containerHidden.setAttribute('class', 'container-header__container-hidden');
-            containerHidden.innerHTML = `<p>${i === 2?'Sua equipe pode ter acesso a mais de 22.000 cursos de destaque da Udemy a qualquer hora, em qualquer lugar.':i === 3?'Transforme o que você sabe em oportunidade e alcance milhões de alunos do mundo todo.':''}</p><a href="#">${i === 2?'Testar Udemy Business':i === 3?'Saiba mais':'Acessar meu aprendizado'}</a>`;
-            elements[i].appendChild(containerHidden);
-
-            containerHidden.addEventListener('mouseenter', () => {
-                mouseOut = false;
-            });
-
-            setInterval(() => {
-                if(mouseOut === false) {
-                    containerHiddenMoveOut();
-                }
-            }, 100);
-
-            function containerHiddenMoveOut() {
-                containerHidden.removeEventListener('mouseout', containerHiddenCallbackOne);
-                containerHidden.addEventListener('mouseout', containerHiddenCallbackOne);
-
-                function containerHiddenCallbackOne() {
-                    containerHidden.addEventListener('mouseout', containerHiddenCallback);
-
-                    function containerHiddenCallback() {
-                        elements[i].innerHTML = textContentOld[i];
-                        control[i - 2] = true;
-                        mouseOut = true;
-                    }
-
-                    setTimeout(() => {
-                        containerHidden.removeEventListener('mouseout', containerHiddenCallback);
-                        mouseOut = false;
-                    }, 1000)
-                }
-            }
-        }
-
-        control[i - 2] = false;
+        textContentOld[i] = elements[i].textContent;
+        containerHidden.setAttribute('class', 'container-header__container-hidden');
+        containerHidden.innerHTML = `<p>${i === 2?'Sua equipe pode ter acesso a mais de 22.000 cursos de destaque da Udemy a qualquer hora, em qualquer lugar.':i === 3?'Transforme o que você sabe em oportunidade e alcance milhões de alunos do mundo todo.':''}</p><a href="#">${i === 2?'Testar Udemy Business':i === 3?'Saiba mais':'Acessar meu aprendizado'}</a>`;
+        elements[i].appendChild(containerHidden);
     });
 
     elements[i].addEventListener('mouseout', () => {
-        setTimeout(() => {
-            if(mouseOut) {
-                elements[i].innerHTML = textContentOld[i];
-                control[i - 2] = true;
-            }
-        }, 1000);
+        containerList.addEventListener('mouseenter', () => removeContainerHidden(i));
+        secOneCarousel.addEventListener('mouseenter', () => removeContainerHidden(i));
+        sectionMain.addEventListener('mouseenter', () => removeContainerHidden(i));
+        containerHeaderTwo.addEventListener('mouseenter', () => removeContainerHidden(i));
+        containerHeaderUser.addEventListener('mouseenter', () => removeContainerHidden(i));
+        containerHeaderSecTwo.addEventListener('mouseenter', () => removeContainerHidden(i));
+        elements[1].addEventListener('mouseenter', () => removeContainerHidden(i));
     });
+}
+
+function removeContainerHidden(i) {
+    elements[i].removeChild(containerHidden);
 }
 
 const containerHeader = window.document.getElementsByClassName('container-header')[0];
@@ -99,13 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     contentIcon.setAttribute('class', 'container-content-icon');
 
     for(let i = 0; i < svgHeader.length; i++) {
-        const containerList = window.document.getElementsByClassName('container-header__sec-one-ul')[0];
-        const secOneCarousel = window.document.getElementsByClassName('main-sec-one-carousel')[0];
-        const sectionMain = window.document.getElementsByClassName('section-main-courses')[0];
-        const elementIcon = window.document.querySelectorAll('.container-header-sec-two__content-one div iframe');
-        const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
-        const containerHeaderUser = window.document.getElementsByClassName('container-header__user')[0];
-
         containerList.addEventListener('mouseenter', () => removeElement());
         secOneCarousel.addEventListener('mouseenter', () => removeElement());
         sectionMain.addEventListener('mouseenter', () => removeElement());
