@@ -180,10 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 1:
                     contentIcon.setAttribute('class', 'container-content-icon container-content-icon-min');
 
-                    if(addCourseCart.length > 0) {
-                        contentIcon.innerHTML = '';
-                        
-                        setTimeout(() => {
+                    returnMenuCart();
+                    function returnMenuCart() {
+                        if(addCourseCart.length > 0) {
+                            contentIcon.innerHTML = '';
+    
                             for(let i = 0; i < addCourseCart.length; i++) {
                                 contentIcon.innerHTML += `<div class="container-content-icon__content">
                                                             <div>
@@ -197,28 +198,38 @@ document.addEventListener('DOMContentLoaded', () => {
                                                             <button class="container-content-icon__button-cart">Remover do carrinho</button>
                                                         </div>`;
                             }
+                            
+                            setTimeout(() => {
+                                for(let j = 0; j < window.document.getElementsByClassName('container-content-icon__button-cart').length; j++) {
+                                    window.document.getElementsByClassName('container-content-icon__button-cart')[j].addEventListener('click', () => {
+                                        window.document.getElementsByClassName('container-content-icon__button-cart')[j].innerText = 'Removido!';
+                                        indexCart--;
+                                        addCourseCart.splice(j, 1);
+                                        addCourseIdCart.splice(j, 1);
 
-                            for(let j = 0; j < window.document.getElementsByClassName('container-content-icon__button-cart').length; j++) {
-                                window.document.getElementsByClassName('container-content-icon__button-cart')[j].addEventListener('click', () => {
-                                    window.document.getElementsByClassName('container-content-icon__button-cart')[j].innerText = 'Removido!';
-                                    indexCart--;
-                                    addCourseCart.splice(j, 1);
-                                    addCourseIdCart.splice(j, 1);
-                                });
-                            }
-                        }, 200);
-                    } else {
-                        contentIcon.innerHTML = `<div class="container-content-icon__content-cart">
-                                                    <h3>Seu carrinho está vazio.</h3>
-                                                    <button>Continuar comprando</button>
-                                                </div>`;
+                                        setTimeout(() => {
+                                            returnMenuCart();
+                                        }, 500);
+                                    });
+                                }
+                            }, 200);
+                        } else {
+                            contentIcon.innerHTML = `<div class="container-content-icon__content-cart">
+                                                        <h3>Seu carrinho está vazio.</h3>
+                                                        <button>Continuar comprando</button>
+                                                    </div>`;
+                        }
                     }
                     break;
                 case 2:
                     contentIcon.setAttribute('class', 'container-content-icon container-content-icon-min');
-                    contentIcon.innerHTML = `<h3>Notificações</h3>
-                                            <button>Configurações</button>
-                                            <p>Sem notificações</p>`;
+                    contentIcon.innerHTML = `<div class="container-content-icon__content-notification">
+                                                <div>
+                                                    <h3>Notificações</h3>
+                                                    <button>Configurações</button>
+                                                </div>
+                                                <p>Sem notificações.</p>
+                                            </div>`;
                     break;
             }
 

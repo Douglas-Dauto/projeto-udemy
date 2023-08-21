@@ -233,6 +233,41 @@ header {
                     cursor: pointer;
                 }
             }
+
+            .container-content-icon__content-notification {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                padding: 20px 10px;
+                gap: 30px;
+
+                div {
+                    width: 100%;
+                    justify-content: space-between;
+
+                    h3 {
+                        color: $colorBlack;
+                        font-weight: bold;
+                    }
+
+                    button {
+                        background-color: $colorWhite;
+                        outline: 0;
+                        border: 0;
+                        font-weight: bold;
+                        color: $colorPurple;
+                        cursor: pointer;
+                    }
+                }
+
+                p {
+                    width: 100%;
+                    text-align: center;
+                    color: $colorGrayThree;
+                    font-weight: normal;
+                    font-size: 1.2em;
+                }
+            }
     
             .container-header__user {
                 width: 32px;

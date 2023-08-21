@@ -217,6 +217,36 @@ header .container-header .container-header__sec-two .container-content-icon__con
   color: #5624D0;
   cursor: pointer;
 }
+header .container-header .container-header__sec-two .container-content-icon__content-notification {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 10px;
+  gap: 30px;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-notification div {
+  width: 100%;
+  justify-content: space-between;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-notification div h3 {
+  color: #1C1D1F;
+  font-weight: bold;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-notification div button {
+  background-color: #FFFFFF;
+  outline: 0;
+  border: 0;
+  font-weight: bold;
+  color: #5624D0;
+  cursor: pointer;
+}
+header .container-header .container-header__sec-two .container-content-icon__content-notification p {
+  width: 100%;
+  text-align: center;
+  color: #7c7c7c;
+  font-weight: normal;
+  font-size: 1.2em;
+}
 header .container-header .container-header__sec-two .container-header__user {
   width: 32px;
   height: 32px;
