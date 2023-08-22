@@ -84,8 +84,15 @@ header .container-header .container-header__sec-one .container-header__sec-one-u
   gap: 10px;
   background-color: #f7f9fa;
 }
-header .container-header .container-header__sec-one .container-header__sec-one-ul .container-header__container-input img {
+header .container-header .container-header__sec-one .container-header__sec-one-ul .container-header__container-input iframe {
   padding-left: 15px;
+  width: 40px;
+  height: 20px;
+  border: 0;
+  outline: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 header .container-header .container-header__sec-one .container-header__sec-one-ul .container-header__container-input .container-header__input-search {
   width: calc(100vw - 920px);
@@ -590,6 +597,173 @@ main .main-sec-two-courses .container-course-primary--transition-none {
 }
 main .main-sec-two-courses .section-main-courses:last-child {
   padding: 65px 30px;
+}
+main .main-sec-filter-courses {
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+main .main-sec-filter-courses h1 {
+  font-size: 2em;
+  color: #1C1D1F;
+  display: block;
+  width: 50%;
+}
+main .main-sec-filter-courses div {
+  display: flex;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons {
+  justify-content: space-between;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons div {
+  gap: 10px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons p {
+  font-weight: bold;
+  color: #7c7c7c;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons button {
+  width: 90px;
+  height: 60px;
+  outline: 0;
+  background-color: #FFFFFF;
+  border: 1px solid #1C1D1F;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-weight: bold;
+  cursor: pointer;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons button:hover {
+  background-color: #f7f9fa;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons div div {
+  position: relative;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons div div::before {
+  content: "Classificar por";
+  display: block;
+  color: #1C1D1F;
+  font-weight: bold;
+  font-size: 0.8em;
+  width: 50ox;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  left: 18px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons select {
+  width: 210px;
+  height: 60px;
+  padding: 20px 16px 0;
+  outline: 0;
+  background-color: #FFFFFF;
+  border: 1px solid #1C1D1F;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons select:hover {
+  background-color: #f7f9fa;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__buttons p {
+  display: flex;
+  align-items: center;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) {
+  height: 100vh;
+  min-width: 310px;
+  max-width: 310px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div h4 {
+  width: 100%;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div input {
+  display: inline-flex;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div label {
+  display: inline-flex;
+  cursor: pointer;
+  width: 100%;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div div {
+  display: inline-flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 10px;
+  padding: 1px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div div div {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 8px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) {
+  width: 100%;
+  height: 100vh;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: min-content;
+  border-bottom: 1px solid #c9c9c9;
+  padding: 5px 5px 20px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 14px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) img {
+  width: 240px;
+  height: 135px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div > p:nth-child(2) {
+  font-size: 0.9em;
+  color: #7c7c7c;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div div {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 8px;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div div p {
+  background-color: transparent !important;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div div p:nth-child(1) {
+  font-size: 1em;
+  font-weight: bold;
+  color: #b4690e;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div div p:nth-child(2) {
+  font-size: 0.9em;
+  color: #7c7c7c;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(2) {
+  display: flex;
+  align-items: center;
 }
 @media (max-width: 1359px) {
   main .main-sec-two-courses {

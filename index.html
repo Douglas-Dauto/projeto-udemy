@@ -9,6 +9,7 @@
     <script src="assets/js/container-header-two-container-selection.js" defer></script>
     <script src="assets/js/main-sec-one-carousel.js" defer></script>
     <script src="assets/js/main-sec-two-courses.js" type="module" defer></script>
+    <script src="assets/js/main-sec-filter-courses.js" defer></script>
     <title>Udemy</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
             <div class="container-header__sec-one">
                 <ul class="container-header__sec-one-ul">
                     <li>Categorias</li>
-                    <li><div class="container-header__container-input"><img src="assets/img/icon/search.svg" alt="Pesquisa"><input type="text" class="container-header__input-search" placeholder="Pesquisar por qualquer coisa"></div></li>
+                    <li><div class="container-header__container-input"><iframe src="assets/img/icon/search.svg"></iframe><input type="text" class="container-header__input-search" placeholder="Pesquisar por qualquer coisa"></div></li>
                     <li>Udemy Business</li>
                     <li>Ensine na Udemy</li>
                     <li>Meu Aprendizado</li>
@@ -62,13 +63,91 @@
     </header>
 
     <main>
-        <section class="main-sec-one-carousel">
+        <!-- <section class="main-sec-one-carousel">
             <div class="main-sec-one-next"></div>
             <div class="main-sec-one-content"></div>
             <div class="main-sec-one-previous"></div>
         </section>
 
-        <section class="main-sec-two-courses"></section>
+        <section class="main-sec-two-courses"></section> -->
+
+        <section class="main-sec-filter-courses">
+            <h1>10.000 resultados para “javascript”</h1>
+
+            <div class="main-sec-filter-courses__buttons">
+                <div>
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+                        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                      </svg>Filtro
+                    </button>
+                
+                    <div>
+                        <select>
+                            <option value="">Mais relevantes</option>
+                            <option value="">Mais vendidos</option>
+                            <option value="">Classificação mais alta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <p>10.000 resultados</p>
+            </div>
+
+            <div class="main-sec-filter-courses__courses-and-filter">
+                <div>
+                    <div>
+                        <h4>Classificalções</h4>
+
+                        <div>
+                            <div>
+                                <input type="radio" name="classification" id="four-five">
+                                <label for="four-five">4,5 e Acima</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="classification" id="four-zero">
+                                <label for="four-zero">4,0 e Acima</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="classification" id="three-five">
+                                <label for="three-five">3,5 e Acima</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" name="classification" id="three-zero">
+                                <label for="three-zero">3,0 e Acima</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <div>
+                            <img src="assets/img/courses/Aprenda-JAVA-em-7-dias+Projetos-Reais-2023.jpg" alt="">
+
+                            <div>
+                                <h3>Curso de javascript e typescript do básico ao avançado</h3>
+                                <p>Luiz Otávio Miranda</p>
+        
+                                <div>
+                                    <p>4,8</p>
+                                    <p>(19.526)</p>
+                                </div>
+        
+                                <p>Mais vendidos</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p>R$27,90</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>

@@ -76,10 +76,17 @@ header {
                     gap: 10px;
                     background-color: $colorGray;
         
-                    img {
+                    iframe {
                         padding-left: 15px;
+                        width: 40px;
+                        height: 20px;
+                        border: 0;
+                        outline: 0;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
                     }
-        
+
                     .container-header__input-search {
                         width: calc(100vw - 920px);
                         border: none;
