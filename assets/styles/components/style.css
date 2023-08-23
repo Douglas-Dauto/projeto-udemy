@@ -678,15 +678,26 @@ main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter {
   flex-direction: row;
   width: 100%;
 }
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter .courses-and-filter--hidden {
+  min-width: 0px !important;
+  max-width: 0px !important;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter .courses-and-filter--hidden-transition-none {
+  transition: none !important;
+  min-width: 0px !important;
+  max-width: 0px !important;
+}
 main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) {
   height: 100vh;
   min-width: 310px;
   max-width: 310px;
+  transition: min-width 300ms ease-in-out, max-width 300ms ease-in-out;
+  overflow: hidden;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 310px;
   gap: 15px;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(1) div h4 {
@@ -715,6 +726,7 @@ main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div
 main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) {
   width: 100%;
   height: 100vh;
+  flex-direction: column;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div {
   display: flex;
@@ -723,6 +735,7 @@ main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div
   height: min-content;
   border-bottom: 1px solid #c9c9c9;
   padding: 5px 5px 20px;
+  cursor: pointer;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) {
   display: flex;
@@ -739,6 +752,30 @@ main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div
   flex-direction: column;
   gap: 10px;
   justify-content: center;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div .classification--best-sellers {
+  color: #4d3105;
+  font-weight: bold;
+  font-size: 0.75em;
+  background-color: #eceb98;
+  display: inline-flex;
+  padding: 5px;
+  width: max-content;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div .classification--highest-rating {
+  color: #4d3105;
+  font-weight: bold;
+  font-size: 0.75em;
+  background-color: #f3ca8c;
+  display: inline-flex;
+  padding: 5px;
+  width: max-content;
+}
+main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div .classification--none {
+  display: flex;
+  height: 24px;
+  width: 0px;
+  overflow: hidden;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__courses-and-filter > div:nth-child(2) > div > div:nth-child(1) div > p:nth-child(2) {
   font-size: 0.9em;
