@@ -347,15 +347,28 @@ main {
             flex-direction: row;
             width: 100%;
 
+            .courses-and-filter--hidden {
+                min-width: 0px !important;
+                max-width: 0px !important;
+            }
+
+            .courses-and-filter--hidden-transition-none {
+                transition: none !important;
+                min-width: 0px !important;
+                max-width: 0px !important;
+            }
+
             > div:nth-child(1) {
                 height: 100vh;
                 min-width: 310px;
                 max-width: 310px;
+                transition: min-width 300ms ease-in-out, max-width 300ms ease-in-out;
+                overflow: hidden;
 
                 div {
                     display: flex;
                     flex-direction: column;
-                    width: 100%;
+                    width: 310px;
                     gap: 15px;
 
                     h4 {
@@ -390,7 +403,7 @@ main {
 
             > div:nth-child(2) {
                 width: 100%;
-                height: 100vh;
+                flex-direction: column;
 
                 > div {
                     display: flex;
@@ -399,8 +412,10 @@ main {
                     height: min-content;
                     border-bottom: 1px solid $colorGrayTwo;
                     padding: 5px 5px 20px;
+                    cursor: pointer;
 
-                    > div:nth-child(1)  {
+
+                    > div:nth-child(1) {
                         display: flex;
                         flex-direction: row;
                         width: 100%;
@@ -416,6 +431,33 @@ main {
                             flex-direction: column;
                             gap: 10px;
                             justify-content: center;
+
+                            .classification--best-sellers {
+                                color: $colorOrange;
+                                font-weight: bold;
+                                font-size: .75em;
+                                background-color: $colorYellowFour;
+                                display: inline-flex;
+                                padding: 5px;
+                                width: max-content;
+                            }
+
+                            .classification--highest-rating {
+                                color: $colorOrange;
+                                font-weight: bold;
+                                font-size: .75em;
+                                background-color: $colorYellowTwo;
+                                display: inline-flex;
+                                padding: 5px;
+                                width: max-content;
+                            }
+
+                            .classification--none {
+                                display: flex;
+                                height: 24px;
+                                width: 0px;
+                                overflow: hidden;
+                            }
 
                             > p:nth-child(2) {
                                 font-size: .9em;

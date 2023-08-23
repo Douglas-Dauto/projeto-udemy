@@ -11,6 +11,11 @@ const elementIcon = window.document.querySelectorAll('.container-header-sec-two_
 const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
 const containerHeaderUser = window.document.getElementsByClassName('container-header__user')[0];
 const containerHeaderSecTwo = window.document.getElementsByClassName('container-header__sec-two')[0];
+const headerLogo = window.document.querySelector('.container-header img');
+
+headerLogo.addEventListener('click', () => {
+    document.location.reload();
+});
 
 for(let i = 2; i < elements.length; i++) {
     elements[i].addEventListener('mouseenter', () => {

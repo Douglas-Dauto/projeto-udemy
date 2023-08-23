@@ -1,8 +1,9 @@
+export const containerSelection = window.document.createElement('div');
+export const containerTriangle = window.document.createElement('div');
+export const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
+
 (function() {
 const elements = window.document.querySelectorAll('.container-header-two > ul li');
-const containerSelection = window.document.createElement('div');
-const containerTriangle = window.document.createElement('div');
-const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
 const containerHeader = window.document.getElementsByClassName('container-header')[0];
 
 for(let i = 0; i < elements.length; i++) {
@@ -73,10 +74,10 @@ for(let i = 0; i < elements.length; i++) {
 
     containerHeader.addEventListener('mouseenter', containerSelectionMouseOff);
     window.document.getElementsByClassName('main-sec-one-carousel')[0].addEventListener('mouseenter', containerSelectionMouseOff);
-
-    function containerSelectionMouseOff() {
-        containerHeaderTwo.removeChild(containerSelection);
-        containerTriangle.removeAttribute('class', 'triangle');
-    }
 }
 })();
+
+export function containerSelectionMouseOff() {
+    containerHeaderTwo.removeChild(containerSelection);
+    containerTriangle.removeAttribute('class', 'triangle');
+}
