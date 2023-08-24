@@ -496,6 +496,21 @@ main {
         }
     }
 
+    .load-arrow {
+        display: inline-flex;
+        align-self: center;
+        transform: translateY(25vh);
+        width: 100px;
+        transition: all 800ms linear;
+        animation: load 800ms infinite linear;
+    }
+
+    @keyframes load {
+        100% {
+            transform: translateY(25vh) rotate(360deg);
+        }
+    }
+
     @media (max-width: 1359px) {
         .main-sec-two-courses {
             max-width: 1080px;
