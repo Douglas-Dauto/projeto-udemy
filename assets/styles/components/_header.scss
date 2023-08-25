@@ -137,6 +137,34 @@ header {
                 margin: 0 2px;
             }
 
+            .container-header-icon__num {
+                min-width: 20x;
+                min-height: 20px;
+                width: min-content;
+                height: min-content;
+                border-radius: 50%;
+                background-color: $colorPurbleTwo;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                color: $colorWhite;
+                font-weight: bold;
+                padding: 1px 6px;
+                font-size: .8em;
+                pointer-events: none;
+            }
+
+            .container-header-sec-two__container-cart {
+                position: relative;
+            }
+
+            .container-header-icon__num--none {
+                display: none;
+            }
+
             .container-header-sec-two__content-one {
                 display: inline-flex;
             }

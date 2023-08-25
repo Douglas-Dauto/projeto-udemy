@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const svgHeader = window.document.getElementsByClassName('container-header-icon');
     const containerHeader = window.document.querySelectorAll('.container-header__sec-two .container-header-sec-two__content-one div');
     let contentIcon = window.document.createElement('div');
+    const containerIconCart = window.document.querySelectorAll('.container-header-sec-two__cart')[0];
 
     contentIcon.setAttribute('class', 'container-content-icon');
 
@@ -144,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     window.document.getElementsByClassName('container-content-icon__button')[j].innerText = textButton[j];
                                     addCourseCart[indexCart] = coursesIndex[j];
                                     addCourseIdCart[indexCart] = courses[coursesIndex[j]].id;
+                                    containerIconCart.innerHTML = `<div class="container-header-icon__num">${addCourseCart.length}</div>`;
                                     indexCart++;
                                 }
                             });
@@ -179,6 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                         indexCart--;
                                         addCourseCart.splice(j, 1);
                                         addCourseIdCart.splice(j, 1);
+                                        containerIconCart.innerHTML = `<div class="container-header-icon__num">${addCourseCart.length}</div>`;
+
+                                        if(addCourseCart.length <= 0) {
+                                            window.document.getElementsByClassName('container-header-icon__num')[0].setAttribute('class', 'container-header-icon__num container-header-icon__num--none');
+                                        }
 
                                         setTimeout(() => {
                                             returnMenuCart();

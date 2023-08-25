@@ -137,6 +137,31 @@ header .container-header .container-header__sec-two iframe {
   border: 0;
   margin: 0 2px;
 }
+header .container-header .container-header__sec-two .container-header-icon__num {
+  min-width: 20x;
+  min-height: 20px;
+  width: min-content;
+  height: min-content;
+  border-radius: 50%;
+  background-color: #371783;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 1px 6px;
+  font-size: 0.8em;
+  pointer-events: none;
+}
+header .container-header .container-header__sec-two .container-header-sec-two__container-cart {
+  position: relative;
+}
+header .container-header .container-header__sec-two .container-header-icon__num--none {
+  display: none;
+}
 header .container-header .container-header__sec-two .container-header-sec-two__content-one {
   display: inline-flex;
 }
