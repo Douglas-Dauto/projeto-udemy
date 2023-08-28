@@ -1,6 +1,7 @@
 export const containerSelection = window.document.createElement('div');
 export const containerTriangle = window.document.createElement('div');
 export const containerHeaderTwo = window.document.getElementsByClassName('container-header-two')[0];
+export let controlAppendChildContainerTwo = false;
 
 (function() {
 const elements = window.document.querySelectorAll('.container-header-two > ul li');
@@ -70,6 +71,7 @@ for(let i = 0; i < elements.length; i++) {
         containerHeaderTwo.appendChild(containerSelection);
         containerTriangle.setAttribute('class', 'triangle');
         elements[i].appendChild(containerTriangle);
+        controlAppendChildContainerTwo = true;
     });
 
     containerHeader.addEventListener('mouseenter', containerSelectionMouseOff);
@@ -78,6 +80,9 @@ for(let i = 0; i < elements.length; i++) {
 })();
 
 export function containerSelectionMouseOff() {
-    containerHeaderTwo.removeChild(containerSelection);
-    containerTriangle.removeAttribute('class', 'triangle');
+    if(controlAppendChildContainerTwo) {
+        containerHeaderTwo.removeChild(containerSelection);
+        containerTriangle.removeAttribute('class', 'triangle');
+        controlAppendChildContainerTwo = false;
+    }
 }

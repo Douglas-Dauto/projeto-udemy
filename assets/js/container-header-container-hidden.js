@@ -1,8 +1,11 @@
 import {coursesArray} from './main-sec-two-courses.js';
+export const containerHeaderIcon = window.document.querySelectorAll('.container-header__sec-two .container-header-sec-two__content-one div');
+export let contentIcon = window.document.createElement('div');
+export const svgHeader = window.document.getElementsByClassName('container-header-icon');
+export const elements = window.document.querySelectorAll('.container-header__sec-one-ul li');
+export const containerHidden = document.createElement('div');
 
 (function() {
-const elements = window.document.querySelectorAll('.container-header__sec-one-ul li');
-const containerHidden = document.createElement('div');
 const textContentOld = [];
 const containerList = window.document.getElementsByClassName('container-header__sec-one-ul')[0];
 const secOneCarousel = window.document.getElementsByClassName('main-sec-one-carousel')[0];
@@ -12,6 +15,7 @@ const containerHeaderTwo = window.document.getElementsByClassName('container-hea
 const containerHeaderUser = window.document.getElementsByClassName('container-header__user')[0];
 const containerHeaderSecTwo = window.document.getElementsByClassName('container-header__sec-two')[0];
 const headerLogo = window.document.querySelector('.container-header img');
+let controlAppendChild = false;
 
 headerLogo.addEventListener('click', () => {
     document.location.reload();
@@ -23,6 +27,7 @@ for(let i = 2; i < elements.length; i++) {
         containerHidden.setAttribute('class', 'container-header__container-hidden');
         containerHidden.innerHTML = `<p>${i === 2?'Sua equipe pode ter acesso a mais de 22.000 cursos de destaque da Udemy a qualquer hora, em qualquer lugar.':i === 3?'Transforme o que você sabe em oportunidade e alcance milhões de alunos do mundo todo.':''}</p><a href="#">${i === 2?'Testar Udemy Business':i === 3?'Saiba mais':'Acessar meu aprendizado'}</a>`;
         elements[i].appendChild(containerHidden);
+        controlAppendChild = !controlAppendChild;
     });
 
     elements[i].addEventListener('mouseout', () => {
@@ -37,7 +42,10 @@ for(let i = 2; i < elements.length; i++) {
 }
 
 function removeContainerHidden(i) {
-    elements[i].removeChild(containerHidden);
+    if(controlAppendChild) {
+        elements[i].removeChild(containerHidden);
+        controlAppendChild = !controlAppendChild;
+    }
 }
 
 const containerHeader = window.document.getElementsByClassName('container-header')[0];
@@ -60,7 +68,7 @@ setInterval(() => {
         controlMenu = !controlMenu;
     }
 
-    if(window.innerWidth > 840 && !controlMenu) {
+    if(window.innerWidth > 840 && controlMenu === false) {
         containerHeader.removeChild(elementList);
         containerIcons.removeChild(elementSearch);
         controlMenu = !controlMenu;
@@ -72,10 +80,8 @@ const coursesIndex = [], addCourseCart = [], addCourseIdCart = [];
 let indexCart = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const svgHeader = window.document.getElementsByClassName('container-header-icon');
-    const containerHeader = window.document.querySelectorAll('.container-header__sec-two .container-header-sec-two__content-one div');
-    let contentIcon = window.document.createElement('div');
     const containerIconCart = window.document.querySelectorAll('.container-header-sec-two__cart')[0];
+    let controlAppendChild = false;
 
     contentIcon.setAttribute('class', 'container-content-icon');
 
@@ -91,10 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function removeElement() {
-            const svgContent = svgHeader[i].contentDocument;
-            const element = svgContent.querySelector('.bi');
-            element.setAttribute('fill', 'black');
-            containerHeader[i].removeChild(contentIcon);
+            if(controlAppendChild) {
+                const svgContent = svgHeader[i].contentDocument;
+                const element = svgContent.querySelector('.bi');
+                element.setAttribute('fill', 'black');
+                containerHeaderIcon[i].removeChild(contentIcon);
+                controlAppendChild = !controlAppendChild;
+            }
         }
 
         svgHeader[i].addEventListener('mouseenter', () => {
@@ -213,7 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
 
-            containerHeader[i].appendChild(contentIcon);
+            containerHeaderIcon[i].appendChild(contentIcon);
+            controlAppendChild = !controlAppendChild;
         });
     }
 });

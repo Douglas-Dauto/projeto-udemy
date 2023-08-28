@@ -193,20 +193,6 @@ class Section {
             }
         });
 
-        Object.defineProperty(this, 'key', {
-            enumerable: true,
-            configurable: false,
-
-            get: function() {
-                return key;
-            },
-
-            set: function(value) {
-                if(typeof value !== 'string') return;
-                key = value;
-            }
-        });
-
         Object.defineProperty(this, 'addCourses', {
             enumerable: true,
             value: function() {
@@ -241,19 +227,33 @@ class Section {
             configurable: false
         });
 
-        Section.prototype.addSection = function() {
-            const section = window.document.createElement('section');
-            section.setAttribute('class', `section-main-courses`);
-            section.innerHTML += `
-            <h2>${this.title}</h2>
+        Object.defineProperty(this, 'key', {
+            enumerable: true,
+            configurable: false,
+        });
+    }
 
-            <div class="container-courses-carousel">
-                <div class="main-sec-two-next"></div>
-                <div class="container-courses"></div>
-                <div class="main-sec-two-previous"></div>
-            </div>`;
-            mainCourses.appendChild(section);
-        }
+    addSection() {
+        const section = window.document.createElement('section');
+        section.setAttribute('class', `section-main-courses`);
+        section.innerHTML += `
+        <h2>${this.title}</h2>
+
+        <div class="container-courses-carousel">
+            <div class="main-sec-two-next"></div>
+            <div class="container-courses"></div>
+            <div class="main-sec-two-previous"></div>
+        </div>`;
+        mainCourses.appendChild(section);
+    }
+
+    get key() {
+        return this.key;
+    }
+
+    set key(value) {
+        if(typeof value !== 'string') return;
+        this.key = value;
     }
 }
 
