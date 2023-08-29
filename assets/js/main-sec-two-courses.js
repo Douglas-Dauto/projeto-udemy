@@ -230,6 +230,15 @@ class Section {
         Object.defineProperty(this, 'key', {
             enumerable: true,
             configurable: false,
+
+            get: function() {
+                return key;
+            },
+
+            set: function(value) {
+                if(typeof value !== 'string') return;
+                key = value;
+            }
         });
     }
 
@@ -245,15 +254,6 @@ class Section {
             <div class="main-sec-two-previous"></div>
         </div>`;
         mainCourses.appendChild(section);
-    }
-
-    get key() {
-        return this.key;
-    }
-
-    set key(value) {
-        if(typeof value !== 'string') return;
-        this.key = value;
     }
 }
 

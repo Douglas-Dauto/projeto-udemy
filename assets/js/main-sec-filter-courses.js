@@ -35,13 +35,31 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
         }
     });
     
-    function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false) {
+    function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1') {
+        if(controlSelectOption === false) {
+            localStorage.setItem('valueOption', '1');
+        }
+
         if(inputSearch.value !== '' && inputSearch.value !== textInputSearchValuePrevious || controlSelectOption) {
             countResult = 0;
 
-            for(let i in courses) {
-                if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase()))) {
-                    countResult++;
+            if(valueSelectOption === '3') {
+                for(let i in courses) {
+                    if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase())) && courses[i].classification === 'Classificação mais alta') {
+                        countResult++;
+                    }
+                }
+            } else if(valueSelectOption === '2') {
+                for(let i in courses) {
+                    if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase())) && courses[i].classification === 'Mais vendidos') {
+                        countResult++;
+                    }
+                }
+            } else {
+                for(let i in courses) {
+                    if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase()))) {
+                        countResult++;
+                    }
                 }
             }
 
@@ -76,7 +94,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     <div class="main-sec-filter-courses__courses-and-filter">
                         <div>
                             <div>
-                                <h4>Classificalções</h4>
+                                <h4>Classificações</h4>
                 
                                 <div>
                                     <div>
@@ -126,6 +144,8 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     }
                 });
 
+                const arrayCourse = [];
+
                 for(let i in courses) {
                     if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase()))) {
                         let textClassificationClass;
@@ -138,41 +158,59 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                             textClassificationClass = 'classification--none';
                         }
 
-                        if(selectOption === '2') {
-                            if(courses[i].classification === 'Mais vendidos') {
-                                generateCourse();
-                            }
-                        } else if(selectOption === '3') {
-                            if(courses[i].classification === 'Classificação mais alta') {
-                                generateCourse();
-                            }
-                        } else {
-                            generateCourse();
-                        }
-
+                        arrayCourse.push({container: generateCourse(), classification: courses[i].classification});
                         function generateCourse() {
-                            containerCoursesFilter.innerHTML += `<div>
-                                                                    <div>
-                                                                        <img src="${courses[i].image}" alt="">
+                            return `<div>
+                                        <div>
+                                            <img src="${courses[i].image}" alt="">
 
-                                                                        <div>
-                                                                            <h3>${courses[i].title}</h3>
-                                                                            <p>${courses[i].createdBy}</p>
+                                            <div>
+                                                <h3>${courses[i].title}</h3>
+                                                <p>${courses[i].createdBy}</p>
 
-                                                                            <div>
-                                                                                <p>${courses[i].starNote}</p>
-                                                                                <p>(${courses[i].popularity})</p>
-                                                                            </div>
+                                                <div>
+                                                    <p>${courses[i].starNote}</p>
+                                                    <p>(${courses[i].popularity})</p>
+                                                </div>
 
-                                                                            <p class="${textClassificationClass}">${courses[i].classification}</p>
-                                                                        </div>
-                                                                    </div>
+                                                <p class="${textClassificationClass}">${courses[i].classification}</p>
+                                            </div>
+                                        </div>
 
-                                                                    <div>
-                                                                        <p>R$${courses[i].valueMoney}</p>
-                                                                    </div>
-                                                                </div>`;
+                                        <div>
+                                            <p>R$${courses[i].valueMoney}</p>
+                                        </div>
+                                    </div>`;
                         }
+
+                        
+                    }
+                }
+
+                for(let i in courses) {
+                    if(selectOption === '2') {
+                        filterClassificationCourse('Mais vendidos');
+                    } else if(selectOption === '3') {
+                        filterClassificationCourse('Classificação mais alta');
+                    }
+
+                    function filterClassificationCourse(classification) {
+                        for(let j = 0; j < courses.length; j++) {
+                            if(arrayCourse[j].classification !== classification) {
+                                arrayCourse.push(arrayCourse[j]);
+                                arrayCourse.splice(j, 1);
+                            }
+                            
+                            if(arrayCourse[j].classification === classification && arrayCourse[j].classification !== arrayCourse[j +1].classification) {
+                                arrayCourse.push(arrayCourse[j +1]);
+                                arrayCourse.splice(j +1, 1);
+                            }
+                        }
+                    }
+
+                    innerCourse();
+                    function innerCourse() {
+                        containerCoursesFilter.innerHTML += String(arrayCourse[i].container);
                     }
                 }
 
@@ -209,7 +247,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
     setInterval(() => {
         if(window.document.querySelector('main > section').classList.contains('main-sec-filter-courses') && String(window.document.getElementById('main-sec-filter-courses-button-select').value) !== valueOption) {
             let mainFilterButtonSelect = window.document.getElementById('main-sec-filter-courses-button-select');
-             
+            
             if(controlFilterSelect) {
                 setTimeout(() => {
                     mainFilterButtonSelect.value = String(JSON.parse(localStorage.getItem('valueOption')));
@@ -223,7 +261,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     valueOption = String(mainFilterButtonSelect.value);
     
                     setTimeout(() => {
-                        injectSection(String(mainFilterButtonSelect.value), true);
+                        injectSection(String(mainFilterButtonSelect.value), true, String(valueOption));
                     }, 10);
     
                     JSON.stringify(valueOption);

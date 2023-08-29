@@ -668,6 +668,7 @@ main .main-sec-filter-courses .main-sec-filter-courses__buttons button:hover {
 }
 main .main-sec-filter-courses .main-sec-filter-courses__buttons div div {
   position: relative;
+  cursor: pointer;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__buttons div div::before {
   content: "Classificar por";
@@ -676,7 +677,6 @@ main .main-sec-filter-courses .main-sec-filter-courses__buttons div div::before 
   font-weight: bold;
   font-size: 0.8em;
   width: 50ox;
-  height: 50px;
   position: absolute;
   top: 10px;
   left: 18px;

@@ -306,6 +306,7 @@ main {
 
             div div {
                 position: relative;
+                cursor: pointer;
 
                 &::before {
                     content: 'Classificar por';
@@ -314,7 +315,6 @@ main {
                     font-weight: bold;
                     font-size: .8em;
                     width: 50ox;
-                    height: 50px;
                     position: absolute;
                     top: 10px;
                     left: 18px;
