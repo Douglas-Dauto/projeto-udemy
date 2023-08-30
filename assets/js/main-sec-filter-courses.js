@@ -34,19 +34,22 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
             injectSection();
         }
     });
+
+    let textInputSearch = '';
     
     function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1') {
         if(controlSelectOption === false) {
             let valueOption = '1';
             JSON.stringify(valueOption);
             localStorage.setItem('valueOption', valueOption);
+            textInputSearch = inputSearch.value;
         }
 
-        if(inputSearch.value !== '' && inputSearch.value !== textInputSearchValuePrevious || controlSelectOption) {
+        if(textInputSearch !== '' && textInputSearch !== textInputSearchValuePrevious || controlSelectOption) {
             countResult = 0;
 
             for(let i in courses) {
-                if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase()))) {
+                if(courses[i].title.toLowerCase().includes(String(textInputSearch.toLowerCase()))) {
                     countResult++;
                 }
             }
@@ -57,7 +60,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
             setTimeout(() => {
                 main.innerHTML = '';
                 main.innerHTML = `<section class="main-sec-filter-courses">
-                    <h1>${countResult} resultados para “${inputSearch.value}”</h1>
+                    <h1>${countResult} resultados para “${textInputSearch}”</h1>
                 
                     <div class="main-sec-filter-courses__buttons">
                         <div>
@@ -135,7 +138,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                 const arrayCourse = [];
 
                 for(let i in courses) {
-                    if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase()))) {
+                    if(courses[i].title.toLowerCase().includes(String(textInputSearch.toLowerCase()))) {
                         let textClassificationClass;
 
                         if(courses[i].classification === 'Mais vendidos') {
@@ -170,10 +173,10 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                                         </div>
                                     </div>`;
                         }
-
-                        
                     }
                 }
+
+                const amountArrayCourse = arrayCourse.length;
 
                 for(let i in courses) {
                     if(selectOption === '2') {
@@ -183,20 +186,37 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     }
 
                     function filterClassificationCourse(classification) {
-                        for(let j = 0; j < courses.length; j++) {
-                            if(arrayCourse[j].classification !== classification) {
-                                arrayCourse.push(arrayCourse[j]);
-                                arrayCourse.splice(j, 1);
+                        while(arrayCourse[0].classification !== classification) {
+                            arrayCourse.push(arrayCourse[0]);
+                            arrayCourse.shift();
+
+                            let countClassification = 0;
+
+                            for(let i in arrayCourse) {
+                                if(arrayCourse[i].classification === classification) {
+                                    countClassification++;
+                                }
                             }
-                            
-                            if(arrayCourse[j].classification === classification && arrayCourse[j].classification !== arrayCourse[j +1].classification) {
-                                arrayCourse.push(arrayCourse[j +1]);
-                                arrayCourse.splice(j +1, 1);
+
+                            if(countClassification === 0) {
+                                break;
                             }
                         }
+
+                        setTimeout(() => {
+                            for(let j = 0; j < amountArrayCourse; j++) {
+                                if(arrayCourse[j].classification === classification && arrayCourse[j].classification !== arrayCourse[j +1].classification) {
+                                    arrayCourse.push(arrayCourse[j +1]);
+                                    arrayCourse.splice(j +1, 1);
+                                }
+                            }
+                        }, 10);
                     }
 
-                    innerCourse();
+                    setTimeout(() => {
+                        innerCourse();
+                    }, 50);
+
                     function innerCourse() {
                         containerCoursesFilter.innerHTML += String(arrayCourse[i].container);
                     }
@@ -225,7 +245,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                 }
             }, 2000);
             
-            textInputSearchValuePrevious = inputSearch.value;
+            textInputSearchValuePrevious = textInputSearch;
         }
     }
 
