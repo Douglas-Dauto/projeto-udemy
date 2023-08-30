@@ -37,29 +37,17 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
     
     function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1') {
         if(controlSelectOption === false) {
-            localStorage.setItem('valueOption', '1');
+            let valueOption = '1';
+            JSON.stringify(valueOption);
+            localStorage.setItem('valueOption', valueOption);
         }
 
         if(inputSearch.value !== '' && inputSearch.value !== textInputSearchValuePrevious || controlSelectOption) {
             countResult = 0;
 
-            if(valueSelectOption === '3') {
-                for(let i in courses) {
-                    if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase())) && courses[i].classification === 'Classificação mais alta') {
-                        countResult++;
-                    }
-                }
-            } else if(valueSelectOption === '2') {
-                for(let i in courses) {
-                    if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase())) && courses[i].classification === 'Mais vendidos') {
-                        countResult++;
-                    }
-                }
-            } else {
-                for(let i in courses) {
-                    if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase()))) {
-                        countResult++;
-                    }
+            for(let i in courses) {
+                if(courses[i].title.toLowerCase().includes(String(inputSearch.value.toLowerCase()))) {
+                    countResult++;
                 }
             }
 
@@ -249,11 +237,11 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
             let mainFilterButtonSelect = window.document.getElementById('main-sec-filter-courses-button-select');
             
             if(controlFilterSelect) {
-                setTimeout(() => {
-                    mainFilterButtonSelect.value = String(JSON.parse(localStorage.getItem('valueOption')));
-                }, 100);
-
                 controlFilterSelect = false;
+
+                if(mainFilterButtonSelect.value === '1') {
+                    mainFilterButtonSelect.value = String(JSON.parse(localStorage.getItem('valueOption')));
+                }
             }
     
             setTimeout(() => {
@@ -268,7 +256,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     localStorage.setItem('valueOption', valueOption);
                     controlFilterSelect = true;
                 }
-            }, 200);
+            }, 100);
         }
     }, 0);
 })();

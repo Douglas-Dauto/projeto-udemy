@@ -51,6 +51,13 @@ header {
             gap: 10px;
         }
 
+        .container-header__sec-two {
+            > div > div {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
         .container-header__sec-one {
             .container-header__sec-one-ul {
     

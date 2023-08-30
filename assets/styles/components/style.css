@@ -64,6 +64,10 @@ header .container-header .container-header, header .container-header .container-
   flex-direction: row;
   gap: 10px;
 }
+header .container-header .container-header__sec-two > div > div {
+  display: flex;
+  flex-direction: column;
+}
 header .container-header .container-header__sec-one .container-header__sec-one-ul li {
   display: inline-flex;
   align-items: center;
