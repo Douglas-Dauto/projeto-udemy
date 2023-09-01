@@ -286,7 +286,7 @@ main {
             }
 
             button {
-                width: 90px;
+                width: max-content;
                 height: 60px;
                 outline: 0;
                 background-color: $colorWhite;
@@ -298,6 +298,7 @@ main {
                 gap: 3px;
                 font-weight: bold;
                 cursor: pointer;
+                padding: 10px;
 
                 &:hover {
                     background-color: $colorGray;

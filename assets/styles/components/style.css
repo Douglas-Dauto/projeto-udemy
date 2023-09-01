@@ -654,7 +654,7 @@ main .main-sec-filter-courses .main-sec-filter-courses__buttons p {
   color: #7c7c7c;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__buttons button {
-  width: 90px;
+  width: max-content;
   height: 60px;
   outline: 0;
   background-color: #FFFFFF;
@@ -666,6 +666,7 @@ main .main-sec-filter-courses .main-sec-filter-courses__buttons button {
   gap: 3px;
   font-weight: bold;
   cursor: pointer;
+  padding: 10px;
 }
 main .main-sec-filter-courses .main-sec-filter-courses__buttons button:hover {
   background-color: #f7f9fa;

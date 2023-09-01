@@ -35,9 +35,9 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
         }
     });
 
-    let textInputSearch = '';
+    let textInputSearch = '', controlFilterClassification = true;
     
-    function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1') {
+    function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1', buttonRemoveFilter = 0, controlLocalStoageInputRadioClassification = false) {
         if(controlSelectOption === false) {
             let valueOption = '1';
             JSON.stringify(valueOption);
@@ -64,7 +64,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                 
                     <div class="main-sec-filter-courses__buttons">
                         <div>
-                            <button>
+                            <button id="button-close-open-filter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
                                 <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
                             </svg>Filtro
@@ -87,24 +87,24 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                             <div>
                                 <h4>Classificações</h4>
                 
-                                <div>
+                                <div class="courses-and-filter-container">
                                     <div>
-                                        <input type="radio" name="classification" id="four-five">
+                                        <input type="radio" name="classification" class="courses-and-filter-input" id="four-five">
                                         <label for="four-five">4,5 e Acima</label>
                                     </div>
                 
                                     <div>
-                                        <input type="radio" name="classification" id="four-zero">
+                                        <input type="radio" name="classification" class="courses-and-filter-input" id="four-zero">
                                         <label for="four-zero">4,0 e Acima</label>
                                     </div>
                 
                                     <div>
-                                        <input type="radio" name="classification" id="three-five">
+                                        <input type="radio" name="classification" class="courses-and-filter-input" id="three-five">
                                         <label for="three-five">3,5 e Acima</label>
                                     </div>
                 
                                     <div>
-                                        <input type="radio" name="classification" id="three-zero">
+                                        <input type="radio" name="classification" class="courses-and-filter-input" id="three-zero">
                                         <label for="three-zero">3,0 e Acima</label>
                                     </div>
                                 </div>
@@ -114,6 +114,35 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                         <div class="container-courses-filter"></div>
                     </div>
                 </section>`;
+
+                const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
+
+                if(controlLocalStoageInputRadioClassification) {
+                    inputFilterClassification[JSON.parse(localStorage.getItem('inputRadioClassification'))].checked = true;
+                }
+
+                if(buttonRemoveFilter === 1) {
+                    const elementRemoveFilter = window.document.createElement('button');
+                    const containerButtonsFilter = window.document.querySelector('.main-sec-filter-courses__buttons > div');
+
+                    elementRemoveFilter.setAttribute('id', 'button-clear-filter');
+                    elementRemoveFilter.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                    </svg>Limpar filtro`;
+                    containerButtonsFilter.appendChild(elementRemoveFilter);
+
+                    const buttonRemoveFilter = window.document.getElementById('button-clear-filter');
+                    
+                    buttonRemoveFilter.addEventListener('click', () => {
+                        for(let i = 0; i < inputFilterClassification.length; i++) {
+                            inputFilterClassification[i].checked = false;
+                        }
+
+                        setTimeout(() => {
+                            injectSection(undefined, true, '1', 0);
+                        }, 400);
+                    });
+                }
 
                 const containerCoursesFilter = window.document.getElementsByClassName('container-courses-filter')[0];
                 window.document.getElementsByClassName('main-sec-filter-courses')[0].addEventListener('mouseenter', () => {
@@ -149,7 +178,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                             textClassificationClass = 'classification--none';
                         }
 
-                        arrayCourse.push({container: generateCourse(), classification: courses[i].classification});
+                        arrayCourse.push({container: generateCourse(), classification: courses[i].classification, starNote: courses[i].starNote});
                         function generateCourse() {
                             return `<div>
                                         <div>
@@ -172,6 +201,30 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                                             <p>R$${courses[i].valueMoney}</p>
                                         </div>
                                     </div>`;
+                        }
+                    }
+                }
+
+                if(controlLocalStoageInputRadioClassification) {
+                    const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
+                    
+                    for(let i = 0; i < inputFilterClassification.length; i++) {
+                        if(inputFilterClassification[i].checked === true) {
+                            const textLabel = window.document.querySelectorAll('.courses-and-filter-container label')[i].textContent.slice(0, 3);
+
+                            for(let j = 0; j < arrayCourse.length; j++) {
+                                while(Number(arrayCourse[j].starNote.replace(',', '.')) < Number(textLabel.replace(',', '.'))) {
+                                    arrayCourse.splice(j, 1);
+
+                                    if(j === arrayCourse.length -1) {
+                                        if(Number(arrayCourse[j].starNote.replace(',', '.')) < Number(textLabel.replace(',', '.'))) {
+                                            arrayCourse.splice(j, 1);
+                                        }
+
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -222,7 +275,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     }
                 }
 
-                const buttonFilter = window.document.querySelector('.main-sec-filter-courses__buttons button');
+                const buttonFilter = window.document.querySelector('#button-close-open-filter');
                 const containerFilter = window.document.querySelector('.main-sec-filter-courses__courses-and-filter > div:nth-child(1)');
                 let controlFilter = JSON.parse(localStorage.getItem('controlFilter'));
 
@@ -246,6 +299,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
             }, 2000);
             
             textInputSearchValuePrevious = textInputSearch;
+            controlFilterClassification = true;
         }
     }
 
@@ -277,6 +331,35 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     controlFilterSelect = true;
                 }
             }, 100);
+        }
+    }, 0);
+
+    setInterval(() => {
+        const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
+        const containerFilterClassification = window.document.getElementsByClassName('courses-and-filter-container')[0];
+        const containerButtonsFilter = window.document.querySelector('.main-sec-filter-courses__buttons > div');
+
+        if(window.document.querySelector('main > section').classList.contains('main-sec-filter-courses') && controlFilterClassification) {
+            containerFilterClassification.addEventListener('click', checkInputClassification);
+        
+            function checkInputClassification() {
+                let count = 0;
+
+                for(let i = 0; i < inputFilterClassification.length; i++) {
+                    if(inputFilterClassification[i].checked) {
+                        count++;
+                        localStorage.setItem('inputRadioClassification', JSON.stringify(i));
+                    }
+                }
+
+                if(count > 0) {
+                    setTimeout(() => {
+                        injectSection(undefined, true, '1', 1, true);
+                    }, 400);
+                }
+            }
+
+            controlFilterClassification = false;
         }
     }, 0);
 })();
