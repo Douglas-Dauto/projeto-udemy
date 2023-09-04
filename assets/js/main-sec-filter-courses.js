@@ -321,10 +321,25 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
             setTimeout(() => {
                 if(String(mainFilterButtonSelect.value) !== valueOption) {
                     valueOption = String(mainFilterButtonSelect.value);
-    
-                    setTimeout(() => {
-                        injectSection(String(mainFilterButtonSelect.value), true, String(valueOption));
-                    }, 10);
+
+                    const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
+                    let count = 0;
+
+                    for(let i = 0; i < inputFilterClassification.length; i++) {
+                        if(inputFilterClassification[i].checked) {
+                            count++;
+                        }
+                    }
+
+                    if(count > 0) {
+                        setTimeout(() => {
+                            injectSection(String(mainFilterButtonSelect.value), true, String(valueOption), 1, true);
+                        }, 10);
+                    } else {
+                        setTimeout(() => {
+                            injectSection(String(mainFilterButtonSelect.value), true, String(valueOption), undefined, false);
+                        }, 10);
+                    }
     
                     JSON.stringify(valueOption);
                     localStorage.setItem('valueOption', valueOption);
@@ -355,6 +370,10 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                 if(count > 0) {
                     setTimeout(() => {
                         injectSection(undefined, true, '1', 1, true);
+                    }, 400);
+                } else {
+                    setTimeout(() => {
+                        injectSection(undefined, true, '1', undefined, false);
                     }, 400);
                 }
             }
