@@ -1,5 +1,5 @@
 import {coursesArray} from './main-sec-two-courses.js';
-export const containerHeaderIcon = window.document.querySelectorAll('.container-header__sec-two .container-header-sec-two__content-one div');
+export const containerHeaderIcon = window.document.querySelectorAll('.container-header__sec-two .container-header-sec-two__content-one > div');
 export let contentIcon = window.document.createElement('div');
 export const svgHeader = window.document.getElementsByClassName('container-header-icon');
 export const elements = window.document.querySelectorAll('.container-header__sec-one-ul li');
