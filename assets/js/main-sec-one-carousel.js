@@ -104,7 +104,9 @@ function showSlide(index) {
 intervalNextImage();
 function intervalNextImage() {
     intervalNextImageData = setInterval(() => {
-        nextElement();
+        if(!window.document.getElementsByTagName('section')[0].classList.contains('main-sec-filter-courses')) {
+            nextElement();
+        }
     }, 15000);
 }
 })();

@@ -42,7 +42,7 @@ for(let i = 2; i < elements.length; i++) {
 }
 
 function removeContainerHidden(i) {
-    if(controlAppendChild) {
+    if(controlAppendChild && elements[i].contains(containerHidden)) {
         elements[i].removeChild(containerHidden);
         controlAppendChild = !controlAppendChild;
     }
@@ -68,7 +68,7 @@ setInterval(() => {
         controlMenu = !controlMenu;
     }
 
-    if(window.innerWidth > 840 && controlMenu === false) {
+    if(window.innerWidth > 840 && controlMenu === false && containerHeader.contains(elementList) && containerIcons.contains(elementSearch)) {
         containerHeader.removeChild(elementList);
         containerIcons.removeChild(elementSearch);
         controlMenu = !controlMenu;
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function removeElement() {
-            if(controlAppendChild) {
+            if(controlAppendChild && containerHeaderIcon[i].contains(contentIcon)) {
                 const svgContent = svgHeader[i].contentDocument;
                 const element = svgContent.querySelector('.bi');
                 element.setAttribute('fill', 'black');

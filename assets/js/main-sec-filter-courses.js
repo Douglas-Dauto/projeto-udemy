@@ -35,7 +35,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
         }
     });
 
-    let textInputSearch = '', controlFilterClassification = true;
+    let textInputSearch = '', controlFilterClassification = true, intervalFilterSelect, intervalInputFilter;
     
     function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1', buttonRemoveFilter = 0, controlLocalStoageInputRadioClassification = false, valueCountCourses = null) {
         if(controlSelectOption === false) {
@@ -62,6 +62,8 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                 }
             }
 
+            clearInterval(intervalFilterSelect);
+            clearInterval(intervalInputFilter);
             main.innerHTML = '';
             main.innerHTML = '<img src="assets/img/icon/arrow-clockwise.svg" class="load-arrow" alt="Load">';
 
@@ -123,6 +125,8 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     </div>
                 </section>`;
 
+                initSetIntervalFilterCourses();
+
                 const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
 
                 if(controlLocalStoageInputRadioClassification) {
@@ -156,18 +160,22 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                 window.document.getElementsByClassName('main-sec-filter-courses')[0].addEventListener('mouseenter', () => {
                     containerSelectionMouseOff();
 
-                    for(let i in containerHeaderIcon) {
+                    for(let i = 0; i < containerHeaderIcon.length; i++) {
                         setTimeout(() => {
-                            const svgContent = svgHeader[i].contentDocument;
-                            const element = svgContent.querySelector('.bi');
-                            element.setAttribute('fill', 'black');
-                            containerHeaderIcon[i].removeChild(contentIcon);
+                            if(containerHeaderIcon[i].contains(contentIcon)) {
+                                const svgContent = svgHeader[i].contentDocument;
+                                const element = svgContent.querySelector('.bi');
+                                element.setAttribute('fill', 'black');
+                                containerHeaderIcon[i].removeChild(contentIcon);
+                            }
                         }, 1);
                     }
 
                     for(let i = 2; i < elements.length; i++) {
                         setTimeout(() => {
-                            elements[i].removeChild(containerHidden);
+                            if(elements[i].contains(containerHidden)) {
+                                elements[i].removeChild(containerHidden);
+                            }
                         }, 1);
                     }
                 });
@@ -314,76 +322,78 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
     
     let valueOption = '1', controlFilterSelect = true;
 
-    setInterval(() => {
-        if(window.document.querySelector('main > section').classList.contains('main-sec-filter-courses') && String(window.document.getElementById('main-sec-filter-courses-button-select').value) !== valueOption) {
-            let mainFilterButtonSelect = window.document.getElementById('main-sec-filter-courses-button-select');
-            
-            if(controlFilterSelect) {
-                controlFilterSelect = false;
-
-                if(mainFilterButtonSelect.value === '1') {
-                    mainFilterButtonSelect.value = String(JSON.parse(localStorage.getItem('valueOption')));
-                }
-            }
+    function initSetIntervalFilterCourses() {
+        intervalFilterSelect = setInterval(() => {
+            if(window.document.querySelector('main > section').classList.contains('main-sec-filter-courses') && String(window.document.getElementById('main-sec-filter-courses-button-select').value) !== valueOption) {
+                let mainFilterButtonSelect = window.document.getElementById('main-sec-filter-courses-button-select');
+                
+                if(controlFilterSelect) {
+                    controlFilterSelect = false;
     
-            setTimeout(() => {
-                if(String(mainFilterButtonSelect.value) !== valueOption) {
-                    valueOption = String(mainFilterButtonSelect.value);
-
-                    const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
-                    let count = 0;
-
+                    if(mainFilterButtonSelect.value === '1') {
+                        mainFilterButtonSelect.value = String(JSON.parse(localStorage.getItem('valueOption')));
+                    }
+                }
+        
+                setTimeout(() => {
+                    if(String(mainFilterButtonSelect.value) !== valueOption) {
+                        valueOption = String(mainFilterButtonSelect.value);
+    
+                        const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
+                        let count = 0;
+    
+                        for(let i = 0; i < inputFilterClassification.length; i++) {
+                            if(inputFilterClassification[i].checked) {
+                                count++;
+                            }
+                        }
+    
+                        if(count > 0) {
+                            setTimeout(() => {
+                                injectSection(String(mainFilterButtonSelect.value), true, String(valueOption), 1, true);
+                            }, 10);
+                        } else {
+                            setTimeout(() => {
+                                injectSection(String(mainFilterButtonSelect.value), true, String(valueOption), undefined, false);
+                            }, 10);
+                        }
+        
+                        JSON.stringify(valueOption);
+                        localStorage.setItem('valueOption', valueOption);
+                        controlFilterSelect = true;
+                    }
+                }, 100);
+            }
+        }, 0);
+    
+        intervalInputFilter = setInterval(() => {
+            const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
+            const containerFilterClassification = window.document.getElementsByClassName('courses-and-filter-container')[0];
+            const containerButtonsFilter = window.document.querySelector('.main-sec-filter-courses__buttons > div');
+    
+            if(window.document.querySelector('main > section').classList.contains('main-sec-filter-courses') && controlFilterClassification) {
+                containerFilterClassification.addEventListener('click', checkInputClassification);
+            
+                function checkInputClassification() {
+                    let count = 0, valueCountCourses = 0;
+    
                     for(let i = 0; i < inputFilterClassification.length; i++) {
                         if(inputFilterClassification[i].checked) {
                             count++;
+                            valueCountCourses = i;
+                            localStorage.setItem('inputRadioClassification', JSON.stringify(i));
                         }
                     }
-
+    
                     if(count > 0) {
                         setTimeout(() => {
-                            injectSection(String(mainFilterButtonSelect.value), true, String(valueOption), 1, true);
-                        }, 10);
-                    } else {
-                        setTimeout(() => {
-                            injectSection(String(mainFilterButtonSelect.value), true, String(valueOption), undefined, false);
-                        }, 10);
+                            injectSection(undefined, true, '1', 1, true, String(window.document.querySelectorAll('.courses-and-filter-container label')[valueCountCourses].textContent.slice(0, 3)));
+                        }, 400);
                     }
+                }
     
-                    JSON.stringify(valueOption);
-                    localStorage.setItem('valueOption', valueOption);
-                    controlFilterSelect = true;
-                }
-            }, 100);
-        }
-    }, 0);
-
-    setInterval(() => {
-        const inputFilterClassification = window.document.getElementsByClassName('courses-and-filter-input');
-        const containerFilterClassification = window.document.getElementsByClassName('courses-and-filter-container')[0];
-        const containerButtonsFilter = window.document.querySelector('.main-sec-filter-courses__buttons > div');
-
-        if(window.document.querySelector('main > section').classList.contains('main-sec-filter-courses') && controlFilterClassification) {
-            containerFilterClassification.addEventListener('click', checkInputClassification);
-        
-            function checkInputClassification() {
-                let count = 0, valueCountCourses = 0;
-
-                for(let i = 0; i < inputFilterClassification.length; i++) {
-                    if(inputFilterClassification[i].checked) {
-                        count++;
-                        valueCountCourses = i;
-                        localStorage.setItem('inputRadioClassification', JSON.stringify(i));
-                    }
-                }
-
-                if(count > 0) {
-                    setTimeout(() => {
-                        injectSection(undefined, true, '1', 1, true, String(window.document.querySelectorAll('.courses-and-filter-container label')[valueCountCourses].textContent.slice(0, 3)));
-                    }, 400);
-                }
+                controlFilterClassification = false;
             }
-
-            controlFilterClassification = false;
-        }
-    }, 0);
+        }, 0);
+    }
 })();
