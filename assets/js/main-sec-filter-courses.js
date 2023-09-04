@@ -371,10 +371,6 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                     setTimeout(() => {
                         injectSection(undefined, true, '1', 1, true);
                     }, 400);
-                } else {
-                    setTimeout(() => {
-                        injectSection(undefined, true, '1', undefined, false);
-                    }, 400);
                 }
             }
 
