@@ -37,7 +37,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
 
     let textInputSearch = '', controlFilterClassification = true;
     
-    function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1', buttonRemoveFilter = 0, controlLocalStoageInputRadioClassification = false) {
+    function injectSection(selectOption = String(JSON.parse(localStorage.getItem('valueOption'))) | 1, controlSelectOption = false, valueSelectOption = '1', buttonRemoveFilter = 0, controlLocalStoageInputRadioClassification = false, valueCountCourses = null) {
         if(controlSelectOption === false) {
             let valueOption = '1';
             JSON.stringify(valueOption);
@@ -48,9 +48,17 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
         if(textInputSearch !== '' && textInputSearch !== textInputSearchValuePrevious || controlSelectOption) {
             countResult = 0;
 
-            for(let i in courses) {
-                if(courses[i].title.toLowerCase().includes(String(textInputSearch.toLowerCase()))) {
-                    countResult++;
+            if(!controlLocalStoageInputRadioClassification || valueCountCourses === null) {
+                for(let i in courses) {
+                    if(courses[i].title.toLowerCase().includes(String(textInputSearch.toLowerCase()))) {
+                        countResult++;
+                    }
+                }
+            } else {
+                for(let i in courses) {
+                    if(courses[i].title.toLowerCase().includes(String(textInputSearch.toLowerCase())) && String(courses[i].starNote) >= valueCountCourses) {
+                        countResult++;
+                    }
                 }
             }
 
@@ -212,7 +220,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
                         if(inputFilterClassification[i].checked === true) {
                             const textLabel = window.document.querySelectorAll('.courses-and-filter-container label')[i].textContent.slice(0, 3);
 
-                            for(let j = 0; j < arrayCourse.length; j++) {
+                            for(let j = 0; j < arrayCourse.length -1; j++) {
                                 while(Number(arrayCourse[j].starNote.replace(',', '.')) < Number(textLabel.replace(',', '.'))) {
                                     arrayCourse.splice(j, 1);
 
@@ -358,18 +366,19 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
             containerFilterClassification.addEventListener('click', checkInputClassification);
         
             function checkInputClassification() {
-                let count = 0;
+                let count = 0, valueCountCourses = 0;
 
                 for(let i = 0; i < inputFilterClassification.length; i++) {
                     if(inputFilterClassification[i].checked) {
                         count++;
+                        valueCountCourses = i;
                         localStorage.setItem('inputRadioClassification', JSON.stringify(i));
                     }
                 }
 
                 if(count > 0) {
                     setTimeout(() => {
-                        injectSection(undefined, true, '1', 1, true);
+                        injectSection(undefined, true, '1', 1, true, String(window.document.querySelectorAll('.courses-and-filter-container label')[valueCountCourses].textContent.slice(0, 3)));
                     }, 400);
                 }
             }
