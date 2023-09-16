@@ -58,10 +58,10 @@ let controlMenu = true;
 
 setInterval(() => {
     if(window.innerWidth <= 840 && controlMenu) {
-        elementList.innerHTML = `<img src="../src/assets/img/icon/list.svg" alt="Menu">`;
+        elementList.innerHTML = `<img src="src/assets/img/icon/list.svg" alt="Menu">`;
         containerHeader.appendChild(elementList);
         containerHeader.insertBefore(elementList, imgLogo);
-        elementSearch.setAttribute('src', '../src/assets/img/icon/search.svg');
+        elementSearch.setAttribute('src', 'src/assets/img/icon/search.svg');
         elementSearch.setAttribute('alt', 'Pesquisa');
         containerIcons.appendChild(elementSearch);
         containerIcons.insertBefore(elementSearch, imgCart);
