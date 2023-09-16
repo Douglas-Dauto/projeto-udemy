@@ -4,7 +4,7 @@ const carouselPrevious = window.document.getElementsByClassName('main-sec-one-pr
 const carouselNext = window.document.getElementsByClassName('main-sec-one-next')[0];
 const elementsCarousel = [
 `<div class="carousel-content-all">
-    <img class="carousel-img" src="assets/img/carrosselOne.jpg" alt="Certificado">
+    <img class="carousel-img" src="../src/assets/img/carrosselOne.jpg" alt="Certificado">
 
     <div class="carousel-content">
         <h1>Prepare-se para sua certificação de TI</h1>
@@ -12,7 +12,7 @@ const elementsCarousel = [
     </div>
 </div>`, 
 `<div class="carousel-content-all">
-    <img class="carousel-img" src="assets/img/carrosselTwo.jpg" alt="Boneco subindo degraus">
+    <img class="carousel-img" src="../src/assets/img/carrosselTwo.jpg" alt="Boneco subindo degraus">
 
     <div class="carousel-content">
         <h1>Devagar e sempre</h1>
@@ -20,7 +20,7 @@ const elementsCarousel = [
     </div>
 </div>`,
 `<div class="carousel-content-all">
-    <img class="carousel-img" src="assets/img/carrosselThree.png" alt="Pessoa sorrindo">
+    <img class="carousel-img" src="../src/assets/img/carrosselThree.png" alt="Pessoa sorrindo">
 
     <div class="carousel-content">
         <h1>O aprendizado vem até você</h1>

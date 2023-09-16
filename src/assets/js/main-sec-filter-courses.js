@@ -65,7 +65,7 @@ import {containerHeaderIcon, contentIcon, svgHeader, elements, containerHidden} 
             clearInterval(intervalFilterSelect);
             clearInterval(intervalInputFilter);
             main.innerHTML = '';
-            main.innerHTML = '<img src="assets/img/icon/arrow-clockwise.svg" class="load-arrow" alt="Load">';
+            main.innerHTML = '<img src="../src/assets/img/icon/arrow-clockwise.svg" class="load-arrow" alt="Load">';
 
             setTimeout(() => {
                 main.innerHTML = '';
