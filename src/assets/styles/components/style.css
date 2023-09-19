@@ -522,6 +522,7 @@ main .main-sec-two-courses .section-main-courses .container-courses-carousel {
   display: flex;
   flex-direction: row;
   position: relative;
+  max-width: 1280px;
 }
 main .main-sec-two-courses .section-main-courses .container-courses-carousel .main-sec-two-next, main .main-sec-two-courses .section-main-courses .container-courses-carousel .main-sec-two-previous {
   width: 40px;
