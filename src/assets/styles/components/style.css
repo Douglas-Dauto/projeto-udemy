@@ -7,14 +7,30 @@
   scroll-behavior: smooth;
 }
 
+.control-mode-switch {
+    width: 100px;
+    height: 70px;
+    border-radius: 20px;
+    background-color: #3e4143;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+}
+
 body {
-  font-family: "Roboto", sans-serif;
-  font-size: 1em;
-  overflow-x: hidden;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-areas: "header" "main" "footer";
-  flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "header" "main" "footer";
+    flex-direction: column;
 }
 
 header {
