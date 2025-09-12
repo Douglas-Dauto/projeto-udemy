@@ -19,6 +19,7 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		
 		Course course0 = new Course(null, "src/assets/img/courses/C-Sharp-COMPLETO-Programação-Orientada-a-Objetos-Projetos.jpg", "C# COMPLETO Programação Orientada a Objetos + Projetos", "Nelio Alves", "4,8", "25.932", "189,90", "Classificação mais alta");
 		Course course1 = new Course(null, "src/assets/img/courses/Java-COMPLETO-2023-Programação-Orientada-a-Objetos-Projetos.jpg", "Java COMPLETO 2023 Programação Orientada a Objetos +Projetos", "Nelio Alves", "4,8", "44.719", "169,90", "Mais vendidos");
 		Course course2 = new Course(null, "src/assets/img/courses/O-curso-completo-de-Banco-de-Dados-e-SQL-sem mistérios.jpg", "O curso completo de Banco de Dados e SQL, sem mistérios!", "Felipe Mafra", "4,7", "37.665", "179,90", "Mais vendidos");

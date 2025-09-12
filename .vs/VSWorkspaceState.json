@@ -1,18 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\backend\\courses",
-    "\\backend\\courses\\src",
-    "\\backend\\courses\\src\\main",
-    "\\backend\\courses\\src\\main\\java",
-    "\\backend\\courses\\src\\main\\java\\com",
-    "\\backend\\courses\\src\\main\\java\\com\\example",
-    "\\backend\\courses\\src\\main\\java\\com\\example\\courses",
     "\\src",
     "\\src\\assets",
     "\\src\\assets\\styles",
     "\\src\\assets\\styles\\components"
   ],
-  "SelectedNode": "\\src\\assets\\styles\\components\\style.css",
   "PreviewInSolutionExplorer": false
 }
