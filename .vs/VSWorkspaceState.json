@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\assets",
-    "\\src\\assets\\styles",
-    "\\src\\assets\\styles\\components"
+    "\\backend",
+    "\\backend\\courses",
+    "\\backend\\courses\\src",
+    "\\backend\\courses\\src\\test",
+    "\\backend\\courses\\src\\test\\java",
+    "\\backend\\courses\\src\\test\\java\\com",
+    "\\backend\\courses\\src\\test\\java\\com\\example",
+    "\\backend\\courses\\src\\test\\java\\com\\example\\courses",
+    "\\backend\\courses\\src\\test\\java\\com\\example\\courses\\services"
   ],
+  "SelectedNode": "\\backend\\courses\\src\\test\\java\\com\\example\\courses\\services\\CourseServiceTest.java",
   "PreviewInSolutionExplorer": false
 }
